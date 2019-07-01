@@ -26,6 +26,6 @@ export const login = user => dispatch => (
 );
 
 export const logout = () => dispatch => (
-    APIUtil.deleteSession(user)
+    APIUtil.deleteSession()
         .then(() => dispatch(logoutCurrentUser()))
 );
