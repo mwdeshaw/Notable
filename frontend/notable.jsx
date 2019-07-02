@@ -19,6 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
         store = configureStore();
     }
     delete window.currentUser
-
     ReactDOM.render(<Root store={store}/> ,root);
 });
