@@ -34,4 +34,3 @@ const NavigationBar = ({ currentUser, logout }) => {
 };
 
 export default NavigationBar;
-
