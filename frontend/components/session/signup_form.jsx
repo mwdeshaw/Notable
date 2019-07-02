@@ -39,7 +39,7 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className='signup-form'>
+            <div className='session'>
                 <h1>Notable</h1>
                 <h3>Remember everything important.</h3>
                 <form className='session-form'>

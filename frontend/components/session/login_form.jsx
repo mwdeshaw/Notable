@@ -39,9 +39,12 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div className='login-form'>
-                <h1>Notable</h1>
-                <h3>Remember everything important.</h3>
+            <div className='session'>
+                <div className='session-form-div'>
+                    <div className='session-header'>
+                        <h1>Notable</h1>
+                        <p className="tagline">Remember everything important.</p>
+                    </div>
                 <form className='session-form' >
                     <input type="text" value={this.state.email} onChange={this.update("email")} />
                     <input type="password" value={this.state.password} onChange={this.update("password")} />
@@ -49,8 +52,9 @@ class LoginForm extends React.Component {
                     {this.renderErrors()}
                     <button className='submit-button' onClick={this.handleSubmit}>Continue</button>
                 </form>
-                <p>Don't have an account?</p>
-                <h3><Link to='/signup'>Create Account</Link></h3>
+                    <p>Don't have an account?</p>
+                    <h3><Link to='/signup'>Create Account</Link></h3>
+                </div>
             </div>
         )
     };

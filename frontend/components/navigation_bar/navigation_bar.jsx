@@ -17,14 +17,15 @@ const NavigationBar = ({ currentUser, logout }) => {
             </ul>
         </div>
     ) : (
-            <div>
+            <div className='splash-nav'>
+                <div className="-splash-nav-header">
                 <h1>Notable</h1>
-                <Link to='/signup'>Sign up</Link>
-                    <p>or</p>
-                <Link className='btn' to='/login'>Log In</Link>
+                    <Link to='/signup'>Sign up</Link>
+                        <p>or</p>
+                    <button className="login"><Link className='btn' to='/login'>Log In</Link></button>
+                </div>
             </div>
     );
-
     return (
         <div className="nav-bar-parent">
             {navBar}
@@ -33,3 +34,4 @@ const NavigationBar = ({ currentUser, logout }) => {
 };
 
 export default NavigationBar;
+
