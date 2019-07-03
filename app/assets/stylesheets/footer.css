@@ -3,14 +3,17 @@
     font-family: Soleil,Helvetica,Arial,sans-serif;
     color: grey;
     font-size: 14px;
-    position: relative;
     padding: 40px 20px;
     display: block;
     -webkit-font-smoothing: antialiased;
     border-top: solid 1px grey;
     text-align: center;
     max-height: 130px;
-    width: 100%;
+    width: 97%;
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
 };
 
 .footer-cw {

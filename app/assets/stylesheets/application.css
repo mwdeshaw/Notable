@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ body, html {
+    height: 100%;
+    background-image: url("main-green.png");
+    background-color: #04a82e;
+}

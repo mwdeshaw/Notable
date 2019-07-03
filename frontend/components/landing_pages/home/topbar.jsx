@@ -8,7 +8,7 @@ const styles = {
     topBarContainer: {
         display: 'flex',
         height: 130,
-        width: "100%",
+        width: "95%",
         alignItems: "center",
         justifyContent: 'space-between',
         gridTemplateColumns: "auto auto",
