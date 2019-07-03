@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-
+import HomePage from '../landing_pages/home/home_page'
 
 const NavigationBar = ({ currentUser, logout }) => {
-    const navBar = currentUser ? (
+    const navBar = currentUser;
+    if (currentUser) {
+    return (
         <div>
             <p>{currentUser.email}</p>
             <ul className='logout-dropdown'>
@@ -18,26 +19,28 @@ const NavigationBar = ({ currentUser, logout }) => {
                 <li>Trash</li>
             </ul>
         </div>
-    ) : (
-            <div className="splash-zone">
-                <div className='splash-nav'>
-                    <div className="splash-nav-header">
-                        <h1>Notable</h1>
-                        <ul className='user-nav'>
-                            <li><Link id='li-signup' to='/signup'>Sign up</Link></li>
-                            <li id='or'>or</li>
-                            <li><Link id='li-login' to='/login'>Log In</Link></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        );
+    } else {
+        return(
+        <HomePage/>
+        )
+    }
+    
+    //  : (
+    //         <div className="splash-zone">
+    //             <div className='splash-nav'>
+    //                 <div className="splash-nav-header">
+    //                     <h1>Notable</h1>
+    //                     <ul className='user-nav'>
+    //                         <li><Link id='li-signup' to='/signup'>Sign up</Link></li>
+    //                         <li id='or'>or</li>
+    //                         <li><Link id='li-login' to='/login'>Log In</Link></li>
+    //                     </ul>
+    //                 </div>
+    //             </div>
+    //         </div>
           
-    );
-    return (
-        <div className="nav-bar-parent">
-            {navBar}
-        </div>
-    );
+    // );
 };
 
 export default NavigationBar;

@@ -139,7 +139,6 @@ const TopBar = () => {
     function handleSignup() {
         setSignupRedirect(true);
     }
-
     return (
         loginRedirect ? (
             <Redirect to="/login" />

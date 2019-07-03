@@ -5,7 +5,6 @@ import NavigationBar from './navigation_bar'
 const mapStateToProps = ({ session, entities: { users } }) => ({
     currentUser: users[session.currentUserId]
 });
-//user info will be drawn from users slice of state
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout())

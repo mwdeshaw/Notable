@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.props.login(this.state)
-        .then(() => this.props.history.push("/"))
+            .then(() => this.props.history.push("/"))
     };
 
     formSwitch(e) {
@@ -51,7 +51,8 @@ class LoginForm extends React.Component {
 
         setTimeout(() => {
             this.props.login(demoUser)
-            .then(() => { this.props.history.push("/")
+                .then(() => {
+                    this.props.history.push("/")
         })
         }, 1500);
     };
@@ -88,7 +89,7 @@ class LoginForm extends React.Component {
                         <button className='demo-user-button' onClick={this.initiateDemo}>Demo User</button>
                     </form>
                     <div className="session-sentence">Don't have an account?</div>
-                    <h3><Link to='/signup' onClick={this.formSwitch}>Create Account</Link></h3>
+                    <h3><Link to='/signup' onClick={() => this.formSwitch}>Create Account</Link></h3>
                 </div>
             </div>
         );

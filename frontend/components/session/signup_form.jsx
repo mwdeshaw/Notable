@@ -16,7 +16,7 @@ class SignupForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.props.createNewUser(this.state)
-        .then(() => this.props.history.push("/"))
+            .then(() => this.props.history.push("/"))
     };
 
     formSwitch(e) {
@@ -59,7 +59,7 @@ class SignupForm extends React.Component {
                             <button className='submit-button' onClick={this.handleSubmit}>Sign up</button>
                         </form>
                     <div className='session-sentence'>Already have an account?</div>
-                    <h3><Link to='/login' onClick={this.formSwitch}>Sign in</Link></h3>
+                    <h3><Link to='/login' onClick={() => this.formSwitch}>Log in</Link></h3>
                 </div>
             </div>
         );

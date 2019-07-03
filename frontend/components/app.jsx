@@ -9,7 +9,8 @@ import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 const App = () => (
     <div>
        <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={NavigationBarContainer} />
+            {/* <Route exact path="/" component={HomePage} /> */}
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
         </Switch>
@@ -17,6 +18,3 @@ const App = () => (
 );
 
 export default App;
-
-//            <div class="MinimalFormFrame-evernote-logo">
-//<svg width="188" height="100" viewBox="0 0 188 100" fill="none" xmlns="http://www.w3.org/2000/svg">
