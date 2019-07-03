@@ -14,7 +14,7 @@ class SignupForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.createNewUser(this.state)
-        .then(() => this.props.history.push("/"))
+        .then(() => this.props.history.push(""))
     };
 
     update(type) {
@@ -25,9 +25,10 @@ class SignupForm extends React.Component {
 
     renderErrors() {
         if (this.props.errors) {
+            
             return(
                 <ul>
-                    {this.props.errors.map((error, idx) => (
+                    {this.props.errors.map((idx, error) => (
                         <li key={`error-${idx}`}>
                             {error}
                         </li>
@@ -40,16 +41,18 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div className='session'>
-                <h1>Notable</h1>
-                <h3>Remember everything important.</h3>
-                <form className='session-form'>
-                    <input type="text" value={this.state.email} onChange={this.update("email")}/>
-                    <input type="password" value={this.state.password} onChange={this.update("password")}/>
-                    <h3>{this.renderErrors()}</h3>
+                <div className='session-header'>
+                    <h1>Notable</h1>
+                    <h3>Remember everything important.</h3>
+                </div>
+                    <form className='session-form'>
+                        <input type="text" value={this.state.email} onChange={this.update("email")}/>
+                        <input type="password" value={this.state.password} onChange={this.update("password")}/>
+                        <h3>{this.renderErrors()}</h3>
 
-                    <button className='submit-button' onClick={this.handleSubmit}>Continue</button>
-                </form>
-                <p>Already have an account?</p>
+                        <button className='submit-button' onClick={this.handleSubmit}>Continue</button>
+                    </form>
+                <div className='session-sentence'>Already have an account?</div>
                 <h3><Link to='/login'>Sign in</Link></h3>
             </div>
         );

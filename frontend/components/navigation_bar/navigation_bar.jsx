@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+
 
 const NavigationBar = ({ currentUser, logout }) => {
     const navBar = currentUser ? (
@@ -17,14 +19,19 @@ const NavigationBar = ({ currentUser, logout }) => {
             </ul>
         </div>
     ) : (
-            <div className='splash-nav'>
-                <div className="-splash-nav-header">
-                <h1>Notable</h1>
-                    <Link to='/signup'>Sign up</Link>
-                        <p>or</p>
-                    <button className="login"><Link className='btn' to='/login'>Log In</Link></button>
+            <div className="splash-zone">
+                <div className='splash-nav'>
+                    <div className="splash-nav-header">
+                        <h1>Notable</h1>
+                        <ul className='user-nav'>
+                            <li><Link id='li-signup' to='/signup'>Sign up</Link></li>
+                            <li id='or'>or</li>
+                            <li><Link id='li-login' to='/login'>Log In</Link></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+          
     );
     return (
         <div className="nav-bar-parent">
