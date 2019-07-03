@@ -16,16 +16,13 @@
     border-top: solid 1px grey;
     text-align: center;
     min-height: 126px;
-    position: absolute;
     left: 0;
     bottom: 0;
     right: 0;
 };
 
 .footer-cw {
-    /* float: left; */
     display: flex;
-    /* align-items: flex-start; */
 }
 
 .icons a:hover {
