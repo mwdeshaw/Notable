@@ -5,13 +5,13 @@ class Api::SessionsController < ApplicationController
             login!(@user)
             render "/api/users/show" 
         else
-            render json: ["Invalid email or password"], status: 401
+            render json: ["Incorrect password."], status: 401
         end
     end
 
     def destroy
         logout!
-        render json: { message: "See you again soon" }
+        render json: { message: "You have logged out of Notable." }
     end
 
 end

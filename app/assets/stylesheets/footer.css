@@ -1,0 +1,34 @@
+.footer-container {
+    background: #ffffff;
+    font-family: Soleil,Helvetica,Arial,sans-serif;
+    color: grey;
+    font-size: 14px;
+    position: relative;
+    padding: 40px 20px;
+    display: block;
+    -webkit-font-smoothing: antialiased;
+    border-top: solid 1px grey;
+    text-align: center;
+    max-height: 130px;
+};
+
+.footer-cw {
+    float: left;
+    display: flex;
+    align-items: flex-start
+}
+
+.p-thing {
+    float: left;
+    margin-top: 0px;
+}
+
+.icons {
+    filter: hue-rotate(90deg) brightness(10%) grayscale(10%);
+    float: right;
+    display: inline;
+};
+
+.icons a:hover {
+    cursor: pointer;
+}

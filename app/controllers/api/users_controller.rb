@@ -12,7 +12,7 @@ class Api::UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.nil?
-            render json: ["Could not find user"], status: 400
+            render json: ["There is no account for the username or email you entered."], status: 400
         elsif @user.update_attributes(user_params)
             render "/api/users/show"
         else

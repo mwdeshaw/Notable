@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -51,17 +51,4 @@ a#login {
     float: left;
     display: block;
     padding: 8px;
-};
-
-
-
-/* 
-a#signup:hover {
-    background: #ffffff;
-    color: lightgreen;
-};
-
-a#login:hover {
-    background: #ffffff;
-    color: lightgreen;
 }; */

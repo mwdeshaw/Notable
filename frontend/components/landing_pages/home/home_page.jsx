@@ -1,8 +1,11 @@
 import React from 'react';
+import NavigationBarContainer from '../../navigation_bar/navigation_bar_container';
+import Footer from './footer';
 
 const HomePage = () => {
     return (
         <div className='home'>
+            <NavigationBarContainer/>
             <div className='hero-img'>
                 <div className='hero-text'>
                     <h1>Your Notes. Organized. Effortless.</h1>
@@ -11,6 +14,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

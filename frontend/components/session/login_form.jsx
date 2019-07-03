@@ -9,13 +9,20 @@ class LoginForm extends React.Component {
             password: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.formSwitch = this.formSwitch.bind(this);
     };
 
     handleSubmit(e) {
         e.preventDefault();
+        this.props.clearErrors();
         this.props.login(this.state)
         .then(() => this.props.history.push("/"))
     };
+
+    formSwitch(e) {
+        e.preventDefault();
+        this.props.clearErrors();
+    }
 
     update(type) {
         return (e) => {
@@ -27,7 +34,7 @@ class LoginForm extends React.Component {
         if (this.props.errors) {
             return (
                 <ul>
-                    {this.props.errors.map((idx, error) => (
+                    {this.props.errors.map((error, idx) => (
                         <li key={`error-${idx}`}>
                             {error}
                         </li>
@@ -40,23 +47,23 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className='session'>
-                <div className='session-form-div'>
+                <div className='session-box'>
                     <div className='session-header'>
                         <h1>Notable</h1>
                         <p className="tagline">Remember everything important.</p>
                     </div>
-                <form className='session-form' >
-                    <input type="text" value={this.state.email} onChange={this.update("email")} />
-                    <input type="password" value={this.state.password} onChange={this.update("password")} />
+                    <form className='session-form' >
+                        <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address" />
+                        <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="Password" />
+                        <h3>{this.renderErrors()}</h3>
 
-                    {this.renderErrors()}
-                    <button className='submit-button' onClick={this.handleSubmit}>Continue</button>
-                </form>
-                    <p>Don't have an account?</p>
-                    <h3><Link to='/signup'>Create Account</Link></h3>
+                        <button className='submit-button' onClick={this.handleSubmit}>Sign in</button>
+                    </form>
+                    <div className="session-sentence">Don't have an account?</div>
+                    <h3><Link to='/signup' onClick={this.formSwitch}>Create Account</Link></h3>
                 </div>
             </div>
-        )
+        );
     };
 };
 
