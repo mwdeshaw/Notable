@@ -19,3 +19,7 @@
     background-image: url("main-green.png");
     background-color: #04a82e;
 }
+
+div {
+    display: block;
+};

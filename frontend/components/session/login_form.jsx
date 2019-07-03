@@ -81,12 +81,13 @@ class LoginForm extends React.Component {
                     </div>
                     <form className='session-form' >
                         <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address" />
+             
                         <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="Password" />
                         <h3>{this.renderErrors()}</h3>
-
-                        <button className='submit-button' onClick={this.handleSubmit}>Sign in</button>
-                        
-                        <button className='demo-user-button' onClick={this.initiateDemo}>Demo User</button>
+                        <div className='buttons'>
+                            <button className='submit-button' onClick={this.handleSubmit}>Sign in</button>
+                            <button className='demo-user-button' onClick={this.initiateDemo}>Demo User</button>
+                        </div>
                     </form>
                     <div className="session-sentence">Don't have an account?</div>
                     <h3><Link to='/signup' onClick={() => this.formSwitch}>Create Account</Link></h3>

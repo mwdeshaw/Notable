@@ -1,6 +1,25 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
+const styles = {
+    logoText: {
+        fontSize: "2em",
+    },
+    logoContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        gridTemplateColumns: "auto auto auto",
+    },
+    logoContainerItem1: {
+        gridColumn: 1,
+        justifySelf: 'center'
+    },
+    logoIcon: {
+        fontSize: "4em",
+        color: "#04a82e",
+    }
+};
+
 class SignupForm extends React.Component {
     constructor(props) {
         super(props);
@@ -22,6 +41,7 @@ class SignupForm extends React.Component {
     formSwitch(e) {
         e.preventDefault();
         this.props.clearErrors();
+        <Redirect to='/login'/>
     }
 
     update(type) {
@@ -49,12 +69,14 @@ class SignupForm extends React.Component {
             <div className='session'>
                 <div className='session-box'>
                     <div className='session-header'>
+                        <div style={styles.logoContainerItems}><i className="material-icons" style={styles.logoIcon}>create</i></div>
                         <h1>Notable</h1>
                         <p className="tagline">Remember everything important.</p>
                     </div>
                         <form className='session-form'>
-                        <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address"/>
-                        <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="password"/>
+                            <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address"/>
+
+                            <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="password"/>
                             <h3>{this.renderErrors()}</h3>
                             <button className='submit-button' onClick={this.handleSubmit}>Sign up</button>
                         </form>
