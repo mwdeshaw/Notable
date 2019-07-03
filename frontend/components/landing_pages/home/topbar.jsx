@@ -13,8 +13,7 @@ const styles = {
         justifyContent: 'space-between',
         gridTemplateColumns: "auto auto",
         paddingLeft: "5%",
-        paddingRight: "5%"
-
+        paddingRight: "5%",
     },
     topBarContainerItem1: {
         gridColumn: 1,

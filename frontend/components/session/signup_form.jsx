@@ -53,7 +53,7 @@ class SignupForm extends React.Component {
     renderErrors() {
         if (this.props.errors) {
             return(
-                <ul>
+                <ul className='errors'>
                     {this.props.errors.map((error, idx) => (
                         <li key={`error-${idx}`}>
                             {error}
@@ -74,14 +74,19 @@ class SignupForm extends React.Component {
                         <p className="tagline">Remember everything important.</p>
                     </div>
                         <form className='session-form'>
-                            <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address"/>
+                            <input className='email' type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address"/>
 
-                            <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="password"/>
-                            <h3>{this.renderErrors()}</h3>
-                            <button className='submit-button' onClick={this.handleSubmit}>Sign up</button>
+                            <input className='password' type="password" value={this.state.password} onChange={this.update("password")} placeholder="Password"/>
+                            {this.renderErrors()}
+                            
+                            <div className='buttons'>
+                                <button className='submit-button' onClick={this.handleSubmit}>Sign up</button>
+                            </div>
                         </form>
-                    <div className='session-sentence'>Already have an account?</div>
-                    <h3><Link to='/login' onClick={() => this.formSwitch}>Log in</Link></h3>
+                    <div className='form-base'>
+                        <p className='session-sentence'>Already have an account?</p>
+                        <h3><Link to='/login' onClick={() => this.formSwitch}>Log in</Link></h3>
+                    </div>
                 </div>
             </div>
         );

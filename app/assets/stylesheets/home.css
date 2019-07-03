@@ -1,14 +1,46 @@
 .hero-list {
-  text-align: center;
+  text-align: left;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-94%, -50%);
+  color: #ffffff;
+  list-style: none;
 };
 
 .home {
-    width: 90%;
     display: flex;
     align-content: center;
     align-items: center;
+}
+
+.hero-button {
+  width: 242px;
+  height: 60px;
+  color: #ffffff;
+  border-radius: 25px;
+}
+
+.hero-button:hover {
+  opacity: 1;
+  background-color: #F5F5F5
+}
+
+
+.home a {
+  text-decoration: none;
+  color: #04a82e;
+  padding: 18px 32px 17px;
+  font-size: 14px;
+  border-radius: 3px;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  display: inline-block;
+};
+
+.hero-list > li {
+  font-size: 56px;
+  line-height: 72px;
 }

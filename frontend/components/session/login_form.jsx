@@ -1,6 +1,26 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
+const styles = {
+    logoText: {
+        fontSize: "2em",
+    },
+    logoContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        gridTemplateColumns: "auto auto auto",
+    },
+    logoContainerItem1: {
+        gridColumn: 1,
+        justifySelf: 'center'
+    },
+    logoIcon: {
+        fontSize: "4em",
+        color: "#04a82e",
+    }
+};
+
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -60,13 +80,11 @@ class LoginForm extends React.Component {
     renderErrors() {
         if (this.props.errors) {
             return (
-                <ul>
-                    {this.props.errors.map((error, idx) => (
+                    this.props.errors.map((error, idx) => (
                         <li key={`error-${idx}`}>
                             {error}
                         </li>
-                    ))}
-                </ul>
+                    ))
             );
         };
     };
@@ -76,6 +94,8 @@ class LoginForm extends React.Component {
             <div className='session'>
                 <div className='session-box'>
                     <div className='session-header'>
+                        <div style={styles.logoContainerItems}><i className="material-icons" style={styles.logoIcon}>create</i></div>
+
                         <h1>Notable</h1>
                         <p className="tagline">Remember everything important.</p>
                     </div>
@@ -83,14 +103,19 @@ class LoginForm extends React.Component {
                         <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address" />
              
                         <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="Password" />
-                        <h3>{this.renderErrors()}</h3>
-                        <div className='buttons'>
+                        <ul className='errors'>
+                            {this.renderErrors()}
+                        </ul>
+                        
+                         <div className='buttons'>
                             <button className='submit-button' onClick={this.handleSubmit}>Sign in</button>
                             <button className='demo-user-button' onClick={this.initiateDemo}>Demo User</button>
-                        </div>
+                        </div> 
                     </form>
-                    <div className="session-sentence">Don't have an account?</div>
-                    <h3><Link to='/signup' onClick={() => this.formSwitch}>Create Account</Link></h3>
+                    <div className='form-base'>
+                        <p className='session-sentence'>Don't have an account?</p>
+                        <h3><Link to='/signup' onClick={() => this.formSwitch}>Create Account</Link></h3>
+                    </div>
                 </div>
             </div>
         );
