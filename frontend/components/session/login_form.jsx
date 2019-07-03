@@ -114,7 +114,7 @@ class LoginForm extends React.Component {
                     </form>
                     <div className='form-base'>
                         <p className='session-sentence'>Don't have an account?</p>
-                        <h3><Link to='/signup' onClick={() => this.formSwitch}>Create Account</Link></h3>
+                        <h3 onClick={this.formSwitch}><Link to='/signup'>Create account</Link></h3>
                     </div>
                 </div>
             </div>

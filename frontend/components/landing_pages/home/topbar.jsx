@@ -3,17 +3,20 @@ import { Redirect } from 'react-router-dom';
 
 const styles = {
     header: {
-        backgroundColor: "white"
+        backgroundColor: "white",
     },
     topBarContainer: {
         display: 'flex',
-        height: 130,
-        width: "95%",
+        height: 127,
         alignItems: "center",
         justifyContent: 'space-between',
         gridTemplateColumns: "auto auto",
-        paddingLeft: "5%",
-        paddingRight: "5%",
+        paddingTop: "5px",
+        paddingRight: "20px",
+        paddingBottom: "5px",
+        paddingLeft: "20px"
+        // paddingLeft: "5%", 
+        // paddingRight: "5%",
     },
     topBarContainerItem1: {
         gridColumn: 1,
@@ -146,7 +149,7 @@ const TopBar = () => {
                 signupRedirect ? (
                     <Redirect to="/signup" />
                 ) : (
-                        <div className="header" style={styles.header}>
+                        <div className='header'>
                             <div className="grid-container" style={styles.topBarContainer}>
                                 <div style={styles.topBarContainerItem1}>
                                     <div className="grid-container" style={styles.leftContainer}>

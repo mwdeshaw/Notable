@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect} from 'react-router-dom';
 
 const styles = {
     logoText: {
@@ -41,7 +41,6 @@ class SignupForm extends React.Component {
     formSwitch(e) {
         e.preventDefault();
         this.props.clearErrors();
-        <Redirect to='/login'/>
     }
 
     update(type) {
@@ -67,6 +66,7 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div className='session'>
+                
                 <div className='session-box'>
                     <div className='session-header'>
                         <div style={styles.logoContainerItems}><i className="material-icons" style={styles.logoIcon}>create</i></div>
@@ -85,7 +85,7 @@ class SignupForm extends React.Component {
                         </form>
                     <div className='form-base'>
                         <p className='session-sentence'>Already have an account?</p>
-                        <h3><Link to='/login' onClick={() => this.formSwitch}>Log in</Link></h3>
+                        <h3 onClick={this.formSwitch}><Link to='/login'>Log in</Link></h3>
                     </div>
                 </div>
             </div>

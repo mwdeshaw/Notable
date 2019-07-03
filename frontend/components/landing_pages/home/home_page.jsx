@@ -7,9 +7,9 @@ const HomePage = () => {
     return (
             
         <div className='home'>
-                <TopBar/>
-                <Hero/>
-                <Footer/>
+            <TopBar/>
+            <Hero/>
+            <Footer/>
         </div>
     );
 };
