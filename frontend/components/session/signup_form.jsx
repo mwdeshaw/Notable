@@ -16,7 +16,7 @@ class SignupForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.props.createNewUser(this.state)
-        .then(() => this.props.history.push(""))
+        .then(() => this.props.history.push("/"))
     };
 
     formSwitch(e) {
@@ -56,7 +56,7 @@ class SignupForm extends React.Component {
                         <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address"/>
                         <input type="password" value={this.state.password} onChange={this.update("password")} placeholder="password"/>
                             <h3>{this.renderErrors()}</h3>
-                            <button className='submit-button' onClick={this.handleSubmit}>Sign in</button>
+                            <button className='submit-button' onClick={this.handleSubmit}>Sign up</button>
                         </form>
                     <div className='session-sentence'>Already have an account?</div>
                     <h3><Link to='/login' onClick={this.formSwitch}>Sign in</Link></h3>

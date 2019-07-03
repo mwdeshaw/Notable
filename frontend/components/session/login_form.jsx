@@ -10,6 +10,7 @@ class LoginForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.formSwitch = this.formSwitch.bind(this);
+        this.initiateDemo = this.initiateDemo.bind(this);
     };
 
     handleSubmit(e) {
@@ -30,6 +31,31 @@ class LoginForm extends React.Component {
         };
     };
 
+    initiateDemo(e) {
+        e.preventDefault();
+        const email = 'DemoUser@notable.com';
+        const password = 'ILoveNotable';
+        for (let i = 0; i < email.length; i++) {
+            setTimeout(() => this.setState({
+                email: email.slice(0, i + 1)
+            }, () => (i * 100)))
+        };
+
+        for (let j = 0; j < password.length; j++) {
+            setTimeout(() => this.setState({
+                password: password.slice(0, j + 1)
+            }, () => ((j + 13) * 100)))
+        };
+        
+        const demoUser = { email, password }
+
+        setTimeout(() => {
+            this.props.login(demoUser)
+            .then(() => { this.props.history.push("/")
+        })
+        }, 1500);
+    };
+
     renderErrors() {
         if (this.props.errors) {
             return (
@@ -41,7 +67,7 @@ class LoginForm extends React.Component {
                     ))}
                 </ul>
             );
-        }
+        };
     };
 
     render() {
@@ -58,6 +84,8 @@ class LoginForm extends React.Component {
                         <h3>{this.renderErrors()}</h3>
 
                         <button className='submit-button' onClick={this.handleSubmit}>Sign in</button>
+                        
+                        <button className='demo-user-button' onClick={this.initiateDemo}>Demo User</button>
                     </form>
                     <div className="session-sentence">Don't have an account?</div>
                     <h3><Link to='/signup' onClick={this.formSwitch}>Create Account</Link></h3>
