@@ -1,11 +1,11 @@
 import React from 'react';
-import NavigationBarContainer from '../../navigation_bar/navigation_bar_container';
+import TopBar from './topbar';
 import Footer from './footer';
 
 const HomePage = () => {
     return (
         <div className='home'>
-            <NavigationBarContainer/>
+            <TopBar/>
             <div className='hero-img'>
                 <div className='hero-text'>
                     <h1>Your Notes. Organized. Effortless.</h1>

@@ -10,12 +10,13 @@
     border-top: solid 1px grey;
     text-align: center;
     max-height: 130px;
+    width: 100%;
 };
 
 .footer-cw {
     float: left;
     display: flex;
-    align-items: flex-start
+    align-items: flex-start;
 }
 
 .p-thing {
@@ -31,4 +32,4 @@
 
 .icons a:hover {
     cursor: pointer;
-}
+};
