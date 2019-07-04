@@ -2,8 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Hero = () => {
+const Hero = ({ login }) => {
 
+    function handleDemo(e) {
+        e.preventDefault();
+        const demoUser = { email: "DemoUser@notable.com", password: "ILoveNotable" };
+        login(demoUser);
+    };
 
     return (
         <div className='big-hero'>
@@ -13,7 +18,7 @@ const Hero = () => {
                         <li><h1>Organized.</h1></li>
                         <li><h1 className='last-h'>Effortless</h1></li>
                         <li><p>Take notes anywhere. Find information faster. Share ideas with anyone. Meeting notes, web pages, projects, to-do lists—with Notable as your note taking app, nothing falls through the cracks.</p></li>
-                        <button className='hero-button'><Link to='/'>TRY IT NOW</Link></button>
+                    <button className='hero-button' onClick={handleDemo}><Link to='/'>TRY IT NOW</Link></button>
                     </ul> 
                 <img className='comp' src={window.compURL}/>
             </div>

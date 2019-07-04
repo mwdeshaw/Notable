@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import HomePage from '../landing_pages/home/home_page'
+import HomePageContainer from '../landing_pages/home/home_page_container'
 
 const NavigationBar = ({ currentUser, logout }) => {
-    const navBar = currentUser;
     if (currentUser) {
     return (
         <div>
@@ -22,25 +20,9 @@ const NavigationBar = ({ currentUser, logout }) => {
         );
     } else {
         return(
-        <HomePage/>
+        <HomePageContainer/>
         )
     }
-    
-    //  : (
-    //         <div className="splash-zone">
-    //             <div className='splash-nav'>
-    //                 <div className="splash-nav-header">
-    //                     <h1>Notable</h1>
-    //                     <ul className='user-nav'>
-    //                         <li><Link id='li-signup' to='/signup'>Sign up</Link></li>
-    //                         <li id='or'>or</li>
-    //                         <li><Link id='li-login' to='/login'>Log In</Link></li>
-    //                     </ul>
-    //                 </div>
-    //             </div>
-    //         </div>
-          
-    // );
 };
 
 export default NavigationBar;

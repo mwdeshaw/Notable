@@ -3,12 +3,12 @@ import TopBar from './topbar';
 import Footer from './footer';
 import Hero from './hero';
 
-const HomePage = () => {
+const HomePage = ({ login }) => {
     return (
             
         <div className='home'>
             <TopBar/>
-            <Hero/>
+            <Hero login={login}/>
             <Footer/>
         </div>
     );
