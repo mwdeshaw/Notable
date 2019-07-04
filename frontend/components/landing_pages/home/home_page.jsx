@@ -4,8 +4,7 @@ import Footer from './footer';
 import Hero from './hero';
 
 const HomePage = ({ login }) => {
-    return (
-            
+    return (     
         <div className='home'>
             <TopBar/>
             <Hero login={login}/>

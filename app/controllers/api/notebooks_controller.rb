@@ -1,5 +1,5 @@
 class Api::NotebooksController < ApplicationController
-    # before_action :require_logged_in
+    before_action :require_logged_in
 
     def index
         @notebooks = current_user.notebooks
@@ -30,7 +30,7 @@ class Api::NotebooksController < ApplicationController
     end
 
     def destroy 
-        @notebook = Notebook.find(params[:id])
+        @notebook = current_user.notebooks.find(params[:id])
         @notebook.destroy
         render :index
     end
