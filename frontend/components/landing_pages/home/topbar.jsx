@@ -14,9 +14,10 @@ const styles = {
         paddingTop: "5px",
         paddingRight: "20px",
         paddingBottom: "5px",
-        paddingLeft: "20px"
-        // paddingLeft: "5%", 
-        // paddingRight: "5%",
+        paddingLeft: "20px",
+        marginLeft: "128px",
+        marginRight: "125px",
+
     },
     topBarContainerItem1: {
         gridColumn: 1,
@@ -83,20 +84,21 @@ const styles = {
         textDecoration: 'none',
         fontFamily: 'sans-serif',
         cursor: 'pointer',
-        color: 'green'
+        color: '#04a82e'
     },
     loginButton: {
         backgroundColor: 'white',
-        border: "2px solid green",
+        border: "2px solid #04a82e",
         textAlign: 'center',
         fontSize: "1em",
         textDecoration: 'none',
         fontFamily: 'sans-serif',
         cursor: 'pointer',
-        color: 'green',
-        padding: "0.75em",
-        borderRadius: "1em",
-        margin: "1em"
+        color: '#04a82e',
+        borderRadius: "7px",
+        margin: "1em",
+        height: "40px",
+        minWidth: "120px"
     },
     signupButton: {
         backgroundColor: 'transparent',
@@ -106,7 +108,7 @@ const styles = {
         textDecoration: 'none',
         fontFamily: 'sans-serif',
         cursor: 'pointer',
-        color: 'green',
+        color: '#04a82e',
         padding: "1em"
     }
 
@@ -171,9 +173,9 @@ const TopBar = () => {
                                 </div>
                                 <div style={styles.topBarContainerItem2}>
                                     <div style={styles.signupLoginContainer} className="grid-container">
-                                        <button style={styles.signupButton} onClick={handleSignup}>Sign up</button>
-                                        <h5 style={{ fontFamily: 'sans-serif' }}>or</h5>
-                                        <button style={styles.loginButton} onClick={handleLogin}>Log in</button>
+                                        <button className="top-btn" style={styles.signupButton} onClick={handleSignup}>Sign up</button>
+                                        <h5 className="or" style={{ fontFamily: 'sans-serif', fontWeight: '400' }}>or</h5>
+                                        <button className="top-btn" style={styles.loginButton} onClick={handleLogin}>Log in</button>
                                     </div>
                                 </div>
                             </div>

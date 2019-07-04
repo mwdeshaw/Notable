@@ -10,26 +10,45 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-
+  font-family: sans-serif;
 }
 
 .big-hero ul {
   font-size: 25px;
   color: #ffffff;
   list-style: none;
-  margin-left: 60px;
+  margin-left: 135px;
+  margin-top: 10px;
 }
 
 .big-hero img {
   object-fit: contain;
-  margin-right: 119px;
+  margin-right: 160px;
+  margin-bottom: 53px;
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+.big-hero h1 {
+  font-size: 56px;
+}
+
+.last-h {
+  padding-bottom: 25px;  
+}
+
+.big-hero p {
+  line-height: 160%;
+  font-weight: 80; 
+  font-size: 24px;
 }
 
 .hero-button {
   width: 242px;
   height: 60px;
   color: #ffffff;
-  border-radius: 25px;
+  border-radius: 7px;
+  margin-top: 28px;
 }
 
 .hero-button:hover {
