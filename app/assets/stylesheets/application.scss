@@ -14,6 +14,12 @@
  *= require_self
  */
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+};
+
  body, html {
     height: 100%;
     background-image: asset_url('green.png');
@@ -24,10 +30,6 @@
     display: flex;
     flex-direction: column;
 }
-
-div {
-    display: block;
-};
 
 header,
 footer {
