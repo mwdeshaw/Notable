@@ -96,9 +96,12 @@ class LoginForm extends React.Component {
                     <div className='session-header'>
                         <div style={styles.logoContainerItems}><i className="material-icons" style={styles.logoIcon}>create</i></div>
 
-                        <h1>Notable</h1>
+                        <h1 className='logo-text'>Notable</h1>
                         <p className="tagline">Remember everything important.</p>
                     </div>
+                    <div className='line-div'>
+                        <hr className='line' />
+                    </div>  
                     <form className='session-form' >
                         <input type="text" value={this.state.email} onChange={this.update("email")} placeholder="Email address" />
              
