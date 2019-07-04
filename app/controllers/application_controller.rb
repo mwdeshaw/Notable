@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
         session[:session_token] = nil
     end
 
-    # def require_logged_in
-    #     redirect_to new_session_url unless logged_in?
-    # end
-    #will comment in the above function when its time to use if for notes, notebooks, etc.
+    def require_logged_in
+        unless current_user
+        render json: { base: ["You must be logged in to use this feature"] }, status: 401 
+    end
 end
