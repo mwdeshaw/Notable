@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
                 password: password.slice(0, j + 1)
             }, () => ((j + 13) * 100)))
         };
-        
+        å
         const demoUser = { email, password }
 
         setTimeout(() => {

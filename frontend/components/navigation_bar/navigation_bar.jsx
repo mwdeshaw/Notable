@@ -21,7 +21,7 @@ const NavigationBar = ({ currentUser, logout }) => {
     } else {
         return(
         <HomePageContainer/>
-        )
+        );
     }
 };
 

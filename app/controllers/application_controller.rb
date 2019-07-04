@@ -22,4 +22,5 @@ class ApplicationController < ActionController::Base
     # def require_logged_in
     #     redirect_to new_session_url unless logged_in?
     # end
+    #will comment in the above function when its time to use if for notes, notebooks, etc.
 end
