@@ -12,7 +12,7 @@ const Hero = () => {
                         <li><p>Take notes anywhere. Find information faster. Share ideas with anyone. Meeting notes, web pages, projects, to-do lists—with Evernote as your note taking app, nothing falls through the cracks.</p></li>
                         <button className='hero-button'><Link to='/signup'>TRY IT NOW</Link></button>
                     </ul> 
-                <img className='comp' src={window.compURL} alt="" />
+                <img className='comp' src={window.compURL}/>
             </div>
         </div>
     );
