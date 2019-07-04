@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 const Hero = () => {
     return (
         <div className='big-hero'>
+            <img className='green' src={window.greenURL} alt="" />
             <div className='hero-img'>
                     <ul className='hero-list'>
                         <li><h1>Your Notes</h1></li>
