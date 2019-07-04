@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link, Redirect} from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 const styles = {
     logoText: {
