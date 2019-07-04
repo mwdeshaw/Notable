@@ -9,6 +9,11 @@ class User < ApplicationRecord
     has_many :collaborative_notebooks,
         through: :collaborators,
         source: :notebook
+    
+    has_many :notebooks,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :Notebook
 
     def password=(password)
         @password = password
