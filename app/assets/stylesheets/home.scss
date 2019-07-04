@@ -1,73 +1,73 @@
-.home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-}
+// .home {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   height: 100vh;
+// }
 
-.big-hero {
-  height: 60vh;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 60px;
-  margin-top: -60px;
-}
+// .big-hero {
+//   height: 60vh;
+//   align-content: center;
+//   justify-content: center;
+//   align-items: center;
+//   margin-bottom: 60px;
+//   margin-top: -60px;
+// }
 
-.big-hero ul {
-  font-size: 25px;
-  color: #ffffff;
-  list-style: none;
-  margin-left: 60px;
-}
+// .big-hero ul {
+//   font-size: 25px;
+//   color: #ffffff;
+//   list-style: none;
+//   margin-left: 60px;
+// }
 
-.big-hero img {
-  object-fit: contain;
-  margin-right: 119px;
-}
+// .big-hero img {
+//   object-fit: contain;
+//   margin-right: 119px;
+// }
 
-/* .hero-list {
-  list-style: none;
-  display: inline-block;
-  top: 50%;
-  left: 50%;
-  color: #ffffff;
-  flex-direction: row;
-  justify-content: center;
-}; */
+// /* .hero-list {
+//   list-style: none;
+//   display: inline-block;
+//   top: 50%;
+//   left: 50%;
+//   color: #ffffff;
+//   flex-direction: row;
+//   justify-content: center;
+// }; */
 
-.hero-button {
-  width: 242px;
-  height: 60px;
-  color: #ffffff;
-  border-radius: 25px;
-}
+// .hero-button {
+//   width: 242px;
+//   height: 60px;
+//   color: #ffffff;
+//   border-radius: 25px;
+// }
 
-.hero-button:hover {
-  opacity: 1;
-  background-color: #F5F5F5
-};
+// .hero-button:hover {
+//   opacity: 1;
+//   background-color: #F5F5F5
+// };
 
-.home a {
-  text-decoration: none;
-  color: #04a82e;
-  padding: 18px 32px 17px;
-  font-size: 14px;
-  border-radius: 3px;
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.3s;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  display: inline-block;
-};
+// .home a {
+//   text-decoration: none;
+//   color: #04a82e;
+//   padding: 18px 32px 17px;
+//   font-size: 14px;
+//   border-radius: 3px;
+//   transition-timing-function: ease-in-out;
+//   transition-duration: 0.3s;
+//   font-weight: bold;
+//   letter-spacing: 1.5px;
+//   display: inline-block;
+// };
 
-.hero-list > li {
-  line-height: 72px;
-}
+// .hero-list > li {
+//   line-height: 72px;
+// }
 
-.hero-img {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-};
+// .hero-img {
+//   margin-left: 20px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+// };
