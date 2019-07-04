@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 
 const Hero = () => {
-
     return (
         <div className='big-hero'>
             <div className='hero-img'>
