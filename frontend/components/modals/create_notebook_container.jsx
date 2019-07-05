@@ -15,11 +15,6 @@ const mapStateToProps = ({ errors, session }) => {
 const mapDispatchToProps = dispatch => {
     return {
     createNotebook: notebook => dispatch(createNotebook(notebook)),
-    // otherForm: (
-    //         <button onClick={() => dispatch(openModal('edit'))}>
-    //             Edit Notebook Title
-    //         </button>
-    //     ),
         closeModal: () => dispatch(closeModal()),
         clearErrors: () => dispatch(clearErrors())
     }

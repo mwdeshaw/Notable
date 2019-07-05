@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class CreateNotebookForm extends React.Component {
+class EditNotebookForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -59,4 +59,4 @@ class CreateNotebookForm extends React.Component {
     }
 }
 
-export default withRouter(CreateNotebookForm);
+export default withRouter(EditNotebookForm);
