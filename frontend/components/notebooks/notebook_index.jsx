@@ -9,7 +9,6 @@ class NotebookIndex extends React.Component {
         this.state = {
             visible: false
         };
-
     }
 
     componentDidMount() {
@@ -37,7 +36,8 @@ class NotebookIndex extends React.Component {
                             <th>CREATED BY</th>
                             <th>UPDATED</th>
                         </tr>
-                        {this.props.notebooks.map(notebook => <NotebookIndexItem key={notebook.id} notebook={notebook} author={this.props.currentUser.email} />)}
+                        {this.props.notebooks.map(notebook => <NotebookIndexItem key={notebook.id} notebook={notebook} author={this.props.currentUser.email} 
+                        updateNotebook={this.props.updateNotebook}/>)}
                     </tbody>
                 </table>
             </div>
