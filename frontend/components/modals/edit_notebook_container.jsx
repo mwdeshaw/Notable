@@ -5,10 +5,10 @@ import EditNotebookForm from './edit_notebook_form';
 import { closeModal } from '../../actions/modal_actions';
 
 
-const mapStateToProps = ({ errors, session }) => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        errors: errors.session,
-        currentUser: session.currentUserId
+        errors: state.errors.session,
+        currentUser: state.session.currentUserId
     };
 };
 

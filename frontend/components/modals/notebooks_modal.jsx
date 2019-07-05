@@ -1,48 +1,43 @@
-// import React from 'react';
-// import NotebookListItem from './notebook_list_item';
-// import { Link } from 'react-router-dom';
+import React from 'react';
+import { closeModal } from '../../actions/modal_actions';
+import { connect } from 'react-redux';
+import CreateNoteBookContainer from './create_notebook_container';
+import EditNoteBookContainer from './edit_notebook_container';
 
-// class NotebooksModal extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = { open: false };
-//         this.manageClicks = this.manageClicks.bind(this);
-//     };
+function NotebooksModal({ modal, closeModal }) {
+    if (!modal) {
+        return null;
+    }
+    let component;
+    switch (modal) {
+        case 'create':
+            component = <CreateNoteBookContainer />;
+            break;
+        case 'edit':
+            component = <EditNoteBookContainer />;
+            break;
+        default:
+            return null;
+    }
+    return (
+        <div className="modal-background" onClick={closeModal}>
+            <div className="modal-child" onClick={e => e.stopPropagation()}>
+                {component}
+            </div>
+        </div>
+    );
+}
 
-//     componentDidMount() {
-//         this.props.fetchNotebooks()
-//     };
+const mapStateToProps = state => {
+    return {
+        modal: state.ui.modal
+    };
+};
 
-//     manageClicks() {
-        
-//         if (this.state.open === false) {
-//             this.setState({ open: true }) 
-//         } else {
-//             this.setState({ open: false }) 
-//         }
-//     };
+const mapDispatchToProps = dispatch => {
+    return {
+        closeModal: () => dispatch(closeModal())
+    };
+};
 
-//     render() {
-
-//         const detailedView = () => (
-//             <div classsName='detail-modal'>
-//                 <h3 className='down-arrow' onClick={this.manageClicks}>▼</h3>
-//                 <Link to='/notebooks'><h3>Notebooks</h3></Link>
-//                 <ul className='notebooks-list'>
-//                     <NotebookListItem/>
-//                 </ul>
-//             </div>
-//         );
-
-//         const basicView = () => (
-//             <div className='basic-view'>
-//                 <h3 className='down-arrow' onClick={this.manageClicks}>▶︎</h3>
-//                 <Link to='/notebooks'><h3>Notebooks</h3></Link>
-//             </div>
-//         );
-
-//         return this.state.open ? detailedView() : basicView()
-//     }
-// }
-
-// export default NotebooksModal;
+export default connect(mapStateToProps, mapDispatchToProps)(NotebooksModal);

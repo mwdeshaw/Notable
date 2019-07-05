@@ -1,5 +1,4 @@
 import React from 'react';
-import AddNotebooksModal from '../modals/add_notebooks_modal';
 
 const styles = {
     sidebar: {
@@ -42,12 +41,9 @@ class Sidebar extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isOpen: false }
-        this.toggleModal.bind(this);
     }
 
     toggleModal() {
-        this.setState({ isOpen: !this.state.isOpen })
     }
 
     render() {
@@ -59,9 +55,6 @@ class Sidebar extends React.Component {
                     <input type="text" placeholder="Search.." className="search" />
                     <button type="submit" style={styles.searchButton}><i className="fa fa-search"></i></button>
                 </div>
-                {/* <button type="button" onClick={() => this.toggleModal()} style={styles.button}>Create Notebook</button> */}
-                {/* <AddNotebooksModal show={this.state.isOpen} onClose={() => this.toggleModal()} /> */}
-
             </div>
         );
     }

@@ -14,7 +14,6 @@ const mapDispatchToProps = dispatch => ({
     fetchNotebooks: () => dispatch(fetchNotebooks()),
     deleteNotebook: id => dispatch(deleteNotebook(id)),
     fetchNotebook: id => dispatch(fetchNotebook(id)),
-    updateNotebook: notebook => dispatch(updateNotebook(notebook)),
     openModal: (modal) => dispatch(openModal(modal))
 });
 

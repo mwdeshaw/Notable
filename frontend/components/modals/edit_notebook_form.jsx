@@ -5,16 +5,20 @@ class EditNotebookForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
+            title: this.props.notebook.title,
             author_id: this.props.currentUser
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+    };
+
+    componentDidMount() {
+        this.props.fetchNotebook()
     }
 
     handleSubmit(e) {
         e.preventDefault();
         this.props.clearErrors();
-        this.props.createNotebook(this.state).then(this.props.closeModal);
+        this.props.updateNotebook(this.state).then(this.props.closeModal);
     };
 
     updateTitle(title) {
