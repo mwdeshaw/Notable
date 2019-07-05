@@ -1,6 +1,6 @@
 import React from 'react';
 import HomePageContainer from '../landing_pages/home/home_page_container'
-import Sidebar from '../landing_pages/sidebar';
+import Sidebar from './sidebar';
 
 
 class NavigationBar extends React.Component {
