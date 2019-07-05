@@ -5,6 +5,7 @@ import CreateNewNotebook from './create_new_notebook';
 
 
 const mapStateToProps = ({ errors, session }) => {
+    debugger
     return {
     errors: errors.session,
     currentUser: session.currentUserId

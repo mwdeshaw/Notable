@@ -1,7 +1,8 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
 import { Route, Link } from 'react-router-dom';
-import CreateNewNoteBookContainer from './create_new_notebook_container';
+// import CreateNewNoteBookContainer from './create_new_notebook_container';
+import CreateNoteBookContainer from '../modals/create_notebook_container';
 
 class NotebookIndex extends React.Component {
     constructor(props) {
@@ -17,8 +18,9 @@ class NotebookIndex extends React.Component {
 
     render() {  
         if (!this.props.notebooks) {
-            return null;
-        }
+            return '...loading'
+        };
+
 
         return (
             <div className='notebook-index'>
@@ -26,7 +28,9 @@ class NotebookIndex extends React.Component {
                 
                 <div className='top-top row'>
                     <h3>My notebook list</h3>
-                    
+                    <button onClick={() => this.props.openModal('create')}>New Notebook</button>
+
+                    {/* <button><Link to="notebooks/new">New Notebook</Link></button> */}
                 </div>
 
                 <table>
@@ -37,7 +41,7 @@ class NotebookIndex extends React.Component {
                             <th>UPDATED</th>
                         </tr>
                         {this.props.notebooks.map(notebook => <NotebookIndexItem key={notebook.id} notebook={notebook} author={this.props.currentUser.email} 
-                        updateNotebook={this.props.updateNotebook}/>)}
+                            updateNotebook={this.props.updateNotebook} fetchNotebook={this.props.fetchNotebook}/>)}
                     </tbody>
                 </table>
             </div>
