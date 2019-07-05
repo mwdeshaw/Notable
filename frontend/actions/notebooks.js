@@ -1,5 +1,5 @@
 import * as  NotebookUtils from '../util/notebook_utils';
-import { receiveErrors, clearErrors } from './session';
+import { receiveErrors } from './session';
 
 export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
@@ -36,16 +36,19 @@ export const createNotebook = notebook => dispatch => (
     NotebookUtils.createNotebook(notebook) 
         .then(notebook => {
             dispatch(receiveNotebook(notebook))
-            dispatch(clearErrors())
-        }, err => dispatch(receiveErrors(err.responseJSON)))
+        },
+        err => (
+            dispatch(receiveErrors(err.responseJSON))
+        ))
 );
 
 export const updateNotebook = notebook => dispatch => (
     NotebookUtils.updateNotebook(notebook)
         .then(notebook => {
             dispatch(receiveNotebook(notebook))
-            dispatch(clearErrors())
-        }, err => dispatch(receiveErrors(err.responseJSON)))
+        }, err => (
+            dispatch(receiveErrors(err.responseJSON))
+        ))
 );
 
 export const deleteNotebook = id => dispatch => (

@@ -16,7 +16,7 @@ class Api::NotebooksController < ApplicationController
         if @notebook.save
             render :index
         else
-            render json: ["Notebook name already in use."], status: 409
+            render json: @notebook.errors.full_messages, status: 409
         end
     end
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
 import { Route, Link } from 'react-router-dom';
+import CreateNewNoteBookContainer from './create_new_notebook_container';
 
 class NotebookIndex extends React.Component {
     constructor(props) {
@@ -27,6 +28,11 @@ class NotebookIndex extends React.Component {
         this.props.fetchNotebooks();
     };
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.notebooks.length !== this.props.notebooks.length)
+        this.props.fetchNotebooks();
+    }
+
     render() {  
         if (!this.props.notebooks) {
             return null;
@@ -38,9 +44,9 @@ class NotebookIndex extends React.Component {
                 
                 <div className='top-top row'>
                     <h3>My notebook list</h3>
-                    <button className='create-button'>Button
-                        <Route to="/notebooks/new"/>
-                    </button>
+                    
+                    <Link to="/notebooks/new"><button className='create-button'>New notebook </button></Link>
+                        <Route path="/notebooks/new" component={CreateNewNoteBookContainer}/>
                 </div>
 
                 <table>

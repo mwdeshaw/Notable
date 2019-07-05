@@ -4,12 +4,15 @@ import { createNotebook } from '../../actions/notebooks';
 import CreateNewNotebook from './create_new_notebook';
 
 
-const mapStateToProps = ({ errors }) => ({
-    errors: errors.session
-});
+const mapStateToProps = ({ errors, session }) => {
+    return {
+    errors: errors.session,
+    currentUser: session.currentUserId
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
-    action: notebook => dispatch(createNotebook(notebook)),
+    createNotebook: notebook => dispatch(createNotebook(notebook)),
     clearErrors: () => dispatch(clearErrors())
 });
 

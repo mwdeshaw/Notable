@@ -5,23 +5,24 @@ class CreateNewNotebook extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: ""
+            title: "",
+            author_id: this.props.currentUser
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
 
     handleSubmit(e) {
-        e.preventDefault();
-        
+        e.preventDefault();  
         this.props.clearErrors();
-        this.props.action(this.state)
+        this.props.createNotebook(this.state)
         .then(() => this.props.history.push("/notebooks"))
     };
 
-    update(type) {
+    update(title) {
         return (e) => {
-            this.setState({ [type]: e.currentTarget.value })
+            this.setState({ [title]: e.currentTarget.value })
         };
     };
 
@@ -46,8 +47,6 @@ class CreateNewNotebook extends React.Component {
     };
 
     render() {
-        // const showOrHide = this.props.show ? "visible-form" : "invisible-form"
-
         return(
             <div className='new-notebook'>
                 <form className="notebook-form">
@@ -57,7 +56,6 @@ class CreateNewNotebook extends React.Component {
                     <label>Name 
                         <input type="text" className='notebook-input' value={this.state.title} onChange={this.update("title")} placeholder="Notebook name"/>
                     </label>
-               
                     {this.renderErrors()}
                     <div className='new-nb-btns'>
                         <button className='cancel' onClick={this.handleClose}>Cancel</button>
@@ -67,7 +65,6 @@ class CreateNewNotebook extends React.Component {
             </div>
         )
     }
-
 }
 
 export default withRouter(CreateNewNotebook);
