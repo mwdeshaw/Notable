@@ -9,12 +9,12 @@ function NotebooksModal({ modal, closeModal }) {
         return null;
     }
     let component;
-    switch (modal) {
-        case 'create':
+    switch (modal) { //modal .type
+        case 'create': //object with type, and payload, make it an object, type key: 
             component = <CreateNoteBookContainer />;
             break;
         case 'edit':
-            component = <EditNoteBookContainer />;
+            // component = <EditNoteBookContainer id={modal.id}/>;
             break;
         default:
             return null;

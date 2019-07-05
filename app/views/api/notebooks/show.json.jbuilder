@@ -1,3 +1,1 @@
-json.notebook do
-    notebook.partial! 'api/notebooks/notebook', notebook: @notebook
-end
+    json.extract! @notebook, :id, :title, :author_id, :updated_at

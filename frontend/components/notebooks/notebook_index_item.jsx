@@ -14,7 +14,7 @@ const NotebookIndexItem = ({ notebook, author, openModal, deleteNotebook }) => {
                 <th><Link to={`/notebooks/${notebook.id}`}>{notebook.updated_at.slice(0, 10)}</Link></th>
                 <th>
                 <button onClick={() => deleteNotebook(notebook.id)}>Delete Notebook</button>
-                {/* <button onClick={() => openModal('edit')}>Edit Notebook Title</button> */}
+                <button onClick={() => openModal('edit')}>Edit Notebook Title</button>
                 </th> 
             </tr>
     );

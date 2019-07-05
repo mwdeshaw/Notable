@@ -14,7 +14,7 @@ class Api::NotebooksController < ApplicationController
     def create
         @notebook = Notebook.new(notebook_params)
         if @notebook.save
-            render :index
+            render :show
         else
             render json: @notebook.errors.full_messages, status: 409
         end
@@ -32,7 +32,7 @@ class Api::NotebooksController < ApplicationController
     def destroy 
         @notebook = current_user.notebooks.find(params[:id])
         @notebook.destroy
-        render :index
+        render :show
     end
 
     private
