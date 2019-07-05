@@ -28,7 +28,6 @@ class NotebookIndex extends React.Component {
                 <div className='top-top row'>
                     <h3>My notebook list</h3>
                     
-                    <Link to="/notebooks/new"><button className='create-button'>New notebook </button></Link>
                 </div>
 
                 <table>
