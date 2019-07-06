@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { clearErrors } from '../../actions/session';
-import { selectOneNotebook } from '../../reducers/selectors';
 import { updateNotebook, fetchNotebook } from '../../actions/notebooks';
 import EditNotebookForm from './edit_notebook_form';
 import { closeModal } from '../../actions/modal_actions';

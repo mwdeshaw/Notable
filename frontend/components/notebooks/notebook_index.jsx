@@ -37,6 +37,7 @@ class NotebookIndex extends React.Component {
                             <th>TITLE</th>
                             <th>CREATED BY</th>
                             <th>UPDATED</th>
+                            <th>ACTIONS</th>
                         </tr>
                          {notebookList}
                     </tbody>
