@@ -6,11 +6,6 @@ class NotebookIndex extends React.Component {
         this.props.fetchNotebooks();
     };
 
-    // componendDidUpdate(prevProps) {
-    //     if (prevProps.notebooks.length !== this.props.notebooks.length) {
-    //         this.props.fetchNotebooks();
-    //     };
-    // };
 
     render() {
         const { notebooks } = this.props;
@@ -24,9 +19,13 @@ class NotebookIndex extends React.Component {
 
         return (
             <div className='notebook-list-container'>
-                <ul className='notebooks-list'>
+                <ul className='notebook-list'>
                     {notebookList}
                 </ul> 
+                <div className='tags'>
+                    <div className='row'><h3><i className="fas fa-tag"></i><p className='tag-header'>&#160;&#160;&#160;Tags</p></h3></div>
+                </div>
+
             </div>
         )
     }
