@@ -8,7 +8,7 @@ import NoteBookShowContainer from '../modals/notebooks_modal';
 
 const Notebooks = () => {
     return (
-        <div>
+        <div className='notebooks-parent'>
             <Route path='/notebooks/:notebookId' component={NoteBookShowContainer} />
 
             <NotebooksModal />

@@ -26,7 +26,7 @@ class NotebookIndex extends React.Component {
             <div className='notebook-index'>
                 <h2>Notebooks</h2>
                 
-                <div className='top-top row'>
+                <div className='top-top-row'>
                     <h3>My notebook list</h3>
                     <button onClick={() => this.props.openModal('create')}>New Notebook</button>
                 </div>

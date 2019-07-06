@@ -16,7 +16,11 @@
 }
 
 .greeting {
-    margin-left: 12px;
+    margin-top: 10px;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    color: #a9a9a9
 }
 
 .logout-btn {
