@@ -34,6 +34,7 @@ class NotebookIndex extends React.Component {
                 <table>
                     <tbody>
                         <tr>
+                            <th></th>
                             <th>TITLE</th>
                             <th>CREATED BY</th>
                             <th>UPDATED</th>

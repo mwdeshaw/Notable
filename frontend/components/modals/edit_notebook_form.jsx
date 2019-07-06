@@ -8,10 +8,6 @@ class EditNotebookForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     };
 
-    // componentDidMount() {
-    //     this.props.fetchNotebook(this.props.notebook.id)
-    // }
-
     handleSubmit(e) {
         e.preventDefault();
         this.props.clearErrors();

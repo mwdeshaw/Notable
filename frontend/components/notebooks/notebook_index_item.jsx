@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
+// import NoteBookShowContainer from './notebook_show_page_container';
 
 class NotebookIndexItem extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class NotebookIndexItem extends React.Component {
         this.closeNotesView = this.closeNotesView.bind(this);
         this.openActionsView = this.openActionsView.bind(this);
         this.closeActionsView = this.closeActionsView.bind(this);
+        this.enterShowPage = this.enterShowPage.bind(this);
     };
 
 
@@ -33,6 +35,12 @@ class NotebookIndexItem extends React.Component {
     closeActionsView(e) {
         e.preventDefault();
         this.setState({ openedActions: false })
+    }
+
+    enterShowPage() {
+    
+        const notebookId = this.props.notebook.id;
+        this.props.history.push(`/notebooks/${notebookId}`);
     }
 
     sliceIdx(str) {
@@ -73,15 +81,15 @@ class NotebookIndexItem extends React.Component {
         );
 
     return(
-        <tr>
+        <tr onClick={this.enterShowPage}>
                 <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
-                <th onClick={this.closeActionsView}><Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
-                <th onClick={this.closeActionsView}><Link to={`/notebooks/${notebook.id}`}>{author.slice(0, this.sliceIdx(author))}</Link></th>
-                <th onClick={this.closeActionsView}><Link to={`/notebooks/${notebook.id}`}>{notebook.updated_at.slice(0, 10)}</Link></th>
+                <th onClick={this.closeActionsView}>{notebook.title}</th>
+                <th onClick={this.closeActionsView}>{author.slice(0, this.sliceIdx(author))}</th>
+                <th onClick={this.closeActionsView}>{notebook.updated_at.slice(0, 10)}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
         </tr>
         );
     }
 };
 
-export default NotebookIndexItem;
+export default withRouter(NotebookIndexItem);
