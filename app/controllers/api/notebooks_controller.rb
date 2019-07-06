@@ -23,7 +23,7 @@ class Api::NotebooksController < ApplicationController
     def update
         @notebook = current_user.notebooks.find(params[:id])
         if @notebook.update_attributes(notebook_params)
-            render :index
+            render :show
         else
             render json: ["Notebook name already in use."], status: 409
         end

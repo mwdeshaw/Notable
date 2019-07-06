@@ -1,22 +1,14 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
 import { Route, Link } from 'react-router-dom';
-import { selectAllNotebooks } from '../../reducers/selectors';
 
 
 class NotebookIndex extends React.Component {
     componentDidMount() {
         this.props.fetchNotebooks();
     };
-    
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.notebooks.length !== this.props.notebooks.length) {
-    //         this.props.fetchNotebooks();
-    //     }
-    // };
 
     render() {
-        // const { notebooks, errors, openModal, fetchNotebook, currentUser } = this.props;
         const notebookList = this.props.notebooks.map(notebook => {
             return (
             <NotebookIndexItem

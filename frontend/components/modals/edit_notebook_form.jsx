@@ -4,16 +4,13 @@ import { withRouter } from 'react-router-dom';
 class EditNotebookForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: this.props.notebook.title,
-            author_id: this.props.currentUser
-        };
+        this.state = this.props.notebook;
         this.handleSubmit = this.handleSubmit.bind(this);
     };
 
-    componentDidMount() {
-        this.props.fetchNotebook()
-    }
+    // componentDidMount() {
+    //     this.props.fetchNotebook(this.props.notebook.id)
+    // }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -28,7 +25,6 @@ class EditNotebookForm extends React.Component {
     };
 
     renderErrors() {
-
         if (this.props.errors) {
             return (
                 <ul className='errors'>
@@ -43,6 +39,7 @@ class EditNotebookForm extends React.Component {
     };
 
     render() {
+        
         return (
             <div className='notebook-form-container'>
                 <form className="notebook-form">
