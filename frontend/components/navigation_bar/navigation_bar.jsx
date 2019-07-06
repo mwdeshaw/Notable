@@ -16,7 +16,7 @@ class NavigationBar extends React.Component {
         
         if (this.props.currentUser) {
         return (
-            <div>
+            <div className='main-nav'>
                 <Sidebar
                     currentUser={this.props.currentUser.email}
                     logout={this.props.logout} />
