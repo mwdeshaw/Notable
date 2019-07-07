@@ -53,66 +53,92 @@
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
+    font-weight: 300;
 }
+
 
 .top-table-row {
     border-top: 2px solid #5b6b70;
     font-size: 11px;
     color: #b3b3b3;
     background: #f8f8f8;
-    padding: 8px;
     text-align: left;
     min-width: 300px;
-    align-items: center;
+    vertical-align: middle;
 };
 
+thead th:nth-child(1) {
+    width: 5%;
+    height: 40px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+thead th:nth-child(2) {
+    width: 40%;
+    height: 40px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+thead th:nth-child(3) {
+    width: 20%;
+    height: 40px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+thead th:nth-child(4) {
+    width: 20%;
+    height: 40px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+thead th:nth-child(5) {
+    width: 20%;
+    height: 40px;
+    padding: 8px;
+    text-align: right;
+    vertical-align: middle;
+}
 
 .notebooks-table-body tr:nth-child(odd) {
     background: #ffffff; 
-    font-weight: 300;
 }
 
 .notebooks-table-body tr:nth-child(even) {
     background: #f8f8f8
 }
 
-thead th {
+.notebooks-table-body tr:hover {
+    background: lightgray;
+}
+
+.notebooks-table-body th {
     text-align: left;
+    vertical-align: middle;
+    height: 40px;
     padding: 8px;
-    min-width: 200px;
-    align-items: center;
+    overflow: auto;
 }
 
-
-thead th:nth-child(1) {
-  width: 30%;
+.notebooks-table-body th:last-child {
+    text-align: right;
+    vertical-align: middle;
+    height: 40px;
+    padding: 8px;
+    overflow: auto;
 }
 
-thead th:nth-child(2) {
-  width: 20%;
+.notebooks-table-body th:nth-child(1) {
+    text-align: left;
+    vertical-align: middle;
+    height: 40px;
+    padding: 8px;
+    font-weight: 400;
 }
-
-thead th:nth-child(3) {
-  width: 20%;
-}
-
-thead th:nth-child(4) {
-  width: 20%;
-}
-
-
-
-// .notebooks-table-body th {
-//     text-align: left;
-//     padding: 8px;
-//     overflow-x: auto;
-// }
-
-// .notebooks-table-body tr:first-child {
-//     flex-basis: 30%;
-//     font-weight: 400px;
-// }
-
-// .notebooks-table-body tr:hover {
-//     background: #f8f8f8
-// }

@@ -82,7 +82,7 @@ class NotebookIndexItem extends React.Component {
     return(
         <tr>
                 <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
-                <th onClick={this.closeActionsView}>{notebook.title}</th>
+            <th onClick={this.closeActionsView}><i className="fas fa-book"></i>&#160;&#160;&#160;{notebook.title}</th>
                 <th onClick={this.closeActionsView}>{author.slice(0, this.sliceIdx(author))}</th>
                 <th onClick={this.closeActionsView}>{notebook.updated_at.slice(0, 10)}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
