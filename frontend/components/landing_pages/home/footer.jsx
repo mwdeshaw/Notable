@@ -4,7 +4,7 @@ const Footer = () => {
     return( 
     <div className='footer-container'>
         <div className='footer-cw'>
-            <p className='p-thing'>© 2019 Notable. All rights reserved</p> 
+            <p className='p-thing'>© 2019 Matt DeShaw. All rights reserved</p> 
         </div>
         <div className='icons'>
                 <a href="https://github.com/mwdeshaw"><i className="fab fa-github fa-2x"></i></a>

@@ -1,28 +1,33 @@
 import React from 'react';
 import HomePageContainer from '../landing_pages/home/home_page_container'
+import Sidebar from './sidebar';
 
-const NavigationBar = ({ currentUser, logout }) => {
-    if (currentUser) {
-    return (
-        <div>
-            <p>{currentUser.email}</p>
-            <ul className='logout-dropdown'>
-                <button className='logout' onClick={logout}>Sign out {currentUser.email}</button>
-            </ul>
-            <ul className='nav-bar-links'>
-                <li>All Notes</li>
-                <li>Shared with me</li>
-                <li>Shared with me</li>
-                <li>Tags</li>
-                <li>Trash</li>
-            </ul>
-        </div>
-        );
-    } else {
-        return(
-        <HomePageContainer/>
-        );
-    }
-};
+
+class NavigationBar extends React.Component {
+    constructor(props) {
+        super(props);
+    };
+
+    componentDidMount() {
+        this.props.fetchNotebooks();
+    };
+
+    render() {
+        
+        if (this.props.currentUser) {
+        return (
+            <div className='main-nav'>
+                <Sidebar
+                    currentUser={this.props.currentUser.email}
+                    logout={this.props.logout} />
+            </div>
+            );
+        } else {
+            return(
+            <HomePageContainer/>
+            );
+        }
+    };
+}
 
 export default NavigationBar;
