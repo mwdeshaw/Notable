@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, Route, withRouter } from 'react-router-dom';
-// import NoteBookShowContainer from './notebook_show_page_container';
+import { Link, Route, withRouter,  } from 'react-router-dom';
 
 class NotebookIndexItem extends React.Component {
     constructor(props) {
@@ -13,8 +12,13 @@ class NotebookIndexItem extends React.Component {
         this.closeNotesView = this.closeNotesView.bind(this);
         this.openActionsView = this.openActionsView.bind(this);
         this.closeActionsView = this.closeActionsView.bind(this);
-        // this.enterShowPage = this.enterShowPage.bind(this);
+        this.handleShowRedirect = this.handleShowRedirect.bind(this);
     };
+
+    handleShowRedirect(e) {
+        e.preventDefault();
+        this.props.history.push(`/notebooks/${this.props.notebook.id}`)
+    }
 
     openNotesView(e) {
         e.preventDefault();
@@ -35,12 +39,6 @@ class NotebookIndexItem extends React.Component {
         e.preventDefault();
         this.setState({ openedActions: false })
     }
-
-    // enterShowPage() {
-    
-    //     const notebookId = this.props.notebook.id;
-    //     this.props.history.push(`/notebooks/${notebookId}`);
-    // }
 
     sliceIdx(str) {
         return str.indexOf("@");
@@ -81,12 +79,13 @@ class NotebookIndexItem extends React.Component {
             </div>
         );
 
+        
     return(
-        <tr onClick={ this.state.openedActions ? this.closeActionsView : null}>
+        <tr onClick={this.state.openedActions ? this.closeActionsView : null}>
                 <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
-                <th onClick={this.closeActionsView}><i className="fas fa-book"></i>&#160;&#160;&#160;{notebook.title}</th>
-                <th onClick={this.closeActionsView}>{author.slice(0, this.sliceIdx(author))}</th>
-                <th onClick={this.closeActionsView}>{notebook.updated_at.slice(0, 10)}</th>
+            <th onClick={this.handleShowRedirect} >{this.state.openedNotes ? <i className="fas fa-book-open"></i> : <i className="fas fa-book"></i>}&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
+                <th onClick={this.handleShowRedirect}>{author.slice(0, this.sliceIdx(author))}</th>
+                <th onClick={this.handleShowRedirect}>{notebook.updated_at.slice(0, 10)}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
         </tr>
         );

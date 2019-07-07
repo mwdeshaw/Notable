@@ -19,7 +19,6 @@
     flex: 1;
     margin-top: 31px;
     font-size: 20px;
-    // white-space: nowrap;
     padding-right: 12px;
     font-weight: 400;
     overflow: hidden;
@@ -60,7 +59,6 @@
     font-weight: 300;
 }
 
-
 .top-table-row {
     border-top: 2px solid #5b6b70;
     font-size: 11px;
@@ -72,7 +70,7 @@
 };
 
 thead th:nth-child(1) {
-    width: 5%;
+    width: 2%;
     height: 40px;
     padding: 8px;
     text-align: left;
@@ -120,7 +118,12 @@ thead th:nth-child(5) {
 }
 
 .notebooks-table-body tr:hover {
-    background: lightgray;
+    background: #f0f1f1;
+    cursor: pointer;
+}
+.notebooks-table-body tr:hover {
+    background: #f0f1f1;
+    cursor: grab;
 }
 
 .notebooks-table-body th {
@@ -139,12 +142,18 @@ thead th:nth-child(5) {
     overflow: auto;
 }
 
-.notebooks-table-body th:nth-child(1) {
-    text-align: left;
+.notebooks-table-body th a {
+    text-decoration: none;
+    color: #333333;
     vertical-align: middle;
     height: 40px;
     padding: 8px;
     font-weight: 500;
+}
+
+.notebooks-table-body th a:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .actions-dropdown {
@@ -163,13 +172,23 @@ thead th:nth-child(5) {
 }
 
 .actions-dropdown li {
-    margin-left: 18px;
     padding: 8px;
+    margin-left: 18px;
     font-weight: 500;
+}
+
+.actions-button:hover {
+    color: #04a82e;
+    cursor: pointer;
 }
 
 #edit, #delete {
     cursor: pointer;
+}
+
+.notes-side-arrow:hover {
+    cursor: pointer;
+    color: #bababa
 }
 
 #edit:hover {
@@ -183,6 +202,7 @@ thead th:nth-child(5) {
 .actions {
     font-weight: 300px;
     color: gray;
+    cursor: pointer;
 }
 
 #close-actions {

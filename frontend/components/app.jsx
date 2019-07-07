@@ -5,6 +5,7 @@ import NavigationBarContainer from './navigation_bar/navigation_bar_container';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 import Notebooks from './notebooks/notebooks';
+import NotebookShowPageContainer from './notebooks/notebook_show_page_container';
 
 const App = () => (
     <div>
@@ -13,6 +14,7 @@ const App = () => (
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
+            <ProtectedRoute path="/notebooks/:notebookId" component={NotebookShowPageContainer} />
             <ProtectedRoute path="/notebooks" component={Notebooks} />
         </Switch>
     </div>
