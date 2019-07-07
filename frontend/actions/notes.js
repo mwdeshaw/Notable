@@ -43,7 +43,7 @@ export const createNote = note => dispatch => (
 );
 
 export const updateNote = note => dispatch => (
-    NotebookUtils.updateNote(note)
+    NoteUtils.updateNote(note)
         .then(note => {
             dispatch(receiveNote(note))
         }, err => (
@@ -52,6 +52,6 @@ export const updateNote = note => dispatch => (
 );
 
 export const deleteNote = noteId => dispatch => (
-    NotebookUtils.deleteNote(noteId)
+    NoteUtils.deleteNote(noteId)
         .then(note => dispatch(removeNote(note)))
 );
