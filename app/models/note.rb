@@ -1,8 +1,9 @@
 class Note < ApplicationRecord
-    validates :title, :notebook_id, :author_id, presence: true
-    validates :body, allow_blank: true
+    before_validation :ensure_title, on: [:create, :update]
+    validates :notebook_id, :author_id, presence: true
+    validates :body, presence: true, allow_blank: true
 
-    after_initialize :default_title
+    before_save :ensure_title
 
     belongs_to :user,
         primary_key: :id,
@@ -14,9 +15,8 @@ class Note < ApplicationRecord
         foreign_key: :notebook_id,
         class_name: :Notebook
 
-
     private
-    def default_title
-        self.title ||= "Untitled"
+    def ensure_title
+        self.title = "Untitled" if self.title == ""
     end
 end

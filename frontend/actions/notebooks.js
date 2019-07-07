@@ -1,4 +1,4 @@
-import * as  NotebookUtils from '../util/notebook_utils';
+import * as NotebookUtils from '../util/notebook_utils';
 import { receiveErrors } from './session';
 
 export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
