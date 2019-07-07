@@ -31,8 +31,9 @@
     margin-left: 32px;
     margin-top: 8px;
     font-size: 10px;
-    height: 16px;
+    height: auto;
     width: 156px;
+    // align-items: center;
 }
 
 .search-container {
@@ -255,6 +256,7 @@
 
 .notebook-list a {
     padding-left: 50px;
+    overflow: auto;
 }
 
 .tags {

@@ -75,8 +75,8 @@ class NotebookIndexItem extends React.Component {
                 <ul onClick={this.closeActionsView} className='actions-dropdown'>
                     <i id='close-actions' className="fas fa-times" onClick={this.closeActionsView}></i>
                     <li className='actions'>Actions</li>
-                    <li onClick={() => deleteNotebook(notebook.id)}>Delete Notebook</li>
-                    <li onClick={() => openModal(`edit${(notebook.id).toString()}`)}>Rename Notebook</li>
+                    <li id='delete' onClick={() => deleteNotebook(notebook.id)}>Delete Notebook</li>
+                    <li id = 'edit' onClick={() => openModal(`edit${(notebook.id).toString()}`)}>Rename Notebook</li>
                 </ul>
             </div>
         );

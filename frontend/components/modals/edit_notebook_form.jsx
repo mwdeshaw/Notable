@@ -39,15 +39,26 @@ class EditNotebookForm extends React.Component {
         return (
             <div className='notebook-form-container'>
                 <form className="notebook-form">
-                    <h1 className='notebook-title'>Rename Notebook</h1>
-                    <i className="fas fa-times" onClick={this.props.closeModal}></i>
-                    <label>Name
+                    <div className='notebook-form-header'>
+                        <h1 className='notebook-title'>Rename notebook&#160;&#160;&#160;&#160;&#160;<i id='close' className="fas fa-times" onClick={this.props.closeModal}></i></h1>
+                    </div>
+                    <label id="name">Name
+                        <br/>
+                        <br/>
                         <input type="text" className='notebook-input' value={this.state.title} onChange={this.updateTitle("title")} placeholder="Notebook name" />
                     </label>
                     {this.renderErrors()}
+
+                    <div className='line-div'>
+                        <hr className='line-new' />
+                    </div>  
+
                     <div className='new-nb-btns'>
-                        <button className='cancel' onClick={this.props.closeModal}>Cancel</button>
-                        <button className='continue' onClick={this.handleSubmit}>Continue</button>
+                        <span>
+                            <button id='cancel' onClick={this.props.closeModal}>Cancel</button>
+                            &#160;&#160;&#160;
+                            <button id='continue' onClick={this.handleSubmit}>Continue</button>
+                       </span> 
                     </div>
                 </form>
             </div>

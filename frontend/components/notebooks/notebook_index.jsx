@@ -2,8 +2,15 @@ import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
 import { Route, Link } from 'react-router-dom';
 
+const styles = {
+    searchButton: {
+        margin: 10,
+        cursor: 'pointer',
+    }
+}
 
 class NotebookIndex extends React.Component {
+    
     componentDidMount() {
         this.props.fetchNotebooks();
     };
@@ -24,8 +31,17 @@ class NotebookIndex extends React.Component {
 
         return (
             <div className='notebook-index'>
+
                 <div className='nb-index-header'>
-                    <h2>Notebooks</h2>
+                    <h2 id='h'>Notebooks<div className='nb-search-container'>
+                        <input type="text" placeholder="Find notebooks..." className="nb-search-input" />
+                        <span>
+                            <button className='nb-search-btn' type="submit" style={styles.searchButton}><i className="fa fa-search"></i></button>
+                        </span>
+                    </div>
+
+                    </h2>
+                
                 </div>
                 
                 <div className='nb-table-top'>
@@ -44,7 +60,6 @@ class NotebookIndex extends React.Component {
                         </tr>
                     </thead>
                     <tbody className='notebooks-table-body'>
-                
                          {notebookList}
                     </tbody>
                 </table>

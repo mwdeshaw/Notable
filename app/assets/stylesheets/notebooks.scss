@@ -19,11 +19,11 @@
     flex: 1;
     margin-top: 31px;
     font-size: 20px;
-    white-space: nowrap;
+    // white-space: nowrap;
     padding-right: 12px;
     font-weight: 400;
     overflow: hidden;
-}
+};
 
 .nb-table-top {
     font-size: 15px;
@@ -47,6 +47,10 @@
     vertical-align: middle;
     float: right;
     cursor: pointer;
+    outline: none;
+}
+.create-nb-btn:hover {
+    color: green;
 }
 
 .notebooks-table {
@@ -155,6 +159,7 @@ thead th:nth-child(5) {
     padding: 12px 0;
     font-size: 14px;
     right: 2.7%;
+    margin-bottom: 10px;
 }
 
 .actions-dropdown li {
@@ -163,13 +168,267 @@ thead th:nth-child(5) {
     font-weight: 500;
 }
 
+#edit, #delete {
+    cursor: pointer;
+}
+
+#edit:hover {
+    background: lightgray;
+}
+
+#delete:hover {
+    background: lightgray;
+}
+
 .actions {
     font-weight: 300px;
-    color: #d5d5d5;
+    color: gray;
 }
 
 #close-actions {
+    cursor: pointer;
     margin-left: 180px;
     font-weight: 300px;
-    color: #d5d5d5;
+    color: gray;
+}
+
+.notebook-form-container {
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.create-notebook-form {
+    background-color: #ffffff;
+    width: 551px;
+    height: 320px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 15px rgba(0,0,0,.2);
+    position: absolute;
+    top: 36%;
+    left: 30%;
+    border-radius: 7px;
+    transition: width 1s ease-in;
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 20px;
+}
+
+.notebook-form {
+    background-color: #ffffff;
+    width: 500px;
+    height: 250px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 15px rgba(0,0,0,.2);
+    position: absolute;
+    top: 36%;
+    left: 30%;
+    border-radius: 7px;
+    transition: width 1s ease-in;
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 15px;
+}
+
+
+.notebook-title {
+    color: #333333;
+    font-size: 18px;
+    font-weight: 500;
+    align-content: center;
+    padding-bottom: 23px;
+    margin-top: 5px;
+}
+
+.notebook-phrase {
+    color: #5e5e5e;
+    font-size: 14px;
+    padding-bottom: 23px;
+
+}
+
+#close {
+    float: right;
+}
+
+#close:hover {
+    color: #7b8184;
+}
+
+.create-notebook-form label {
+    color: #7b8184;
+    font-size: 12px;
+    width: 100%;
+}
+
+.notebook-form label {
+    color: #7b8184;
+    font-size: 12px;
+    width: 100%;
+}
+
+.create-notebook-form input {
+    height: 17;
+    width: 510px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    cursor: text;
+    display: flex;
+    justify-content: center;
+    outline: none;
+};
+
+.notebook-form input {
+    height: 17;
+    width: 460px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    cursor: text;
+    display: flex;
+    justify-content: center;
+    outline: none;
+};
+
+.line-div {
+    margin-top: 58px;
+}
+
+.line-new {
+    border: 1px solid #d2d2d2;
+}
+
+.new-nb-btns {
+    width: 100%;
+    margin-top: 13px;
+    margin-left: 283px;
+    padding-bottom: 10px;
+};
+
+.new-nb-btns button {
+    text-align: center;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 400px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    justify-content: center;
+    vertical-align: middle;
+    letter-spacing: 0;
+    transition: background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out;
+}
+.new-nb-btns-create {
+    width: 100%;
+    margin-top: 33px;
+    margin-left: 332px;
+}
+
+.new-nb-btns-create button {
+    text-align: center;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 400px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    justify-content: center;
+    vertical-align: middle;
+    letter-spacing: 0;
+    transition: background .1s ease-out,color .1s ease-out,border .1s ease-out,opacity .1s ease-out;
+}
+
+#continue {
+    background: #00a82d;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#continue:hover {
+    background: darkgreen;
+}
+
+#cancel {
+    background: #ffffff;
+    cursor: pointer;
+
+}
+
+#cancel:hover {
+    background-color: #d2d2d2;
+}
+
+#h2 {
+    display: flex;
+    float: left;
+}
+
+.nb-search-container {
+    float: right;
+    width: 16%
+};
+
+
+.nb-search-input, .nb-search-btn {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.nb-search-container input {
+    color: #7a8083;
+}
+
+.nb-search-container button {
+    outline: none;
+}
+
+.nb-search-input {
+    margin-top: 10px;
+    margin-left: 25px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border-left: 1px solid #9d9d9d;
+    border-right: 1px solid #ffffff;
+    border-top: 1px solid #9d9d9d;
+    border-bottom: 1px solid #9d9d9d;
+    height: 30px;
+    width: 186px;
+    vertical-align: middle;
+    align-content: center;
+    font-size: 14px;
+    padding-left: 10px;
+    position: absolute;
+    font-weight: 400px;
+}
+
+.nb-search-input ~ span {
+    position: absolute;
+    margin-left: 187px;
+}
+
+.nb-search-btn {
+    color: #9d9d9d;
+    border-right: 1px solid #9d9d9d;
+    border-top: 1px solid #9d9d9d;
+    border-left: 1px solid #9d9d9d;
+    border-bottom: 1px solid #9d9d9d;
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+    align-content: center;
+    vertical-align: middle;
+}
+
+.nb-search-container .nb-search-input:focus {
+    outline: none;
+}
+
+.nb-search-input:focus ~ span .nb-search-btn {
+    color: #04a82e;
 }

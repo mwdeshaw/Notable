@@ -6,7 +6,6 @@ class NotebookIndex extends React.Component {
         this.props.fetchNotebooks();
     };
 
-
     render() {
         const { notebooks } = this.props;
         const notebookList = notebooks.map(notebook => (

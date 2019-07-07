@@ -55,10 +55,10 @@ class Sidebar extends React.Component {
 
         return (
             <div className="sidenav">
-                <div className='greeting-container'></div>
+                <div className='greeting-container'>
                 <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser}</h1>
+                </div>
                     <button className='logout-btn' onClick={this.props.logout}>Sign out {this.props.currentUser}</button>
-
                 <div className='search-container'>
                     <input type="text" placeholder="Search all notes..." className="search-input" />
                     <span>
