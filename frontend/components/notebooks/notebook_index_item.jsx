@@ -13,9 +13,8 @@ class NotebookIndexItem extends React.Component {
         this.closeNotesView = this.closeNotesView.bind(this);
         this.openActionsView = this.openActionsView.bind(this);
         this.closeActionsView = this.closeActionsView.bind(this);
-        this.enterShowPage = this.enterShowPage.bind(this);
+        // this.enterShowPage = this.enterShowPage.bind(this);
     };
-
 
     openNotesView(e) {
         e.preventDefault();
@@ -37,11 +36,11 @@ class NotebookIndexItem extends React.Component {
         this.setState({ openedActions: false })
     }
 
-    enterShowPage() {
+    // enterShowPage() {
     
-        const notebookId = this.props.notebook.id;
-        this.props.history.push(`/notebooks/${notebookId}`);
-    }
+    //     const notebookId = this.props.notebook.id;
+    //     this.props.history.push(`/notebooks/${notebookId}`);
+    // }
 
     sliceIdx(str) {
         return str.indexOf("@");
@@ -73,15 +72,15 @@ class NotebookIndexItem extends React.Component {
         const detailedActionsView = () => (
             <div className='detail-actions-view-modal'>
                 <h3 className='actions-button' onClick={this.closeActionsView}><i className="fa fa-bars"></i></h3>
-                <ul className='actions-dropdown' >
+                <ul onClick={this.closeActionsView} className='actions-dropdown' >
                     <li onClick={() => deleteNotebook(notebook.id)}>Delete Notebook</li>
-                    <li onClick={() => openModal(`edit${(notebook.id).toString()}`)}>Edit Notebook Title</li>
+                    <li onClick={() => openModal(`edit${(notebook.id).toString()}`)}>Rename Notebook</li>
                 </ul>
             </div>
         );
 
     return(
-        <tr onClick={this.enterShowPage}>
+        <tr>
                 <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
                 <th onClick={this.closeActionsView}>{notebook.title}</th>
                 <th onClick={this.closeActionsView}>{author.slice(0, this.sliceIdx(author))}</th>

@@ -10,7 +10,6 @@ const Notebooks = () => {
     return (
         <div className='notebooks-parent'>
             <Route path='/notebooks/:notebookId' component={NoteBookShowContainer} />
-
             <NotebooksModal />
             <NavigationBarContainer />
             <NotebookIndexContainer/>

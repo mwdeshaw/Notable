@@ -24,15 +24,17 @@ class NotebookIndex extends React.Component {
 
         return (
             <div className='notebook-index'>
-                <h2>Notebooks</h2>
+                <div className='nb-index-header'>
+                    <h2>Notebooks</h2>
+                </div>
                 
-                <div className='top-top-row'>
-                    <h3>My notebook list</h3>
-                    <button onClick={() => this.props.openModal('create')}>New Notebook</button>
+                <div className='nb-table-top'>
+                    <h3 className='nb-lists'>My notebook list</h3>
+                    <button className='create-nb-btn' onClick={() => this.props.openModal('create')}><i className="fas fa-book-medical"></i>&#160;&#160;New Notebook</button>
                 </div>
 
-                <table>
-                    <tbody>
+                <table className='notebooks-table'>
+                    <thead className='top-table-row'>
                         <tr>
                             <th></th>
                             <th>TITLE</th>
@@ -40,14 +42,15 @@ class NotebookIndex extends React.Component {
                             <th>UPDATED</th>
                             <th>ACTIONS</th>
                         </tr>
+                    </thead>
+                    <tbody className='notebooks-table-body'>
+                
                          {notebookList}
                     </tbody>
                 </table>
             </div>
         )
     }
-
-
 };
 
 

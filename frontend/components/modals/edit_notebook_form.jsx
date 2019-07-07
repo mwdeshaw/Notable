@@ -39,9 +39,8 @@ class EditNotebookForm extends React.Component {
         return (
             <div className='notebook-form-container'>
                 <form className="notebook-form">
-                    <h1 className='notebook-title'>Create new notebook</h1>
+                    <h1 className='notebook-title'>Rename Notebook</h1>
                     <i className="fas fa-times" onClick={this.props.closeModal}></i>
-                    <p className='notebook-phrase'>Notebooks are useful for grouping notes around a common topic.</p>
                     <label>Name
                         <input type="text" className='notebook-input' value={this.state.title} onChange={this.updateTitle("title")} placeholder="Notebook name" />
                     </label>
