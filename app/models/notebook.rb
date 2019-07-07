@@ -10,4 +10,10 @@ class Notebook < ApplicationRecord
     has_many :collaborators,
         through: :collaborators,
         source: :user
+
+    has_many :notes,
+        primary_key: :id,
+        foreign_key: :notebook_id,
+        class_name: :Note
+
 end

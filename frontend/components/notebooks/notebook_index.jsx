@@ -1,6 +1,5 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
-import { Route, Link } from 'react-router-dom';
 
 const styles = {
     searchButton: {
@@ -9,8 +8,7 @@ const styles = {
     }
 }
 
-class NotebookIndex extends React.Component {
-    
+class NotebookIndex extends React.Component {   
     componentDidMount() {
         this.props.fetchNotebooks();
     };

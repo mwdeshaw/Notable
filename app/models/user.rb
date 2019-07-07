@@ -15,6 +15,12 @@ class User < ApplicationRecord
         foreign_key: :author_id,
         class_name: :Notebook
 
+    has_many :notes,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :Note
+
+
     def password=(password)
         @password = password
         self.password_digest = BCrypt::Password.create(password)

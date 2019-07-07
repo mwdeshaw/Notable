@@ -1,8 +1,11 @@
 import React from 'react';
+import NavigationBarContainer from '../navigation_bar/navigation_bar_container';
 
-const NotebookShowPage = () => {
+const NotebookShowPage = (props) => {
     return(
-        <div>
+        <div className='nb-show-parent'>
+            <NavigationBarContainer />
+
             <h1>welcome to the show page</h1>
             {/* <h1 className='notebookTitle'>{this.props.notebook.title}</h1>
             <div className='notes-list'>
