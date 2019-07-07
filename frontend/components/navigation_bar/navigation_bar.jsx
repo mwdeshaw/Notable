@@ -8,10 +8,6 @@ class NavigationBar extends React.Component {
         super(props);
     };
 
-    componentDidMount() {
-        this.props.fetchNotebooks();
-    };
-
     render() {
         
         if (this.props.currentUser) {

@@ -1,21 +1,21 @@
 import { RECEIVE_ALL_NOTES, RECEIVE_NOTE, REMOVE_NOTE } from '../actions/notes';
 
-const noteReducer = (state = {}, action) => {
+const notesReducer = (state = {}, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_ALL_NOTES:
             return action.notes;
-        case RECEIVE_NOTEBOOK:
+        case RECEIVE_NOTE:
             const nextState = Object.assign({}, state);
-            nextState[action.notebook.id] = action.notebook;
+            nextState[action.note.id] = action.note;
             return nextState;
-        case REMOVE_NOTEBOOK:
+        case REMOVE_NOTE:
             const newState = Object.assign({}, state);
-            delete newState[action.notebook.id]
+            delete newState[action.note.id]
             return newState;
         default:
             return state;
     };
 };
 
-export default noteReducer;
+export default notesReducer;

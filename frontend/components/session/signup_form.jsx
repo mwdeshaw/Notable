@@ -35,7 +35,7 @@ class SignupForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.props.createNewUser(this.state)
-            .then(() => this.props.history.push("/"))
+            .then(() => this.props.history.push("/notes"))
     };
 
     formSwitch(e) {
