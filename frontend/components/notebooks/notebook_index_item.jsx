@@ -72,7 +72,9 @@ class NotebookIndexItem extends React.Component {
         const detailedActionsView = () => (
             <div className='detail-actions-view-modal'>
                 <h3 className='actions-button' onClick={this.closeActionsView}><i className="fa fa-bars"></i></h3>
-                <ul onClick={this.closeActionsView} className='actions-dropdown' >
+                <ul onClick={this.closeActionsView} className='actions-dropdown'>
+                    <i id='close-actions' className="fas fa-times" onClick={this.closeActionsView}></i>
+                    <li className='actions'>Actions</li>
                     <li onClick={() => deleteNotebook(notebook.id)}>Delete Notebook</li>
                     <li onClick={() => openModal(`edit${(notebook.id).toString()}`)}>Rename Notebook</li>
                 </ul>
@@ -80,9 +82,9 @@ class NotebookIndexItem extends React.Component {
         );
 
     return(
-        <tr>
+        <tr onClick={ this.state.openedActions ? this.closeActionsView : null}>
                 <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
-            <th onClick={this.closeActionsView}><i className="fas fa-book"></i>&#160;&#160;&#160;{notebook.title}</th>
+                <th onClick={this.closeActionsView}><i className="fas fa-book"></i>&#160;&#160;&#160;{notebook.title}</th>
                 <th onClick={this.closeActionsView}>{author.slice(0, this.sliceIdx(author))}</th>
                 <th onClick={this.closeActionsView}>{notebook.updated_at.slice(0, 10)}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>

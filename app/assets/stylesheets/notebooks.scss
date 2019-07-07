@@ -140,5 +140,36 @@ thead th:nth-child(5) {
     vertical-align: middle;
     height: 40px;
     padding: 8px;
-    font-weight: 400;
+    font-weight: 500;
+}
+
+.actions-dropdown {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    border-radius: 3px;
+    text-align: left;
+    height: 130px;
+    width: 201px;
+    z-index: 5;
+    padding: 12px 0;
+    font-size: 14px;
+    right: 2.7%;
+}
+
+.actions-dropdown li {
+    margin-left: 18px;
+    padding: 8px;
+    font-weight: 500;
+}
+
+.actions {
+    font-weight: 300px;
+    color: #d5d5d5;
+}
+
+#close-actions {
+    margin-left: 180px;
+    font-weight: 300px;
+    color: #d5d5d5;
 }
