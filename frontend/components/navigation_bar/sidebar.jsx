@@ -25,18 +25,9 @@ class Sidebar extends React.Component {
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
         const newPath = "";
-        const location = this.props.location.pathname.length;
-        const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '0'];
-        for (let i = 0; i < location; i++) {
-            if (nums.includes(location[i])) {
-
-            }
-        }
-
-
-        if (this.props.location.pathname === '/notes/') {
+        // if (newPath === `/notes/${latestNotebook.id}`) {
             this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id})   
-        };
+        // };
 
     };
 

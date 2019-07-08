@@ -3,7 +3,7 @@ import NavigationBarContainer from '../navigation_bar/navigation_bar_container';
 import NotesIndexContainer from './notes_index_container';
 import CreateNoteContainer from './create_note_container';
 import { Route } from 'react-router-dom';
-import NoteDetailContainer from './note_detail_container';
+// import NoteDetailContainer from './note_detail_container';
 
 class Notes extends React.Component {
     componentDidMount() {
@@ -21,7 +21,7 @@ class Notes extends React.Component {
                 <NavigationBarContainer />
                 <CreateNoteContainer notebook={recentNotebook} />
                 <NotesIndexContainer />
-                <Route path="/notes/:noteId" component={NoteDetailContainer} />
+                {/* <Route path="/notes/:noteId" component={NoteDetailContainer} /> */}
             </div>
         );
     };

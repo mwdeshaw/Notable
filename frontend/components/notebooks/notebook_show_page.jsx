@@ -4,10 +4,10 @@ import NavigationBarContainer from '../navigation_bar/navigation_bar_container';
 
 class NotebookShowPage extends React.Component {
 
-    // componentDidMount() {
-    //     this.props.fetchNotebook((this.props.match.params.notebookId))
-    //     .then(() => this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.notes[0].noteId}`))
-    // }
+    componentDidMount() {
+        this.props.fetchNotebook((this.props.match.params.notebookId))
+        .then(() => this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[0]}`))
+    }
         
     render() {
         const { notebook } = this.props;
@@ -20,7 +20,7 @@ class NotebookShowPage extends React.Component {
         return(
             <div className='nb-show-parent'>
                 <div className='notebook-header'>
-                    {/* <h1>{notebook.title}</h1> */}
+                    <h1>{notebook.title}</h1>
                 </div>
                 <NavigationBarContainer />
             </div>
