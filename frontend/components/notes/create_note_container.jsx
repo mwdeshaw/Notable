@@ -5,7 +5,6 @@ import CreateNoteForm from './create_note_form';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        errors: state.errors.session,
         currentUser: state.session.currentUserId,
         notebookId: ownProps.notebookId
     };
