@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { fetchNotes, deleteNote } from '../../actions/notes';
+import { fetchNotes, deleteNote, fetchNote, updateNote } from '../../actions/notes';
 import { selectAllNotesByUpdated } from '../../reducers/selectors';
 import NotesIndex from './notes_index';
 
-const mapStateToProps = (state) => {
-    return({
+const mapStateToProps = (state) => ({
     currentUser: state.entities.users[state.session.currentUserId],
     notes: selectAllNotesByUpdated(state)
-});
-}
+})
 
 const mapDispatchToProps = dispatch => ({
     fetchNotes: () => dispatch(fetchNotes()),
-    deleteNote: id => dispatch(deleteNote(id))
+    deleteNote: id => dispatch(deleteNote(id)),
+    fetchNote: id => dispatch(fetchNote(id)),
+    updateNote: note => dispatch(updateNote(note)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesIndex);

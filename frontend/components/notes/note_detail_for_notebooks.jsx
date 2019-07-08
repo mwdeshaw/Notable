@@ -15,7 +15,6 @@ class NoteDetailForNotebooks extends React.Component {
     };
 
     handleSubmit(e) {
-        debugger
         e.preventDefault();
         this.props.updateNote(this.state);
     };

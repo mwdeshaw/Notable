@@ -3,16 +3,14 @@ import { fetchNote, deleteNote, updateNote, fetchNotes } from '../../actions/not
 import { fetchNotebook } from '../../actions/notebooks';
 import NoteDetailForNotes from './note_detail_for_notes';
 
-const mapStateToProps = ({ notebook, note }) => {
-    return ({
-        notebook,
-        note
-    })
+const mapStateToProps = (state, ownProps) => {
+    const note = ownProps.note;
+    const notebook = state.entities.notebooks[ownProps.notebookId];
+    return { note, notebook }
 };
 
 const mapDispatchToProps = dispatch => ({
     fetchNote: noteId => dispatch(fetchNote(noteId)),
-    fetchNotes: () => dispatch(fetchNotes()),
     fetchNotebook: notebookId => dispatch(fetchNotebook(notebookId)),
     deleteNote: noteId => dispatch(deleteNote(noteId)),
     updateNote: note => dispatch(updateNote(note))

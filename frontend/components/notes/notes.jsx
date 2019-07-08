@@ -17,8 +17,6 @@ class Notes extends React.Component {
         }
         return( 
             <div className='notes-parent'>
-                {/* <NavigationBarContainer /> */}
-                <CreateNoteContainer notebook={recentNotebook} />
                 <NotesIndexContainer />
             </div>
         );
