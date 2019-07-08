@@ -10,7 +10,6 @@ class NoteDetail extends React.Component {
         this.props.fetchNotebook(this.props.match.params.notebookId)
     };
 
-
     render() {
         return(
         <h1>Get all the deets</h1>

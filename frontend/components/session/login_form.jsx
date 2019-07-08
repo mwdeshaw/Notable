@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.props.login(this.state)
-            .then(() => this.props.history.push("/notes"))
+            return () => { this.props.history.push("/notes") }
     };
 
     formSwitch(e) {
@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
         setTimeout(() => {
             this.props.login(demoUser)
                 .then(() => {
-                    this.props.history.push("/")
+                    this.props.history.push("/notes")
         })
         }, 1500);
     };

@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchNote, deleteNote, updateNote, fetchNotes } from '../../actions/notes';
 import { fetchNotebook } from '../../actions/notebooks';
-import { selectAllNotesByUpdated } from '../../reducers/selectors';
-import NoteDetail from './note_detail';
+import NoteDetail from './note_detail_for_notebooks';
 
 const mapStateToProps = ({ notebook, note }) => {
     return( {

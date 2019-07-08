@@ -1,59 +1,55 @@
 import React from 'react';
 import NavigationBarContainer from '../navigation_bar/navigation_bar_container';
-import NoteIndexItem from '../notes/note_index_item';
-
+import NoteIndexItemForNotebooks from './note_index_item_for_notebooks';
+import { withRouter } from 'react-router-dom';
 
 class NotebookShowPage extends React.Component {
     componentDidMount() {
+        //find way to remove undefined from the route bar...
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
-            this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[-1]}`)    
+             this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
         });
+
     };
 
-        
     render() {
-        const { notebook } = this.props;
-        
+        const { notebook, currentUser, deleteNote, updateNote, fetchNote } = this.props;
         if (!notebook) {
             return (
                 <div>Loading...</div>
-            )
-        };
-
-        let notesList;
-        if (!notebook.notes) {
-            notesList = 'No notes yet :('
-        }
-        else { 
-         notesList = Object.values(notebook.notes).map(note => {
+            );
+        };    
+        const notes = notebook.notes;
+        const notesList = notes ?
+        Object.values(notebook.notes).reverse().map(note => {   
             return(
-                <NoteIndexItem
+                <NoteIndexItemForNotebooks
                     key={note.id}
                     note={note}
-                    author={this.props.currentUser.email}
-                    deleteNote={this.props.deleteNote}
-                    updateNote={this.props.updateNote}
-                    fetchNote={this.props.fetchNote}
+                    notebookId={note.notebook_id}
+                    author={currentUser.email}
+                    deleteNote={deleteNote}
+                    updateNote={updateNote}
+                    fetchNote={fetchNote}
                 />
-                )
-            });
-        }
-
+            )
+        }) : <div>No notes :(</div>
         return(
             <div className='nb-show-parent'>
                 <div className='notebook-header'>
                     <h1>{notebook.title}</h1>
-                    <p>{notebook.noteIds.length} notes</p>
+                    <p>{notes ? Object.values(notebook.notes).length : 0} notes</p>
                 </div>
                 <NavigationBarContainer />
 
                 <ul className='notebook-notes-list'>
-                    {notesList}
+                 {notesList}
                 </ul>
+                
             </div>
         );
     }
 };
 
-export default NotebookShowPage;
+export default withRouter(NotebookShowPage);

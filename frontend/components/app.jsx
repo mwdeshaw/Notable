@@ -7,17 +7,19 @@ import { AuthRoute, ProtectedRoute } from '../util/route_utils';
 import Notebooks from './notebooks/notebooks';
 import NotesContainer from './notes/notes_container';
 import NotebookShowPageContainer from './notebooks/notebook_show_page_container';
-import NoteDetailContainer from './notes/note_detail_container';
+import NoteDetailContainerForNotebooks from './notes/note_detail_container_for_notebooks';
+// import NoteDetailContainerForNotes from './notes/note_detail_container_for_notes';
 
 const App = () => (
     <div>
+        <Route path="/" component={NavigationBarContainer} />
        <Switch>
-            <Route exact path="/" component={NavigationBarContainer} />
+            <ProtectedRoute path="/notes" component={NotesContainer} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
-            <ProtectedRoute path="/notes" component={NotesContainer} />
             <ProtectedRoute path="/notebooks/:notebookId" component={NotebookShowPageContainer} />
-            <ProtectedRoute path="/notebooks/:notebookId/notes/:noteId" component={NoteDetailContainer} />
+            {/* <ProtectedRoute path="/notes/:noteId" component={NoteDetailContainerForNotes} /> make child component, and pass it props directlys */}
+            <ProtectedRoute path="/notebooks/:notebookId/notes/:noteId" component={NoteDetailContainerForNotebooks} />
             <ProtectedRoute path="/notebooks" component={Notebooks} />
         </Switch>
     </div>

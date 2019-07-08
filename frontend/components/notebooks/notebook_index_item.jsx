@@ -17,7 +17,7 @@ class NotebookIndexItem extends React.Component {
 
     handleShowRedirect(e) {
         e.preventDefault();
-        this.props.history.push(`/notebooks/${this.props.notebook.id}`)
+        this.props.history.push(`/notebooks/${(this.props.notebook.id).toString()}`)
     }
 
     openNotesView(e) {

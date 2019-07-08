@@ -5,13 +5,10 @@ import { createNote } from  '../../actions/notes';
 import { selectAllNotebooksByUpdated } from  '../../reducers/selectors';
 import NavigationBar from './navigation_bar'
 
-const mapStateToProps = (state) => {
-    
-return ({
+const mapStateToProps = (state) => ({
     currentUser: state.entities.users[state.session.currentUserId],
     notebooks: selectAllNotebooksByUpdated(state)
-})
-}
+});
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),

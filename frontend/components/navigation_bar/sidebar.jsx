@@ -22,32 +22,18 @@ class Sidebar extends React.Component {
     }
 
     handleNoteCreation(e) {
+        //touch up with a rerender...
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
-        const newPath = "";
-        // if (newPath === `/notes/${latestNotebook.id}`) {
-            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id})   
-        // };
-
+        if (this.props.location.pathname.slice(0, 6) === `/notes`) {
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id});
+        } else if (this.props.location.pathname === '/notebooks') {
+            this.props.history.push(`/notebooks/${latestNotebook.id}`)
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id });
+        } else {
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: this.props.match.params.notebookId });
+        }
     };
-
-        //     debugger
-        //     return(
-        //     < CreateNoteContainer
-        //         notebookId= {parseInt(latestNotebook.id)}
-        //         />
-        //     );
-        // } else {
-            // openModal(`createNote${(latestNotebook.id).toString()}`)
-        // } else {
-        //     debugger
-        //     return (
-        //         < CreateNoteContainer
-        //             notebookId={parseInt(this.props.location.pathname.slice(12))}
-        //         />
-        //     );
-        // }
-    
 
     handleNotesRedirect(e) {
         e.preventDefault();
