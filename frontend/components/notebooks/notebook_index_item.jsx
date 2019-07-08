@@ -44,16 +44,15 @@ class NotebookIndexItem extends React.Component {
         return str.indexOf("@");
     };
 
-
     render() {
-        const { notebook, author, openModal, deleteNotebook } = this.props
-
+        const { notebook, author, openModal, deleteNotebook } = this.props;
+        
         const basicNotesView = () => (
             <div className='basic-notes-view'>
                 <h3 className='notes-side-arrow' onClick={this.openNotesView}>▶︎</h3>
             </div>
         );
-
+        
         const detailedNotesView = () => (
             <div className='detail-notes-view-modal'>
                 <h3 className='notes-down-arrow' onClick={this.closeNotesView}>▼</h3>

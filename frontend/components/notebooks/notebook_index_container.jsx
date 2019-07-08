@@ -6,12 +6,15 @@ import NotebookIndex from './notebook_index';
 import { openModal } from '../../actions/modal_actions';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+    
+    return({
     currentUser: state.entities.users[state.session.currentUserId],
     notebooks: selectAllNotebooksByUpdated(state),
     filteredNotebooks: selectFilteredNotebooks(selectAllNotebooksByUpdated(state), state.ui.searchString),
     searchString: state.ui.searchString
 });
+}
 
 const mapDispatchToProps = dispatch => ({
     setSearchFilter: searchString => dispatch(setSearchFilter(searchString)),

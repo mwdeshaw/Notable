@@ -7,8 +7,8 @@ export const selectAllNotebooksByUpdated = (state) => {
     );
 };
 
-export const selectOneNotebook = ({ notebooks }, id) => {
-    return notebooks[id];
+export const selectOneNotebook = ({ notebooks }, notebookId) => {
+    return notebooks[notebookId];
 };
 
 export const selectAllNotesByUpdated = (state) => {
