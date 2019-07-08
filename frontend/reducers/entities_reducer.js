@@ -6,5 +6,5 @@ import notesReducer from './notes_reducer';
 export default combineReducers({
     users: usersReducer,
     notebooks: notebooksReducer,
-    notes: notesReducer
+    notes: notesReducer,
 });

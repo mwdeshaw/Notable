@@ -1,47 +1,62 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
-
-const styles = {
-    searchButton: {
-        margin: 10,
-        cursor: 'pointer',
-    }
-}
+import NotebookSearchBar from './notebook_search_bar';
 
 class NotebookIndex extends React.Component {   
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchString: ""
+        };
+        this.setFilter = this.setFilter.bind(this);
+    };
+
     componentDidMount() {
         this.props.fetchNotebooks();
     };
 
+    setFilter(searchString) {
+        this.props.setSearchFilter(searchString);
+    };
+
+
     render() {
-        const notebookList = this.props.notebooks.map(notebook => {
-            return (
-            <NotebookIndexItem
-                key={ notebook.id }
-                notebook={ notebook }
-                author={this.props.currentUser.email} 
-                openModal={this.props.openModal}
-                deleteNotebook={this.props.deleteNotebook}
-                />
-            )
+        let notebookList = [];
+        if (this.props.searchString !== "" && this.props.searchString.length !== []) {
+            notebookList = this.props.filteredNotebooks.map(notebook => {
+                return (
+                    <NotebookIndexItem
+                        key={notebook.id}
+                        notebook={notebook}
+                        author={this.props.currentUser.email}
+                        openModal={this.props.openModal}
+                        deleteNotebook={this.props.deleteNotebook}
+                    />
+                );
+                }
+            );
         }
-        );
+        else {
+            notebookList = this.props.notebooks.map(notebook => {
+                return (
+                    <NotebookIndexItem
+                        key={notebook.id}
+                        notebook={notebook}
+                        author={this.props.currentUser.email}
+                        openModal={this.props.openModal}
+                        deleteNotebook={this.props.deleteNotebook}
+                    />
+                )
+            }
+            );
+        }
+
 
         return (
             <div className='notebook-index'>
-
                 <div className='nb-index-header'>
-                    <h2 id='h'>Notebooks<div className='nb-search-container'>
-                        <input type="text" placeholder="Find notebooks..." className="nb-search-input" />
-                        <span>
-                            <button className='nb-search-btn' type="submit" style={styles.searchButton}><i className="fa fa-search"></i></button>
-                        </span>
-                    </div>
-
-                    </h2>
-                
-                </div>
-                
+                    <NotebookSearchBar setFilter={this.setFilter} /> 
+                </div>    
                 <div className='nb-table-top'>
                     <h3 className='nb-lists'>My notebook list</h3>
                     <button className='create-nb-btn' onClick={() => this.props.openModal('create')}><i className="fas fa-book-medical"></i>&#160;&#160;New Notebook</button>

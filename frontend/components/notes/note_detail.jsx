@@ -6,10 +6,10 @@ class NoteDetail extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchNote(this.props.match.params.noteId);
-        this.fetchNotebook(this.props.match.params.notebookId)
+        this.props.fetchNote(this.props.match.params.noteId);
+        this.props.fetchNotebook(this.props.match.params.notebookId)
     };
-    
+
 
     render() {
         return(
