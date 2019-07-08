@@ -164,6 +164,7 @@
     .all-notes:hover {
         background: #404040;
         color: #e6e6e6;
+        cursor: pointer;
     }
 
     .dropdowns {
@@ -182,6 +183,10 @@
         display: flex;
         align-items: center;
         margin-top: 10px;
+    }
+
+    .row:hover {
+        cursor: pointer;
     }
 
 .nb-header {

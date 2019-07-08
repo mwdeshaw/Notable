@@ -14,7 +14,7 @@ const mapStateToProps = ({ errors, session }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-    createNotebook: notebook => dispatch(createNotebook(notebook)),
+        createNotebook: notebook => dispatch(createNotebook(notebook)),
         closeModal: () => dispatch(closeModal()),
         clearErrors: () => dispatch(clearErrors())
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookListContainer from  './notebook_list_container';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import CreateNoteContainer from '../notes/create_note_container';
 
 const styles = {
     searchButton: {
@@ -17,6 +18,38 @@ class Sidebar extends React.Component {
         };
         this.openView = this.openView.bind(this);
         this.closeView = this.closeView.bind(this);
+        this.handleNotesRedirect = this.handleNotesRedirect.bind(this);
+        this.this.handleNoteCreation = this.this.handleNoteCreation.bind(this);
+    }
+
+    handleNoteCreation(e) {
+        e.preventDefault();
+        const latestNotebook = this.props.notebooks[0];
+        if (this.props.location.pathname === '/notebooks') {
+            this.props.history.push(`/notebooks/${latestNotebook.id}`)
+            return(
+            < CreateNoteContainer
+                notebookId= {parseInt(latestNotebook.id)}
+                />
+            );
+        } else if (this.props.location.pathname === '/notes') {
+            return (
+                < CreateNoteContainer
+                    notebookId={parseInt(latestNotebook.id)}
+                />
+            );
+        } else {
+            return (
+                < CreateNoteContainer
+                    notebookId={parseInt(this.props.location.pathname.slice(12))}
+                />
+            );
+        }
+    };
+
+    handleNotesRedirect(e) {
+        e.preventDefault();
+        this.props.history.push("/notes")
     }
 
     openView(e) {
@@ -36,10 +69,8 @@ class Sidebar extends React.Component {
                     <div className='row'><h3 className='arrow' onClick={this.openView}>▶︎&#160;&#160;&#160;</h3><Link to='/notebooks'><i className="fas fa-book"></i><h3 className='nb-header'>&#160;&#160;&#160;Notebooks</h3></Link></div>
                 </div>
                 <div className='tags'>
-                    <div className='row'><h3><i className="fas fa-tag"></i><p className='tag-header'>&#160;&#160;&#160;Tags</p></h3></div>
+                    <div className className='row'><h3><i className="fas fa-tag"></i><p className='tag-header'>&#160;&#160;&#160;Tags</p></h3></div>
                 </div>
-
-
             </div>
         );
 
@@ -66,15 +97,15 @@ class Sidebar extends React.Component {
                     </span>
                 </div>
 
-                <div className= "side-buttons">
+                <div className= "side-buttons" onClick={this.handleNoteCreation}>
                     <button className='new-note'><i id="icon-new" className="fas fa-plus"></i> New Note</button>
                     <div className='right'>
                         <button className='mid-half'></button>
                         <button className='other-half'><i className="fas fa-chevron-down"></i></button>
-                        </div>
+                    </div>
                 </div>
-                <div className='all-notes'>
-                    <div className='row'><h3><i className="fas fa-file-alt"></i><p className='nb-header'>&#160;&#160;&#160;All Notes</p></h3></div>
+                <div onClick={this.handleNotesRedirect} className='all-notes'>
+                    <div onClick={this.handleNotesRedirect} className='row'><h3><i className="fas fa-file-alt"></i><p className='nb-header'>&#160;&#160;&#160;All Notes</p></h3></div>
                 </div>
                 <div className='dropdowns'>
                     {this.state.visible ? detailedView() : basicView() }
@@ -84,4 +115,4 @@ class Sidebar extends React.Component {
     };
  };
 
-export default Sidebar;
+export default withRouter(Sidebar);
