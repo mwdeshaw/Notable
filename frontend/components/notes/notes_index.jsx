@@ -1,9 +1,11 @@
 import React from 'react';
 import NoteIndexItem from './note_index_item';
+import { withRouter } from 'react-router-dom';
 
 class NotesIndex extends React.Component {
     componentDidMount() {
-        this.props.fetchNotes();
+        this.props.fetchNotes()
+            .then(() => this.props.history.push(`/notes/${this.props.notes[0].id}`))
     };
 
     render() {
@@ -34,4 +36,4 @@ class NotesIndex extends React.Component {
     }
 };
 
-export default NotesIndex;
+export default withRouter(NotesIndex);

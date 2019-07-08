@@ -18,9 +18,11 @@ class NavigationBar extends React.Component {
         return (
             <div className='main-nav'>
                 <Sidebar
-                    currentUser={this.props.currentUser.email}
+                    currentUser={this.props.currentUser}
                     notebooks={this.props.notebooks}
+                    createNote={this.props.createNote}
                     openModal={this.props.openModal}
+                    fetchNotes={this.props.fetchNotes}
                     logout={this.props.logout} />
             </div>
             );

@@ -1,7 +1,6 @@
 import React from 'react';
 import NotebookListContainer from  './notebook_list_container';
 import { Link, withRouter } from 'react-router-dom';
-import CreateNoteContainer from '../notes/create_note_container';
 
 const styles = {
     searchButton: {
@@ -25,12 +24,10 @@ class Sidebar extends React.Component {
     handleNoteCreation(e) {
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
-        if (this.props.location.pathname === '/notes/')  {
-            this.props.history.push("/notes/new")
-        }
+        this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id})     
+    };
 
 
-        //     this.props.history.push(`/notebooks/${latestNotebook.id}`)
         //     debugger
         //     return(
         //     < CreateNoteContainer
@@ -47,7 +44,7 @@ class Sidebar extends React.Component {
         //         />
         //     );
         // }
-    };
+    
 
     handleNotesRedirect(e) {
         e.preventDefault();
@@ -89,9 +86,9 @@ class Sidebar extends React.Component {
         return (
             <div className="sidenav">
                 <div className='greeting-container'>
-                <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser}</h1>
+                <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email}</h1>
                 </div>
-                    <button className='logout-btn' onClick={this.props.logout}>Sign out {this.props.currentUser}</button>
+                    <button className='logout-btn' onClick={this.props.logout}>Sign out {this.props.currentUser.email}</button>
                 <div className='search-container'>
                     <input type="text" placeholder="Search all notes..." className="search-input" />
                     <span>
