@@ -5,6 +5,12 @@ class NoteDetail extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        this.fetchNote(this.props.match.params.noteId);
+        this.fetchNotebook(this.props.match.params.notebookId)
+    };
+    
+
     render() {
         return(
         <h1>Get all the deets</h1>
