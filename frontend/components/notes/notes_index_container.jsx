@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchNotes: () => dispatch(fetchNotes()),
-    deleteNotes: id => dispatch(deleteNotes(id))
+    deleteNote: id => dispatch(deleteNote(id))
     // openModal: (modal) => dispatch(openModal(modal))
 });
 

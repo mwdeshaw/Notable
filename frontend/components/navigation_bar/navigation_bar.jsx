@@ -8,6 +8,10 @@ class NavigationBar extends React.Component {
         super(props);
     };
 
+    componentDidMount() {
+        this.props.fetchNotebooks();
+    };
+
     render() {
         
         if (this.props.currentUser) {
@@ -16,6 +20,7 @@ class NavigationBar extends React.Component {
                 <Sidebar
                     currentUser={this.props.currentUser.email}
                     notebooks={this.props.notebooks}
+                    openModal={this.props.openModal}
                     logout={this.props.logout} />
             </div>
             );

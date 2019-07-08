@@ -19,32 +19,34 @@ class Sidebar extends React.Component {
         this.openView = this.openView.bind(this);
         this.closeView = this.closeView.bind(this);
         this.handleNotesRedirect = this.handleNotesRedirect.bind(this);
-        this.this.handleNoteCreation = this.this.handleNoteCreation.bind(this);
+        this.handleNoteCreation = this.handleNoteCreation.bind(this);
     }
 
     handleNoteCreation(e) {
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
-        if (this.props.location.pathname === '/notebooks') {
-            this.props.history.push(`/notebooks/${latestNotebook.id}`)
-            return(
-            < CreateNoteContainer
-                notebookId= {parseInt(latestNotebook.id)}
-                />
-            );
-        } else if (this.props.location.pathname === '/notes') {
-            return (
-                < CreateNoteContainer
-                    notebookId={parseInt(latestNotebook.id)}
-                />
-            );
-        } else {
-            return (
-                < CreateNoteContainer
-                    notebookId={parseInt(this.props.location.pathname.slice(12))}
-                />
-            );
+        if (this.props.location.pathname === '/notes/')  {
+            this.props.history.push("/notes/new")
         }
+
+
+        //     this.props.history.push(`/notebooks/${latestNotebook.id}`)
+        //     debugger
+        //     return(
+        //     < CreateNoteContainer
+        //         notebookId= {parseInt(latestNotebook.id)}
+        //         />
+        //     );
+        // } else if (this.props.location.pathname === '/notes/') {
+            // openModal(`createNote${(latestNotebook.id).toString()}`)
+        // } else {
+        //     debugger
+        //     return (
+        //         < CreateNoteContainer
+        //             notebookId={parseInt(this.props.location.pathname.slice(12))}
+        //         />
+        //     );
+        // }
     };
 
     handleNotesRedirect(e) {
@@ -97,7 +99,7 @@ class Sidebar extends React.Component {
                     </span>
                 </div>
 
-                <div className= "side-buttons" onClick={this.handleNoteCreation}>
+                <div className="side-buttons" onClick={this.handleNoteCreation}>
                     <button className='new-note'><i id="icon-new" className="fas fa-plus"></i> New Note</button>
                     <div className='right'>
                         <button className='mid-half'></button>

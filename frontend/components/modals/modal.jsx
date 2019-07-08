@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import CreateNoteBookContainer from './create_notebook_container';
+import CreateNoteContainer from '../notes/create_note_container';
 import EditNoteBookContainer from './edit_notebook_container';
 
 
@@ -32,14 +33,16 @@ function NotebooksModal({ modal, closeModal }) {
     const action = idRemover(modal);
 
     let component;
-    switch (action) { //modal .type
-        case 'create': //object with type, and payload, make it an object, type key: 
+    switch (action) {
+        case 'create':
             component = <CreateNoteBookContainer />;
             break;
         case 'edit':
-            const id = idMaker(modal);
-            component = <EditNoteBookContainer id={id} />;
+            component = <EditNoteBookContainer id={idMaker(modal)} />;
             break;
+        // case 'createNote':
+        //     component = <CreateNoteContainer id={idMaker(modal)} />;
+        //     break;
         default:
             return null;
     }
