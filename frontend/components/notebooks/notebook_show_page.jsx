@@ -28,7 +28,7 @@ class NotebookShowPage extends React.Component {
                     key={note.id}
                     note={note}
                     notebookId={note.notebook_id}
-                    author={currentUser.email}
+                    author={currentUser}
                     deleteNote={deleteNote}
                     updateNote={updateNote}
                     fetchNote={fetchNote}
