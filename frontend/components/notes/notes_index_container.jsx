@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { fetchNotes, deleteNote, fetchNote, updateNote } from '../../actions/notes';
 import { selectAllNotesByUpdated } from '../../reducers/selectors';
 import NotesIndex from './notes_index';
-import { openModal } from '../../actions/modal_actions';
+import { openModal, closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => ({
     currentUser: state.entities.users[state.session.currentUserId],
@@ -14,7 +14,10 @@ const mapDispatchToProps = dispatch => ({
     deleteNote: id => dispatch(deleteNote(id)),
     fetchNote: id => dispatch(fetchNote(id)),
     updateNote: note => dispatch(updateNote(note)),
-    openModal: modal => dispatch(openModal(modal))
-});
+    openModal: (modal) => dispatch(openModal(modal)),
+    closeModal: () => dispatch(closeModal()),
+    // updateNoteModal: (note) => dispatch(updateNoteModal(note))
+    }
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesIndex);

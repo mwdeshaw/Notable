@@ -1,4 +1,4 @@
-import { updateNote } from '../util/note_utils';
+// import { updateNote } from '../util/note_utils';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
@@ -11,7 +11,7 @@ export const closeModal = () => ({
     type: CLOSE_MODAL 
 });
 
-export const updateNoteModal = note => dispatch => (
-    updateNote(note)
-        .then(() => dispatch(closeModal()))
-);
+// export const updateNoteModal = note => dispatch => (
+//     updateNote(note)
+//         .then(() => dispatch(closeModal()))
+// );

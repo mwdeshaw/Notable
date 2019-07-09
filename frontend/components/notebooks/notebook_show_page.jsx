@@ -14,8 +14,19 @@ class NotebookShowPage extends React.Component {
         });
     };
 
+    // componentdidUpdate(prevProps) {
+    //     debugger
+    //     if (prevProps.location.pathname !== this.props.location.pathname) {
+    //         this.props.fetchNotebook(this.props.match.params.notebookId)   
+    //             .then(() => {
+    //                 this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
+    //                 this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
+    //         }); 
+    //     }
+    // }
+
     render() {
-        const { notebook, currentUser, deleteNote, updateNote, fetchNote, openModal } = this.props;
+        const {notebook, currentUser, deleteNote, updateNote, fetchNote, openModal, updateNoteModal, closeModal } = this.props;
         if (!notebook) {
             return (
                 <div>Loading...</div>
@@ -23,17 +34,23 @@ class NotebookShowPage extends React.Component {
         };    
         const notes = notebook.notes;
         const notesList = notes ?
-        Object.values(notebook.notes).reverse().map(note => {  
+        Object.values(notebook.notes).reverse().map(note => { 
+            
             return(
                 <NoteIndexItemForNotebooks
                     key={note.id}
                     note={note}
                     notebookId={note.notebook_id}
+                    notebook={notebook}
                     author={currentUser}
                     deleteNote={deleteNote}
                     updateNote={updateNote}
                     fetchNote={fetchNote}
                     openModal={openModal}
+                    closeModal={closeModal}
+                    updateNoteModal={updateNoteModal}
+                    parentPath={this.props.location.pathname}
+                    childPath={`notes/notebooks/${note.notebook_id}/${note.id}`}
                 />
             )
         }) : <div>No notes :(</div>

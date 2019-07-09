@@ -23,6 +23,10 @@ class NotesIndex extends React.Component {
                     updateNote={this.props.updateNote}
                     fetchNote={this.props.fetchNote}
                     openModal={this.props.openModal}
+                    closeModal={this.props.closeModal}
+                    updateNoteModal={this.props.updateNoteModal}
+                    parentPath={this.props.location.pathname}
+                    childPath={`notes/${note.id}`}
                     />
             );
         })

@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
     deleteNote: noteId => dispatch(deleteNote(noteId)),
     updateNote: note => dispatch(updateNote(note)),
     closeModal: () => dispatch(closeModal()),
-    updateNoteModal: note => dispatch(updateNoteModal(note))
+    updateNoteModal: note => dispatch(updateNoteModal(note)),
+    closeModal: () => dispatch(closeModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteDetailForNotebooks);

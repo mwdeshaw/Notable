@@ -1,5 +1,5 @@
 import React from 'react';
-import { closeModal, updateNoteModal } from '../../actions/modal_actions';
+import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import NoteDetaiContainerForNotebooks from './../notes/note_detail_container_for_notebooks';
 
@@ -49,7 +49,7 @@ function NotesModal({ modal, closeModal }) {
             return null;
     }
     return (
-        <div className="modal-background" onClick={updateNoteModal}>
+        <div className="modal-background" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
                 {component}
             </div>
