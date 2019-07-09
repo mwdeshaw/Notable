@@ -1,6 +1,5 @@
 import React from 'react';
 import NotesIndexContainer from './notes_index_container';
-// import NotesModal from '../modals/notes_modal';
 
 class Notes extends React.Component {
     componentDidMount() {
@@ -15,7 +14,6 @@ class Notes extends React.Component {
         }
         return( 
             <div className='notes-parent'>
-                {/* <NotesModal/> */}
                 <NotesIndexContainer />
             </div>
         );

@@ -4,19 +4,13 @@ class NoteDetailForNotebooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.note;
-        // this.state = {
-        //     id: this.props.note.id,
-        //     title: this.props.note.title,
-        //     body: this.props.note.body,
-        //     author_id: this.props.author.id,
-        //     notebook_id: this.props.notebook.id
-        // };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateType = this.updateType.bind(this);
     };
 
     handleSubmit(e) {
         e.preventDefault();
+        // this.props.updateNoteModal(this.state)
         this.props.updateNote(this.state).then(this.props.closeModal);
     };
 
@@ -28,7 +22,8 @@ class NoteDetailForNotebooks extends React.Component {
 
     render() {
         return(
-            <div className='note-detail-title'>
+            // <div onClick={this.handleSubmit} className='note-detail-page'>
+            <div className='note-detail-page'>
                 <form className='edit-note-detail'>                    
                     <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder="Title" />
                     <textarea className='note-text' value={this.state.body} onChange={this.updateType("body")} placeholder="Start writing or choose a template"></textarea>

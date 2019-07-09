@@ -34,8 +34,6 @@ class NotebookShowPage extends React.Component {
                     updateNote={updateNote}
                     fetchNote={fetchNote}
                     openModal={openModal}
-                    // parentPath={this.props.location.pathname}
-                    // childPath={`/notebooks/${note.notebook_id}/notes/${note.id}`}
                 />
             )
         }) : <div>No notes :(</div>
