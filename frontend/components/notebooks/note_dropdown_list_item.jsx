@@ -58,14 +58,12 @@ class NoteDropdownListItem extends React.Component {
         );
 
         return(
-            <li>
-                <Link to={`/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}> 
-                    <i className="fas fa-book"></i>}&#160;&#160;&#160;{this.props.note.title}
-                    {this.props.author.email.slice(0, this.sliceIdx(this.props.author.email))}
-                    {date}
-                </Link>
-                {this.state.openedActions ? detailedActionsView() : basicActionsView()}
-            </li>
+            <div className='row-child-container'>
+                    <div><Link to={`/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}><i className="fas fa-sticky-note"></i>}&#160;&#160;&#160;{this.props.note.title}</Link></div>
+                    <div>{this.props.author.email.slice(0, this.sliceIdx(this.props.author.email))}</div>
+                    <div>{date}</div>
+                    <div>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</div>
+            </div>
         );
     }
 }

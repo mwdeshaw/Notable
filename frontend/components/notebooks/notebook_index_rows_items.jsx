@@ -55,11 +55,9 @@ class NotebookIndexItem extends React.Component {
         );
         
         const detailedNotesView = () => (
-                <h3 className='notes-down-arrow' onClick={this.closeNotesView}>▼
-                    <NoteDropdownListContainer
-                        notebook={notebook}
-                        />
-                </h3>
+            <div className='detail-notes-view'>
+                <h3 className='notes-down-arrow' onClick={this.closeNotesView}>▼</h3>
+            </div>
         );
 
         const basicActionsView = () => (
@@ -81,13 +79,16 @@ class NotebookIndexItem extends React.Component {
         );
         
     return(
-        <tr onClick={this.state.openedActions ? this.closeActionsView : null}>
-                <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
-                <th onClick={this.handleShowRedirect} >{this.state.openedNotes ? <i className="fas fa-book-open"></i> : <i className="fas fa-book"></i>}&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
-                <th onClick={this.handleShowRedirect}>{author.slice(0, this.sliceIdx(author))}</th>
-                <th onClick={this.handleShowRedirect}>{notebook.updated_at.slice(0, 10)}</th>
-                <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
-        </tr>
+        <div>
+            <div className='row-parent' onClick={this.state.openedActions ? this.closeActionsView : null}>
+                    <div>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</div>
+                    <div onClick={this.handleShowRedirect} >{this.state.openedNotes ? <i className="fas fa-book-open"></i> : <i className="fas fa-book"></i>}&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></div>
+                    <div onClick={this.handleShowRedirect}>{author.slice(0, this.sliceIdx(author))}</div>
+                    <div onClick={this.handleShowRedirect}>{notebook.updated_at.slice(0, 10)}</div>
+                    <div>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</div>
+            </div>
+            {this.state.openedNotes ? <NoteDropdownListContainer notebook={notebook} /> : null}
+        </div>
         );
     }
 };

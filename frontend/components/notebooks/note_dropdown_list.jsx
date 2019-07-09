@@ -17,7 +17,7 @@ class NoteDropdownList extends React.Component {
         const notes = notebook.notes;
         const notesList = notes ?
             Object.values(this.props.notebook.notes).reverse().map(note => {
-                debugger
+                
                 return (
                         <NoteDropdownListItem
                             key={note.id}
@@ -28,12 +28,12 @@ class NoteDropdownList extends React.Component {
                         />
                 )
             }) 
-            : <li>No notes :(</li>
+            : <div>No notes :(</div>
 
         return (
-        <ul className='note-list-dropdown'>
+        <div className='note-list-dropdown'>
             {(notesList)}
-        </ul>
+        </div>
         );
     };
 };

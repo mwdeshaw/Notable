@@ -67,6 +67,7 @@ class NotebookIndex extends React.Component {
                         <tr>
                             <th></th>
                             <th>TITLE</th>
+                            {/* <th></th> */}
                             <th>CREATED BY</th>
                             <th>UPDATED</th>
                             <th>ACTIONS</th>

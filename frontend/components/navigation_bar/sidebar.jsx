@@ -13,10 +13,13 @@ class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
+            logoutVisible: false
         };
         this.openView = this.openView.bind(this);
         this.closeView = this.closeView.bind(this);
+        this.openLogout = this.openLogout.bind(this);
+        this.closeLogout = this.closeLogout.bind(this);
         this.handleNotesRedirect = this.handleNotesRedirect.bind(this);
         this.handleNoteCreation = this.handleNoteCreation.bind(this);
     }
@@ -50,6 +53,16 @@ class Sidebar extends React.Component {
         this.setState({ visible: false })
     }
 
+    openLogout(e) {
+        e.preventDefault();
+        this.setState({ logoutVisible: true })
+    }
+
+    closeLogout(e) {
+        e.preventDefault();
+        this.setState({ logoutVisible: false })
+    }
+
     render() {
         const basicView = () => (
             <div className='basic-view'>
@@ -62,8 +75,7 @@ class Sidebar extends React.Component {
             </div>
         );
 
-        const detailedView = () => (
-             
+        const detailedView = () => (      
             <div className='detail-modal'>
                 <div className='notebook-bar'>
                     <div className='row'><h3 className='arrow' onClick={this.closeView}>▼&#160;&#160;&#160;</h3><Link to='/notebooks'><i className="fas fa-book-open"></i><h3 className='nb-header'>&#160;&#160;&#160;Notebooks</h3></Link></div>
@@ -72,12 +84,28 @@ class Sidebar extends React.Component {
             </div>
         );
 
+        const basicUserView = () => (
+            <div className='basic-user-view'>
+                <h3 className='notes-side-arrow' onClick={this.openLogout}>▼
+                    ▶︎</h3>
+            </div>
+        );
+
+        const detailedUserView = () => (
+            <div className='detail-user-view'>
+                <h3 className='notes-down-arrow' onClick={this.closeLogout}></h3>
+                <button className='logout-btn' onClick={this.props.logout}>Sign out {this.props.currentUser.email}</button>
+
+            </div>
+        );
+
+
         return (
             <div className="sidenav">
                 <div className='greeting-container'>
                 <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email}</h1>
                 </div>
-                    <button className='logout-btn' onClick={this.props.logout}>Sign out {this.props.currentUser.email}</button>
+
                 <div className='search-container'>
                     <input type="text" placeholder="Search all notes..." className="search-input" />
                     <span>

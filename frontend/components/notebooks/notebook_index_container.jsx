@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import { fetchNotebooks, deleteNotebook } from '../../actions/notebooks';
 import { selectAllNotebooksByUpdated, selectFilteredNotebooks } from '../../reducers/selectors';
 import { setSearchFilter, resetSearchFilter } from '../../actions/notebook_filters';
-// import NotebookIndex from './notebook_index';
-import NotebookIndex from './notebook_index_rows';
+import NotebookIndex from './notebook_index';
 import { openModal } from '../../actions/modal_actions';
 
 
