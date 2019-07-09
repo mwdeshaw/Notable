@@ -1,12 +1,10 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import CreateNoteBookContainer from './create_notebook_container';
-import EditNoteBookContainer from './edit_notebook_container';
-
+import NoteDetaiContainerForNotebooks from './../notes/note_detail_container_for_notebooks';
 
 function idRemover(str) {
-    let nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let nums = [',', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     for (let i = 0; i < str.length; i++) {
         if (nums.includes(str[i])) {
             return str.slice(0, i);
@@ -15,16 +13,17 @@ function idRemover(str) {
     return str;
 };
 
-function idMaker(str) {
-    let nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    for (let i = 0; i < str.length; i++) {
-        if (nums.includes(str[i])) {
-            return parseInt(str.slice(i));
-        };
+function dataExtractor(str) {
+    let newStr = str.slice(14);
+    let newArr = newStr.split(",");
+    let results = [];
+    for (let i = 0; i < newArr.length; i++) {
+        results.push(parseInt(newArr[i]));
     };
+    return results;
 };
 
-function NotebooksModal({ modal, closeModal }) {
+function NotesModal({ modal, closeModal }) {
     if (!modal) {
         return null;
     }
@@ -33,10 +32,18 @@ function NotebooksModal({ modal, closeModal }) {
 
     let component;
     switch (action) {
-        case 'edit':
-            component = <NoteDetailForNotebooks
-            id={idMaker(modal)} 
-            />;
+        case 'nbNotesUpdate':
+            const ids = dataExtractor(modal);
+            if (isNaN(ids[0])) {
+                break;
+            }
+            const noteId = ids[0];
+            const notebookId = ids[1];
+
+            component = <NoteDetaiContainerForNotebooks  
+                noteId={noteId} 
+                notebookId={notebookId} 
+            />
             break;
         default:
             return null;
@@ -62,4 +69,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotebooksModal);
+export default connect(mapStateToProps, mapDispatchToProps)(NotesModal);

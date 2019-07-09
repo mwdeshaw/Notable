@@ -3,20 +3,21 @@ import React from 'react';
 class NoteDetailForNotebooks extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            id: this.props.note.id,
-            title: this.props.note.title,
-            body: this.props.note.body,
-            author_id: this.props.author.id,
-            notebook_id: this.props.notebook.id
-        };
+        this.state = this.props.note;
+        // this.state = {
+        //     id: this.props.note.id,
+        //     title: this.props.note.title,
+        //     body: this.props.note.body,
+        //     author_id: this.props.author.id,
+        //     notebook_id: this.props.notebook.id
+        // };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateType = this.updateType.bind(this);
     };
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.updateNote(this.state);
+        this.props.updateNote(this.state).then(this.props.closeModal);
     };
 
     updateType(type) {

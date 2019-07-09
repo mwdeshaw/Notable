@@ -1,14 +1,13 @@
 import React from 'react';
-import NoteDetailContainerForNotebooks from './note_detail_container_for_notebooks';
+// import NoteDetailContainerForNotebooks from './note_detail_container_for_notebooks';
 import { withRouter } from 'react-router-dom';
+// import NotesModal from '../modals/notes_modal';
+
 
 class NoteIndexItemForNotebooks extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            detailOpened: false
-        };
-        this.openDetailView = this.openDetailView.bind(this);
+        // this.openDetailView = this.openDetailView.bind(this);
     };
 
     // componentDidMount() {
@@ -24,10 +23,10 @@ class NoteIndexItemForNotebooks extends React.Component {
     //     }
     // }
 
-    openDetailView(e) {
-        e.preventDefault();
-        this.setState({ detailOpened: true });
-    };
+    // openDetailView(e) {
+    //     e.preventDefault();
+    //     this.setState({ detailOpened: true });
+    // };
 
     sliceIdx(str) {
        let idx = str.indexOf("@");
@@ -35,24 +34,25 @@ class NoteIndexItemForNotebooks extends React.Component {
     };
 
     render() {
-        const detailView = <NoteDetailContainerForNotebooks
-                    key={this.props.note.id}
-                    note={this.props.note}
-                    author={this.props.author}
-                    notebookId={this.props.notebookId}
-                    deleteNote={this.props.deleteNote}
-                    updateNote={this.props.updateNote}
-                    fetchNote={this.props.fetchNote}
-                />
+        // const detailView = <NoteDetailContainerForNotebooks
+        //             key={this.props.note.id}
+        //             note={this.props.note}
+        //             author={this.props.author}
+        //             notebookId={this.props.notebookId}
+        //             deleteNote={this.props.deleteNote}
+        //             updateNote={this.props.updateNote}
+        //             fetchNote={this.props.fetchNote}
+        //         />
 
         return (
-            <div onClick={this.openDetailView} className='note-index-item-plus-detail'>
+            // <div onClick={this.openDetailView} className='note-index-item-plus-detail'>
+            <div onClick={() => this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`)} className='note-index-item-plus-detail'>
                 <li  className='note-item'>
                     <h3 className='note-title'>{this.props.note.title}</h3>
                     <p className='note-body-segment'>{this.props.note.body.slice(0, 30)}</p>
                     <p className='last-updated'>{this.props.note.updated_at.slice(0, 10)} ~ {this.sliceIdx(this.props.author.email)}</p>
                     <div className='note-detail-containment-area'>
-                        { this.state.detailOpened ? detailView : null }
+                        {/* { this.state.detailOpened ? detailView : null } */}
                     </div>
                 </li>
             </div>
