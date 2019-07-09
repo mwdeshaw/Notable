@@ -34,10 +34,12 @@ class NotesIndex extends React.Component {
         return(
             <div className='notes-index-parent'>
                 <div className='notes-header'>
-                    <h2 className='notes-h2'>All Notes</h2>
+                    <h1 className='notes-h1'>All Notes</h1>
                     <div className='notes-buttons'>
                         <button className='filter-tag'>Filter by tag</button> 
                     </div>
+                </div>
+                <div className='list-container'>
                     <NotesModal/>
                     <ul className='notes-list'>
                         {allNotes}
