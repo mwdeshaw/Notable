@@ -20,11 +20,6 @@ class NoteIndexItemForNotes extends React.Component {
         let idx = str.indexOf("@");
         return str.slice(0, idx)
     };
-
-    sliceIdx(str) {
-        return str.indexOf("@");
-    };
-
     render() {
 
         const detailView = <NoteDetailContainerForNotes

@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationBarContainer from '../navigation_bar/navigation_bar_container';
-import NoteIndexItemForNotebooks from './note_index_item_for_notebooks';
+import NoteIndexItemForNotebooks from '../notes/note_index_item_for_notebooks';
 import { withRouter } from 'react-router-dom';
 
 class NotebookShowPage extends React.Component {
@@ -8,9 +8,8 @@ class NotebookShowPage extends React.Component {
         //find way to remove undefined from the route bar...
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
-             this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
+            this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
         });
-
     };
 
     render() {
@@ -22,7 +21,7 @@ class NotebookShowPage extends React.Component {
         };    
         const notes = notebook.notes;
         const notesList = notes ?
-        Object.values(notebook.notes).reverse().map(note => {   
+        Object.values(notebook.notes).reverse().map(note => {  
             return(
                 <NoteIndexItemForNotebooks
                     key={note.id}
@@ -32,6 +31,8 @@ class NotebookShowPage extends React.Component {
                     deleteNote={deleteNote}
                     updateNote={updateNote}
                     fetchNote={fetchNote}
+                    parentPath={this.props.location.pathname}
+                    childPath={`/notebooks/${note.notebook_id}/notes/${note.id}`}
                 />
             )
         }) : <div>No notes :(</div>

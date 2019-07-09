@@ -33,11 +33,10 @@ function NotebooksModal({ modal, closeModal }) {
 
     let component;
     switch (action) {
-        case 'create':
-            component = <CreateNoteBookContainer />;
-            break;
         case 'edit':
-            component = <EditNoteBookContainer id={idMaker(modal)} />;
+            component = <NoteDetailForNotebooks
+            id={idMaker(modal)} 
+            />;
             break;
         default:
             return null;
