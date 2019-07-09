@@ -35,8 +35,11 @@ class NotesIndex extends React.Component {
             <div className='notes-index-parent'>
                 <div className='notes-header'>
                     <h1 className='notes-h1'>All Notes</h1>
-                    <div className='notes-buttons'>
-                        <button className='filter-tag'>Filter by tag</button> 
+
+                    <div className='other-header-elements'>
+
+                        <p className='note-count'>{allNotes.length} notes</p>
+                        <button className='filter-tag'><i className="fas fa-tags fa-lg"></i></button> 
                     </div>
                 </div>
                 <div className='list-container'>
