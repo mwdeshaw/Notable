@@ -56,16 +56,22 @@ class NotebookShowPage extends React.Component {
         }) : <div>No notes :(</div>
         return(
             <div className='nb-show-parent'>
-                <div className='notebook-header'>
-                    <h1>{notebook.title}</h1>
-                    <p>{notes ? Object.values(notebook.notes).length : 0} notes</p>
+                <div className='nb-show-index-parent'>
+                    <div className='notebook-header'>
+                        <h1 className='notes-nb-h1'>{notebook.title}</h1>
+                        <div className='other-header-elements-nb'>
+                            <p className='note-count-nb'>{notes ? Object.values(notebook.notes).length : 0} notes</p>
+                            <button className='filter-tag-nb'><i className="fas fa-tags fa-lg"></i></button> 
+                        </div>
+                    </div>
+                    <div className='list-container'>
+                        <NotesModal/>
+                        <NavigationBarContainer />
+                        <ul className='notebook-notes-list'>
+                            {notesList}
+                        </ul>
+                    </div>
                 </div>
-                <NotesModal/>
-                <NavigationBarContainer />
-                <ul className='notebook-notes-list'>
-                 {notesList}
-                </ul>
-                
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { obtainYear, obtainMonth, obtainDay } from '../../util/date_time_utils';
 
 
 class NoteIndexItemForNotebooks extends React.Component {
@@ -46,16 +47,27 @@ class NoteIndexItemForNotebooks extends React.Component {
     // }
 
     render() {
+        const year = obtainYear(this.props.note.updated_at).toString();
+        const month = obtainMonth(this.props.note.updated_at).toString();
+        const day = obtainDay(this.props.note.updated_at).toString();
 
+        let date;
+        if (day === "Yesterday") {
+            date = "Yesterday";
+        } else if (day === "Today") {
+            date = today;
+        } else {
+            date = `${month} ${day} ${year}`
+        };
 
         return (
             <li onClick={this.handleModalSwitch} className='note-item'>
                 {/* <li onClick={() => this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`)} className='note-item'> */}
                     <h3 className='note-title'>{this.props.note.title}</h3>
                     <p className='note-body-segment'>{this.props.note.body.slice(0, 30)}</p>
-                    <p className='last-updated'>{this.props.note.updated_at.slice(0, 10)} ~ {this.sliceIdx(this.props.author.email)}</p>
+                    <h4 className='last-updated'>{date}</h4>
                 </li>
-        );
+            );
     };
 };
 
