@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { obtainYear, obtainMonth, obtainDay } from '../../util/date_time_utils';
 
-
 class NoteIndexItemForNotebooks extends React.Component {
     constructor(props) {
         super(props);
@@ -38,13 +37,6 @@ class NoteIndexItemForNotebooks extends React.Component {
             })
         : null
     }
-    // handleModalSwitch(e) {
-    //     e.preventDefault();
-    //     const parentNote = this.props.notebook.notes[this.pathSlicer(this.props.location.pathname)];
-    //     this.props.parentPath !== this.props.childPath ? this.props.updateNoteModal(parentNote) 
-    //     .then( () => this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`))
-    //     : null
-    // }
 
     render() {
         const year = obtainYear(this.props.note.updated_at).toString();
@@ -62,7 +54,6 @@ class NoteIndexItemForNotebooks extends React.Component {
 
         return (
             <li onClick={this.handleModalSwitch} className='note-item'>
-                {/* <li onClick={() => this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`)} className='note-item'> */}
                     <h3 className='note-title'>{this.props.note.title}</h3>
                     <p className='note-body-segment'>{this.props.note.body.slice(0, 30)}</p>
                     <h4 className='last-updated'>{date}</h4>

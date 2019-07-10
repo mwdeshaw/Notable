@@ -63,6 +63,10 @@ class Sidebar extends React.Component {
         this.setState({ logoutVisible: false })
     }
 
+    sliceIdx(str) {
+        return str.indexOf("@");
+    };
+
     render() {
         const basicView = () => (
             <div className='basic-view'>
@@ -86,24 +90,28 @@ class Sidebar extends React.Component {
 
         const basicUserView = () => (
             <div className='basic-user-view'>
-                <h3 className='notes-side-arrow' onClick={this.openLogout}>▼
-                    ▶︎</h3>
+                <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}&#160;&#160;<i className='user-side-arrow' onClick={this.openLogout}>▶︎</i></h1>
             </div>
         );
 
         const detailedUserView = () => (
             <div className='detail-user-view'>
-                <h3 className='notes-down-arrow' onClick={this.closeLogout}></h3>
-                <button className='logout-btn' onClick={this.props.logout}>Sign out {this.props.currentUser.email}</button>
-
+                <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}&#160;&#160;<i className='user-side-arrow' onClick={this.closeLogout}>▼</i></h1>
+                <div className='user-menu'>
+                    <ul className='user-action-list'>
+                        <li className='account' onClick={this.props.closeLogout}>ACCOUNT</li>
+                        <li className='user-line' onClick={this.props.closeLogout}><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}</li>
+                        <hr id='user-line'/>
+                        <li onClick={this.props.logout} className='logout-btn-thing'>Sign out {this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}</li>
+                    </ul>
+                </div>
             </div>
         );
-
 
         return (
             <div className="sidenav">
                 <div className='greeting-container'>
-                <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email}</h1>
+                    <div>{this.state.logoutVisible ? detailedUserView() : basicUserView() }</div>
                 </div>
 
                 <div className='search-container'>

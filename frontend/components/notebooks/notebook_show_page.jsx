@@ -6,24 +6,12 @@ import NotesModal from '../modals/notes_modal';
 
 class NotebookShowPage extends React.Component {
     componentDidMount() {
-        //find way to remove undefined from the route bar...
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
             this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
             this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
         });
     };
-
-    // componentdidUpdate(prevProps) {
-    //     debugger
-    //     if (prevProps.location.pathname !== this.props.location.pathname) {
-    //         this.props.fetchNotebook(this.props.match.params.notebookId)   
-    //             .then(() => {
-    //                 this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
-    //                 this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
-    //         }); 
-    //     }
-    // }
 
     render() {
         const {notebook, currentUser, deleteNote, updateNote, fetchNote, openModal, updateNoteModal, closeModal } = this.props;

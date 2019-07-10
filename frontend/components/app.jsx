@@ -12,11 +12,11 @@ import NoteDetailContainerForNotes from './notes/note_detail_container_for_notes
 
 const App = () => (
     <div>
-        <Route path="/" component={NavigationBarContainer} />
        <Switch>
-            <ProtectedRoute path="/notes" component={NotesContainer} />
+            <Route exact path="/" component={NavigationBarContainer} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
             <AuthRoute path="/login" component={LoginFormContainer} />
+            <ProtectedRoute path="/notes" component={NotesContainer} />
             <ProtectedRoute path="/notebooks/:notebookId" component={NotebookShowPageContainer} />
             <ProtectedRoute path="/notes/:noteId" component={NoteDetailContainerForNotes} />
             <ProtectedRoute path="/notebooks/:notebookId/notes/:noteId" component={NoteDetailContainerForNotebooks} />
