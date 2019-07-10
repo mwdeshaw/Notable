@@ -14,6 +14,15 @@ class NotebookShowPage extends React.Component {
         });
     };
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.location.pathname !== this.props.location.pathname) {
+            this.props.fetchNotebook(this.props.match.params.notebookId)
+                .then(() => {
+                    this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
+            });
+        }
+    };
+
     render() {
         const {notebook, currentUser, deleteNote, updateNote, fetchNote, openModal, updateNoteModal, closeModal } = this.props;
         if (!notebook) {
