@@ -26,11 +26,10 @@ class NoteIndexItemForNotebooks extends React.Component {
         }
     }
 
-    handleModalSwitch(e) {
+    handleModalSwitch(e) {    
         e.preventDefault();
-        const parentNote = this.props.notebook.notes[this.pathSlicer(this.props.location.pathname)];
         this.props.parentPath !== this.props.childPath ? 
-            this.props.updateNote(parentNote)
+            this.props.fetchNote(this.props.note.id)
             .then( () => { 
                 this.props.closeModal()
                 this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`)

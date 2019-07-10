@@ -22,19 +22,32 @@ class Sidebar extends React.Component {
         this.closeLogout = this.closeLogout.bind(this);
         this.handleNotesRedirect = this.handleNotesRedirect.bind(this);
         this.handleNoteCreation = this.handleNoteCreation.bind(this);
+        this.updateComponent = this.updateComponent.bind(this);
+    }
+
+    updateComponent() {
+        this.forceUpdate();
     }
 
     handleNoteCreation(e) {
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
         if (this.props.location.pathname.slice(0, 6) === `/notes`) {
-            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id});
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id})
+                .then(() => {
+                    this.props.history.push(`/notes/${this.props.lastNote.id}`)
+                    this.updateComponent
+                });
         } else if (this.props.location.pathname === '/notebooks') {
             this.props.history.push(`/notebooks/${latestNotebook.id}`)
             this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id });
         } else {
-            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: this.props.match.params.notebookId });
-        }
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: this.props.match.params.notebookId })
+                .then(() => {
+                    this.props.history.push(`/notebooks/${this.props.match.params.notebookId}/notes/${this.props.lastNote.id}`)
+                    this.updateComponent
+                });
+        } 
     };
 
     handleNotesRedirect(e) {
@@ -124,10 +137,10 @@ class Sidebar extends React.Component {
 
                 <div className="side-buttons" onClick={this.handleNoteCreation}>
                     <button className='new-note'><i id="icon-new" className="fas fa-plus"></i> New Note</button>
-                    <div className='right'>
+                    {/* <div className='right'>
                         <button className='mid-half'></button>
                         <button className='other-half'><i className="fas fa-chevron-down"></i></button>
-                    </div>
+                    </div> */}
                 </div>
                 <div onClick={this.handleNotesRedirect} className='all-notes'>
                     <div onClick={this.handleNotesRedirect} className='row'><h3><i className="fas fa-file-alt"></i><p className='nb-header'>&#160;&#160;&#160;All Notes</p></h3></div>

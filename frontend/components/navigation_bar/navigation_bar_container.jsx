@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import { logout } from  '../../actions/session';
 import { fetchNotebooks } from  '../../actions/notebooks';
 import { createNote } from  '../../actions/notes';
-import { selectAllNotebooksByUpdated } from  '../../reducers/selectors';
+import { selectAllNotebooksByUpdated, selectAllNotesByUpdated } from  '../../reducers/selectors';
 import NavigationBar from './navigation_bar'
+import { openModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => ({
     currentUser: state.entities.users[state.session.currentUserId],
-    notebooks: selectAllNotebooksByUpdated(state)
+    notebooks: selectAllNotebooksByUpdated(state),
+    lastNote: selectAllNotesByUpdated(state)[0]
 });
 
 const mapDispatchToProps = dispatch => ({

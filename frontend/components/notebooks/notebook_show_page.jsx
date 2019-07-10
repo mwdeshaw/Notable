@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import NotesModal from '../modals/notes_modal';
 
 class NotebookShowPage extends React.Component {
+    
     componentDidMount() {
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
