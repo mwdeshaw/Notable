@@ -1,17 +1,13 @@
 import React from 'react';
 import { Link, Route, withRouter,  } from 'react-router-dom';
-// import NoteDropdownListContainer from './note_dropdown_list_container';
 import { obtainDay, obtainMonth, obtainYear } from '../../util/date_time_utils';
 
 class NotebookIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openedNotes: false,
             openedActions: false
         }
-        this.openNotesView = this.openNotesView.bind(this);
-        this.closeNotesView = this.closeNotesView.bind(this);
         this.openActionsView = this.openActionsView.bind(this);
         this.closeActionsView = this.closeActionsView.bind(this);
         this.handleShowRedirect = this.handleShowRedirect.bind(this);
@@ -21,16 +17,6 @@ class NotebookIndexItem extends React.Component {
         e.preventDefault();
         this.props.history.push(`/notebooks/${(this.props.notebook.id).toString()}`)
     };
-
-    openNotesView(e) {
-        e.preventDefault();
-        this.setState({ openedNotes: true })
-    };
-
-    closeNotesView(e) {
-        e.preventDefault();
-        this.setState({ openedNotes: false })
-    }
 
     openActionsView(e) {
         e.preventDefault();
@@ -57,20 +43,10 @@ class NotebookIndexItem extends React.Component {
             if (day === "Yesterday") {
                 date = "Yesterday";
             } else if (day === "Today") {
-                date = today;
+                date = "Today";
             } else {
                 date = `${month} ${day} ${year}`
             };
-
-        const basicNotesView = () => (
-            <div className='basic-notes-view'>
-                <h3 className='notes-side-arrow' onClick={this.openNotesView}>▶︎</h3>
-            </div>
-        );
-        
-        const detailedNotesView = () => (
-            <h3 className='notes-down-arrow' onClick={this.closeNotesView}>▼</h3>
-        );
 
         const basicActionsView = () => (
             <div className='basic-actions-view'>
@@ -89,33 +65,10 @@ class NotebookIndexItem extends React.Component {
                 </ul>
             </div>
         );
-
-        // const notesDropdown = () => {
-        //     const notes = notebook.notes;
-        //     if (!notes) {
-        //         return <ul>No notes yet</ul>
-        //     } else {
-        //         const notesList = 
-        //         })
-        //         return notesList;
-        //     }
-        // }
-        
     return(
         <tr onClick={this.state.openedActions ? this.closeActionsView : null}>
-                <th>{this.state.openedNotes ? detailedNotesView() : basicNotesView()}</th>
-                <th onClick={this.handleShowRedirect}>{this.state.openedNotes ? <i className="fas fa-book-open"></i> : <i className="fas fa-book"></i>}&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
-            {/* <th className='hidden'>{this.state.openedNotes && notebook.notes ?
-                    Object.values(this.props.notebook.notes).reverse().map(note => {
-                        return( 
-                    <li
-                    key ={note.id}>
-                        note.title
-                        author.slice(0, this.sliceIdx(author))
-                    </li>
-                    )})
-                    : <li>No notes yet</li>
-                }</th> */}
+                <th></th>
+                <th onClick={this.handleShowRedirect}><i className="fas fa-book"></i>}&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
                 <th onClick={this.handleShowRedirect}>{author.slice(0, this.sliceIdx(author))}</th>
                 <th onClick={this.handleShowRedirect}>{date}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>

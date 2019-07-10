@@ -10,7 +10,6 @@ class NoteDetailForNotebooks extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.props.updateNoteModal(this.state)
         this.props.updateNote(this.state).then(this.props.closeModal);
     };
 
@@ -22,7 +21,6 @@ class NoteDetailForNotebooks extends React.Component {
 
     render() {
         return(
-            // <div onClick={this.handleSubmit} className='note-detail-page'>
             <div className='note-detail-page'>
                 <form className='edit-note-detail'>                    
                     <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder="Title" />

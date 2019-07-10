@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { clearErrors } from '../../actions/session';
 import { createNotebook } from '../../actions/notebooks';
 import CreateNotebookForm from './create_notebook_form';
-import { openModal, closeModal } from '../../actions/modal_actions';
+import { closeModal } from '../../actions/modal_actions';
 
 
 const mapStateToProps = ({ errors, session }) => {

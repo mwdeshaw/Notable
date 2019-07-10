@@ -36,8 +36,7 @@ class NotebookIndex extends React.Component {
                 }
             );
         }
-        else {
-            
+        else {         
             notebookList = this.props.notebooks.map(notebook => {
                 return (
                     <NotebookIndexItem
@@ -47,7 +46,7 @@ class NotebookIndex extends React.Component {
                         openModal={this.props.openModal}
                         deleteNotebook={this.props.deleteNotebook}
                     />
-                )
+                );
             }
             );
         }

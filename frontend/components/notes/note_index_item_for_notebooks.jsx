@@ -47,7 +47,7 @@ class NoteIndexItemForNotebooks extends React.Component {
         if (day === "Yesterday") {
             date = "Yesterday";
         } else if (day === "Today") {
-            date = today;
+            date = "Today";
         } else {
             date = `${month} ${day} ${year}`
         };

@@ -25,7 +25,6 @@ class Sidebar extends React.Component {
     }
 
     handleNoteCreation(e) {
-        //touch up with a rerender...
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
         if (this.props.location.pathname.slice(0, 6) === `/notes`) {
@@ -99,9 +98,11 @@ class Sidebar extends React.Component {
                 <h1 className='greeting'><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}&#160;&#160;<i className='user-side-arrow' onClick={this.closeLogout}>▼</i></h1>
                 <div className='user-menu'>
                     <ul className='user-action-list'>
-                        <li className='account' onClick={this.props.closeLogout}>ACCOUNT</li>
-                        <li className='user-line' onClick={this.props.closeLogout}><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}</li>
-                        <hr id='user-line'/>
+                        <div onClick={this.closeLogout} className= "top-of-user-view">
+                            <li className='account' >ACCOUNT</li>
+                            <li className='user-line' onClick={this.closeLogout}><i className="fas fa-user-circle fa-2x"></i>&#160;&#160;&#160;{this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}</li>
+                            <hr id='user-line'/>
+                        </div>
                         <li onClick={this.props.logout} className='logout-btn-thing'>Sign out {this.props.currentUser.email.slice(0, this.sliceIdx(this.props.currentUser.email))}</li>
                     </ul>
                 </div>

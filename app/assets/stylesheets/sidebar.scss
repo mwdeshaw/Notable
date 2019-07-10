@@ -280,15 +280,12 @@
     position: relative;
 }
 
-.detail-user-view {
-    height: 100vw;
-    width: 100vw;
-}
-
 
 .user-menu {
     background: #ffffff;
-    height: 225px;
+    margin-left: 20px;
+    margin-top: 5px;
+    height: 170px;
     width: 150px;
     list-style: none;
     vertical-align: baseline;
@@ -304,8 +301,7 @@
     font-size: 14px;
 }
 
-
-.logout-btn:hover {
+.logout-btn-thing:hover {
     background: lightgrey;
     cursor: pointer;
 }
@@ -329,10 +325,11 @@
 
 }
 
-.logout-btn {
+.logout-btn-thing {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 14px;
-    padding-top: 15px;
+    margin-top: 15px;
 }

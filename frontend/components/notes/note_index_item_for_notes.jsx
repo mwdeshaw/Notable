@@ -45,7 +45,7 @@ class NoteIndexItemForNotes extends React.Component {
         if (day === "Yesterday") {
             date = "Yesterday";
         } else if (day === "Today") {
-            date = today;
+            date = "Today";
         } else {
             date = `${month} ${day} ${year}`
         };
@@ -55,7 +55,6 @@ class NoteIndexItemForNotes extends React.Component {
                 <h3 className='note-title'>{this.props.note.title}</h3>
                 <p className='note-body-segment'>{this.props.note.body.slice(0, 30)}</p>
                 <h4 className='last-updated'>{date}</h4>
-                {/* <button onClick={this.props.deleteNote}>Delete</button> */}
             </li>
         );
     };
