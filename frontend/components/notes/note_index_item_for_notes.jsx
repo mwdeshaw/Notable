@@ -50,7 +50,7 @@ class NoteIndexItemForNotes extends React.Component {
             date = `${month} ${day} ${year}`
         };
         
-debugger
+
         const note = this.props.note;
         let noteBody;
         if (note.body) {

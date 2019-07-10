@@ -6,7 +6,24 @@ import {
     RichUtils,
     convertFromRaw,
     convertToRaw,
-    DefaultDraftBlockRenderMap } from 'draft-js';
+} from 'draft-js';
+
+// import '../../../node_modules/draft-js/dist/Draft.css';
+
+    // const styleMap = {
+    //     code: {
+    //         backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    //         fontFamily: 'Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New',
+    //         whiteSpace: 'pre',
+    //         fontSize: '12'
+    //     },
+    //     strikethrough: {
+    //         textDecoration: 'line-through'
+    //     },
+    //     highlight: {
+    //         backgroundColor: 'rgba(204, 255, 0, 1)'
+    //     }
+    // };
 
 class NoteDetail extends React.Component {
     constructor(props) {
@@ -19,38 +36,19 @@ class NoteDetail extends React.Component {
             notebookId: this.props.note.notebook_id,
             editorState: EditorState.createEmpty()
         } 
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.updateType = this.updateType.bind(this);
         this.onChange = (editorState) => this.setState({ editorState });
-        // this.blockRendererFn = this.blockRendererFn.bind(this)
-        // this.handleKeys = command => this._handleKeys.bind(command)
-        this.onTab = e => this._onTab(e)
-        this.toggleBlockType = type => this._toggleBlockType(type)
         this.focus = this.focus.bind(this);
-
+        this._onClick = this._onClick.bind(this);
     };
 
     focus() {
         this.refs.editor.focus();
     };
 
-    handleSubmit(e) {
+    _onClick(e) {
         e.preventDefault();
-        const enteredText = convertToRaw(this.state.editorState.getCurrentContent());
-        const textBody = JSON.stringify(enteredText);
-            const note = {
-                id: this.state.id,
-                title: this.state.title,
-                body: textBody,
-                authorId: this.state.authorId,
-                notebookId: this.state.notebookId
-            };
-            this.props.updateNote(note);
-    }
-
-
-    componentWillUnmount() {
-        this.autoSave()
+        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, e.target.name));
     }
 
     updateType(type) {
@@ -63,7 +61,6 @@ class NoteDetail extends React.Component {
         this.props.fetchNote(this.props.note.id)
         .then(() => {
             this.convertForEditing(this.props.note)
-            // this.props.history.push(`/notes/${this.props.note.id}`)
         });
         
         setInterval(() => {
@@ -71,16 +68,9 @@ class NoteDetail extends React.Component {
         }, 5000)
     }
 
-    // _handleKeys(command) {
-    //     const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
-
-    //     if (newState) {
-    //         this.onChange(newState)
-    //         return 'handled'
-    //     }
-
-    //     return 'not-handled'
-    // }
+    componentWillUnmount() {
+        this.autoSave()
+    }
 
     autoSave() {
         if (!this.props.note.title || !this.props.note.body) {
@@ -88,7 +78,6 @@ class NoteDetail extends React.Component {
         }
         const enteredText = convertToRaw(this.state.editorState.getCurrentContent());
         const textBody = JSON.stringify(enteredText);
-
         if ((this.state.title !== this.props.note.title) || (textBody !== this.props.note.body)) {
             const note = {
                 id: this.state.id,
@@ -97,71 +86,37 @@ class NoteDetail extends React.Component {
                 authorId: this.state.authorId,
                 notebookId: this.state.notebookId
             };
-
             this.props.updateNote(note);
         };
     };
 
+    handleKeyCommand(command, editorState) {
+        const newState = RichUtils.handleKeyCommand(editorState, command);
+        if (newState) {
+            this.onChange(newState);
+            return 'handled';
+        }
+        return 'not-handled';
+    }
+
     convertForEditing(note) {
         if (note.body) {
             const contentState = convertFromRaw(JSON.parse(note.body))
-            debugger
             this.setState({ editorState: EditorState.createWithContent(contentState) })
         }
     }
 
-    createBlankEditor() {
-        this.setState({ editorState: EditorState.createEmpty() })
-    }
-
     richTextEditor() {
-        
-        const contentState = this.state.editorState.getCurrentContent();
-        let className = 'rtf-editor'
-
-        if (!contentState.hasText()) {
-            if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-                className += 'RichEditor-hidePlaceholder'
-            }
-        }
-
         return(
-                <div className={className} onClick={this.focus}>
+            <div className="rtf-editor" onClick={this.focus}>
                     <Editor
                         ref={"editor"}
                         editorState={this.state.editorState}
                         onChange={this.onChange}
-                        onTab={this.onTab}
-                        placeholder="Start writing or choose a template"
-                        toggleBlockType={this.toggleBlockType}
+                        placeholder="Start writing..."
+                        handleKeyCommand={this.handleKeyCommand}
                     />
                 </div>
-        )
-    }
-
-    // blockRendererFn(contentBlock) {
-    //     if (contentBlock.getType() === CHECKABLE_LIST_ITEM) {
-    //         return {
-    //             component: CheckableListItem,
-    //             props: {
-    //                 onChangeChecked: () => this.onChange(
-    //                     CheckableListItemUtils.toggleChecked(this.state.editorState, contentBlock),
-    //                 ),
-    //                 checked: Boolean(contentBlock.getData().get('checked'))
-    //             }
-    //         }
-    //     }
-    // }
-
-
-    _onTab(e) {
-        const maxDepth = 4
-        this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth))
-    }
-
-    _toggleBlockType(blockType) {
-        this.onChange(
-            RichUtils.toggleBlockType(this.state.editorState, blockType),
         )
     }
 
@@ -185,17 +140,35 @@ class NoteDetail extends React.Component {
                 </label>
             </div>
         );
-
-        return(
-            <div className='note-detail-page' ref="banana">
+        
+        const styles = ["BOLD", "UNDERLINE", "ITALIC", "CODE"];
+        const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>, 
+            <i className="fas fa-underline"></i>, <i className="fas fa-strikethrough"></i>, 
+            <i className="fas fa-highlighter"></i>, <i className="fas fa-code"></i>];
+        const buttons = styles.map((style, idx) => {
+            return (
+                    <button
+                        key={style}
+                        name={style}
+                        className="btn"
+                        onMouseDown={this._onClick}>
+                        {buttonImg[idx]}
+                    </button>
+                );
+            });
+    
+            return(
+            <div className='note-detail-page'>
                 <div className='rich-text-editor-parent'>
                     <div className='notebook-header'>
                         {this.pathSlicer(this.props.location.pathname) === "/notes/" ? titleView() : null}
                     </div>
+                    <div className='toolbar-parent'>
+                        {buttons} 
+                    </div>
 
-                    <form className='edit-note-detail'>                    
-                        <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder="Title" />
-                        <br/> 
+                    <form className='edit-note-detail'> 
+                        <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder="Title" />         
                         {this.richTextEditor()}
                         <div className='note-create-btn'>
                             <button id='create-note' onClick={this.handleSubmit}>update</button>
