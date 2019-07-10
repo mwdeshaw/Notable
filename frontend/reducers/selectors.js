@@ -18,8 +18,8 @@ export const selectAllNotesByUpdated = (state) => {
     );
 };
 
-export const selectOneNote = ({ notes }, id) => {
-    return notes[id];
+export const selectOneNote = (state, id) => {
+    return state.entities.notes[id];
 };
 
 export const selectFilteredNotebooks = (notebooks, searchString) => {

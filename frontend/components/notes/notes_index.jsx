@@ -16,6 +16,7 @@ class NotesIndex extends React.Component {
         if (prevProps.location.pathname !== this.props.location.pathname) {
             this.props.fetchNote(this.props.lastNote.id)
                 .then(() => {
+                    this.props.closeModal()
                     this.props.openModal(`nbNotesUpdate,${this.props.lastNote.id},${this.props.lastNote.notebook_id}`)
                 });
         }

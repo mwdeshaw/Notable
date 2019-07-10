@@ -1,7 +1,7 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import NoteDetaiContainerForNotebooks from './../notes/note_detail_container_for_notebooks';
+import NoteDetaiContainerForNotebooks from '../notes/note_detail_container';
 
 function idRemover(str) {
     let nums = [',', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

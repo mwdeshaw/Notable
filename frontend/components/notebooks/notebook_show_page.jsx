@@ -4,8 +4,7 @@ import NoteIndexItemForNotebooks from '../notes/note_index_item_for_notebooks';
 import { withRouter } from 'react-router-dom';
 import NotesModal from '../modals/notes_modal';
 
-class NotebookShowPage extends React.Component {
-    
+class NotebookShowPage extends React.Component { 
     componentDidMount() {
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
@@ -13,11 +12,11 @@ class NotebookShowPage extends React.Component {
             this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
         });
     };
-
-    componentDidUpdate(prevProps) {
+        componentDidUpdate(prevProps) {
         if (prevProps.location.pathname !== this.props.location.pathname) {
             this.props.fetchNotebook(this.props.match.params.notebookId)
                 .then(() => {
+                    this.props.closeModal()
                     this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
             });
         }

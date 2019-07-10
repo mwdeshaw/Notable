@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNote, updateNote, deleteNote, createNote } from '../../actions/notes';
+import { fetchNote, updateNote, deleteNote } from '../../actions/notes';
 import { fetchNotebook } from '../../actions/notebooks';
 import NotebookShowPage from './notebook_show_page';
 import { openModal, closeModal } from '../../actions/modal_actions';
@@ -16,7 +16,6 @@ const mapDispatchToProps = dispatch => ({
     updateNote: note => dispatch(updateNote(note)),
     fetchNote: id => dispatch(fetchNote(id)),
     deleteNote: id => dispatch(deleteNote(id)),
-    createNote: note => dispatch(createNote(note)),
     openModal: (modal) => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal())
 });
