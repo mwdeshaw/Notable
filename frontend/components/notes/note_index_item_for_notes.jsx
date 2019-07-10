@@ -49,11 +49,21 @@ class NoteIndexItemForNotes extends React.Component {
         } else {
             date = `${month} ${day} ${year}`
         };
-
+        
+debugger
+        const note = this.props.note;
+        let noteBody;
+        if (note.body) {
+            noteBody = JSON.parse(note.body).blocks[0].text;
+        } else {
+            noteBody = "";
+        }
+        
         return(
             <li onClick={this.handleModalSwitch} className='note-item'>
                 <h3 className='note-title'>{this.props.note.title}</h3>
-                <p className='note-body-segment'>{this.props.note.body.slice(0, 30)}</p>
+                <p className='note-body-segment'>{noteBody.slice(0, 30)}</p>
+                {/* <p className='note-body-segment'>{this.props.note.body}</p> */}
                 <h4 className='last-updated'>{date}</h4>
             </li>
         );
