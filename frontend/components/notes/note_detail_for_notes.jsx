@@ -35,6 +35,10 @@ class NoteDetailForNotes extends React.Component {
                     <div className='note-create-btn'>
                         <button id='create-note' onClick={this.handleSubmit}>update</button>
                     </div>
+
+                    <div className='note-delete-btn'>
+                        <button id='delete-note' onClick={() => this.props.deleteNote(this.props.note.id)}>delete</button>
+                    </div>
                 </form>
             </div>
         );

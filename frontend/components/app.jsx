@@ -8,7 +8,7 @@ import Notebooks from './notebooks/notebooks';
 import NotesContainer from './notes/notes_container';
 import NotebookShowPageContainer from './notebooks/notebook_show_page_container';
 import NoteDetailContainerForNotebooks from './notes/note_detail_container_for_notebooks';
-import NoteDetailContainerForNotes from './notes/note_detail_container_for_notes';
+// import NoteDetailContainerForNotes from './notes/note_detail_container_for_notes';
 
 const App = () => (
     <div>
@@ -18,7 +18,7 @@ const App = () => (
             <AuthRoute path="/login" component={LoginFormContainer} />
             <ProtectedRoute path="/notes" component={NotesContainer} />
             <ProtectedRoute path="/notebooks/:notebookId" component={NotebookShowPageContainer} />
-            <ProtectedRoute path="/notes/:noteId" component={NoteDetailContainerForNotes} />
+            <ProtectedRoute path="/notes/:noteId" component={NoteDetailContainerForNotebooks} />
             <ProtectedRoute path="/notebooks/:notebookId/notes/:noteId" component={NoteDetailContainerForNotebooks} />
             <ProtectedRoute path="/notebooks" component={Notebooks} />
         </Switch>
