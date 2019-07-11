@@ -18,6 +18,13 @@ export const selectAllNotesByUpdated = (state) => {
     );
 };
 
+export const selectAllNotesFromNotebooksByUpdated = (state, notebookId) => {
+    const allNotes = Object.values(state.entities.notebooks[notebookId].notes)
+    return allNotes.sort((x, y) => (
+    new Date(y.updated_at) - new Date(x.updated_at))
+    );
+};
+
 export const selectOneNote = (state, id) => {
     return state.entities.notes[id];
 };

@@ -5,11 +5,11 @@ import { selectAllNotesByUpdated } from '../../reducers/selectors';
 import NoteDetail from './note_detail';
 import { closeModal, openModal } from '../../actions/modal_actions';
 
-const mapStateToProps = (state, ownProps) => {     
+const mapStateToProps = (state, ownProps) => {   
+      
     const notebook = state.entities.notebooks[ownProps.notebookId];
     const notesArr = selectAllNotesByUpdated(state);
     const lastNote = notesArr[0];
-    debugger
     return {
         currentUser: state.session.currentUserId,
         note: state.entities.notes[ownProps.noteId] || lastNote,

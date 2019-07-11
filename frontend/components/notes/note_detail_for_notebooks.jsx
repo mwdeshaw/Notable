@@ -18,12 +18,8 @@ class NoteDetailForNotebooks extends React.Component {
             title: this.props.note.title,
             authorId: this.props.note.author_id,
             notebookId: this.props.note.notebook_id,
-            editorState: EditorState.createEmpty(),
-            openedActions: false
+            editorState: EditorState.createEmpty()
         }
-
-        this.openActionsView = this.openActionsView.bind(this);
-        this.closeActionsView = this.closeActionsView.bind(this);
         this.updateType = this.updateType.bind(this);
         this.onChange = (editorState) => this.setState({ editorState });
         this.focus = this.focus.bind(this);
@@ -37,7 +33,6 @@ class NoteDetailForNotebooks extends React.Component {
     updateComponent() {
         this.forceUpdate()
     }
-
 
     focus() {
         this.refs.editor.focus();
@@ -108,7 +103,7 @@ class NoteDetailForNotebooks extends React.Component {
                 this.props.closeModal()
                 this.updateComponent
             })
-        // this.props.history.push('/notes')
+        this.props.history.push(`/notebooks/${this.props.notebook.id}`)
     };
 
     richTextEditor() {
@@ -137,16 +132,6 @@ class NoteDetailForNotebooks extends React.Component {
         }
     }
 
-    openActionsView(e) {
-        e.preventDefault();
-        this.setState({ openedActions: true })
-    };
-
-    closeActionsView(e) {
-        e.preventDefault();
-        this.setState({ openedActions: false })
-    }
-
     handleTitleInput(e) {
         e.preventDefault();
         if (this.state.title === "Untitled") {
@@ -155,13 +140,6 @@ class NoteDetailForNotebooks extends React.Component {
     };
 
     render() {
-        const basicNoteActions = () => (
-            <div className='note-actions-view'>
-                <button onClick={this.handleDelete} className='delete-note-btn'>
-                    <i className="far fa-trash-alt fa-lg"></i>
-                </button>
-            </div>
-        );
 
         const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
         const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>,
@@ -183,10 +161,14 @@ class NoteDetailForNotebooks extends React.Component {
             <div className='note-detail-page'>
                 <div className='notebook-header-for-detail'>
                     <div className='nb-header-parent'>
-                        {this.state.openedActions ? detailedNoteActions() : basicNoteActions()}
+                        <div className='note-actions-view'>
+                            <button onClick={this.handleDelete} className='delete-note-btn'>
+                                <i className="far fa-trash-alt fa-lg"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div className='rich-text-editor-parent' onClick={this.closeActionsView}>
+                <div className='rich-text-editor-parent'>
                     <div className='filler'>
                         <div className='toolbar-parent'>
                             {buttons}

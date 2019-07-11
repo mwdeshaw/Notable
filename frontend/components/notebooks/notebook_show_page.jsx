@@ -6,13 +6,16 @@ import NotesModal from '../modals/notes_modal';
 
 class NotebookShowPage extends React.Component { 
     componentDidMount() {
+        debugger
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
-            this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
-            this.props.openModal(`nbNotesUpdateNb,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
-        });
+            if (this.props.notebook.noteIds.length !== 0) {
+                this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
+                this.props.openModal(`nbNotesUpdateNb,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
+        }});
     };
         componentDidUpdate(prevProps) {
+            
         if (prevProps.location.pathname !== this.props.location.pathname) {
             this.props.fetchNotebook(this.props.match.params.notebookId)
                 .then(() => {
@@ -23,8 +26,8 @@ class NotebookShowPage extends React.Component {
     };
 
     titleizer(str) {
-        if (str.length >= 32) {
-            return str.slice(0, 32) + "...";
+        if (str.length >= 28) {
+            return str.slice(0, 28) + "...";
         } else {
             return str;
         }

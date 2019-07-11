@@ -26,6 +26,7 @@ class NavigationBar extends React.Component {
                     fetchNotes={this.props.fetchNotes}
                     logout={this.props.logout} 
                     lastNote={this.props.lastNote}
+                    createNotebook={this.props.createNotebook}
                 />
             </div>
             );

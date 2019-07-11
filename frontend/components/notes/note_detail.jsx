@@ -8,8 +8,6 @@ import {
     convertToRaw,
 } from 'draft-js';
 
-// import '../../../node_modules/draft-js/dist/Draft.css';
-
 class NoteDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +16,9 @@ class NoteDetail extends React.Component {
             title: this.props.note.title,
             authorId: this.props.note.author_id,
             notebookId: this.props.note.notebook_id,
-            editorState: EditorState.createEmpty(),
-            openedActions: false
+            editorState: EditorState.createEmpty()
         } 
 
-        this.openActionsView = this.openActionsView.bind(this);
-        this.closeActionsView = this.closeActionsView.bind(this);
         this.updateType = this.updateType.bind(this);
         this.onChange = (editorState) => this.setState({ editorState });
         this.focus = this.focus.bind(this);
@@ -37,7 +32,6 @@ class NoteDetail extends React.Component {
     updateComponent() {
         this.forceUpdate()
     }
-
 
     focus() {
         this.refs.editor.focus();
@@ -55,6 +49,7 @@ class NoteDetail extends React.Component {
     };
 
     componentDidMount() {
+        this.props.fetchNotebook(this.props.notebookId);
         this.convertForEditing(this.props.note);
         this.intervalId;
     }
@@ -130,16 +125,6 @@ class NoteDetail extends React.Component {
         }
     }
 
-    openActionsView(e) {
-        e.preventDefault();
-        this.setState({ openedActions: true })
-    };
-
-    closeActionsView(e) {
-        e.preventDefault();
-        this.setState({ openedActions: false })
-    }
-
     handleTitleInput(e) {
         e.preventDefault();
         if (this.state.title === "Untitled") {
@@ -151,14 +136,6 @@ class NoteDetail extends React.Component {
         if (!this.props.note) {
             return null;
         }
-
-        const basicNoteActions = () => (
-            <div className='note-actions-view'>
-                <button onClick={this.handleDelete} className='delete-note-btn'>
-                        <i className="far fa-trash-alt fa-lg"></i>
-                    </button>
-            </div>           
-        );
         
         const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
         const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>, 
@@ -175,18 +152,22 @@ class NoteDetail extends React.Component {
                     </button>
                 );
             });
-
+            
             return(
             <div className='note-detail-page'>
                     <div className='notebook-header-for-detail'>
                         <div className='nb-header-parent'>
                             <div className='nb-notebook-title'>
-                                <h1 className='nb-title-text'><i className="fas fa-book">&#160;&#160;</i><Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}`}>{this.props.notebook.title}</Link></h1>
+                                <h1 className='nb-title-text'><i className="fas fa-book">&#160;&#160;</i><Link to={`/notebooks/${this.props.notebookId}/notes/${this.props.note.id}`}>{this.props.notebook.title}</Link></h1>
                             </div>
-                            {this.state.openedActions ? detailedNoteActions() : basicNoteActions()}
+                            <div className='note-actions-view'>
+                                <button onClick={this.handleDelete} className='delete-note-btn'>
+                                    <i className="far fa-trash-alt fa-lg"></i>
+                                </button>
+                            </div>           
                         </div>
                     </div>
-                    <div className='rich-text-editor-parent' onClick={this.closeActionsView}>
+                    <div className='rich-text-editor-parent'>
                         <div className='filler'>
                             <div className='toolbar-parent'>
                                 {buttons}

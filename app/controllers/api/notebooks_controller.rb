@@ -31,6 +31,7 @@ class Api::NotebooksController < ApplicationController
 
     def destroy 
         @notebook = current_user.notebooks.find(params[:id])
+        @notebook.notes.destroy_all
         @notebook.destroy
         render :show
     end

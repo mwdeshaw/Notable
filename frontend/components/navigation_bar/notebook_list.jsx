@@ -21,10 +21,6 @@ class NoteBookList extends React.Component {
                 <ul className='notebook-list'>
                     {notebookList}
                 </ul> 
-                <div className='tags'>
-                    <div className='row'><h3><i className="fas fa-tag"></i><p className='tag-header'>&#160;&#160;&#160;Tags</p></h3></div>
-                </div>
-
             </div>
         )
     }

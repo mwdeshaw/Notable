@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from  '../../actions/session';
-import { fetchNotebooks } from  '../../actions/notebooks';
+import { fetchNotebooks, createNotebook } from  '../../actions/notebooks';
 import { createNote } from  '../../actions/notes';
 import { selectAllNotebooksByUpdated, selectAllNotesByUpdated } from  '../../reducers/selectors';
 import NavigationBar from './navigation_bar'
@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
     fetchNotebooks: () => dispatch(fetchNotebooks()),
     createNote: note => dispatch(createNote(note)),
+    createNotebook: notebook => dispatch(createNotebook(notebook)),
     openModal: (modal) => dispatch(openModal(modal))
 });
 

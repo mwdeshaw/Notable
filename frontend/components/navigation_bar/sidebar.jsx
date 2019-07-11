@@ -32,7 +32,11 @@ class Sidebar extends React.Component {
     handleNoteCreation(e) {
         e.preventDefault();
         const latestNotebook = this.props.notebooks[0];
-        if (this.props.location.pathname.slice(0, 6) === `/notes`) {
+        
+        if (latestNotebook === undefined) {
+            this.props.createNotebook({ title: "A blank notebook for you: please add notes", author_id: this.props.currentUser.id })
+        }
+        else if (this.props.location.pathname.slice(0, 6) === `/notes`) {
             this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id});
         } else if (this.props.location.pathname === '/notebooks') {
             this.props.history.push(`/notebooks/${latestNotebook.id}`)

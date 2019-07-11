@@ -8,11 +8,6 @@ class Notes extends React.Component {
     };
 
     render() {
-        const recentNotebook = this.props.notebooks[0];
-
-        if (!recentNotebook) {
-            return null;
-        }
         return( 
             <div className='notes-parent'>
                 <NavigationBarContainer/>
