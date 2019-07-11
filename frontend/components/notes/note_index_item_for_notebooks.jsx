@@ -32,7 +32,7 @@ class NoteIndexItemForNotebooks extends React.Component {
             this.props.fetchNotebook(this.props.notebookId)
             .then( () => { 
                 this.props.closeModal()
-                this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`)
+                this.props.openModal(`nbNotesUpdateNb,${(this.props.note.id).toString()},${(this.props.notebookId).toString()}`)
             })
         : null
     }

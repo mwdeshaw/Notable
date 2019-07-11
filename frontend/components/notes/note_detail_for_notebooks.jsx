@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { 
-    Editor, 
-    EditorState, 
+import {
+    Editor,
+    EditorState,
     RichUtils,
     convertFromRaw,
     convertToRaw,
@@ -10,7 +10,7 @@ import {
 
 // import '../../../node_modules/draft-js/dist/Draft.css';
 
-class NoteDetail extends React.Component {
+class NoteDetailForNotebooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +20,7 @@ class NoteDetail extends React.Component {
             notebookId: this.props.note.notebook_id,
             editorState: EditorState.createEmpty(),
             openedActions: false
-        } 
+        }
 
         this.openActionsView = this.openActionsView.bind(this);
         this.closeActionsView = this.closeActionsView.bind(this);
@@ -76,8 +76,8 @@ class NoteDetail extends React.Component {
             };
             this.props.updateNote(note);
             this.updateComponent;
-         };
         };
+    };
 
     handleKeyCommand(command, editorState) {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -97,30 +97,37 @@ class NoteDetail extends React.Component {
 
     handleDelete(e) {
         e.preventDefault();
+        const newArr = this.props.notebook.noteIds;
+        const noteIdx = newArr.indexOf(this.props.note.id);
+        if (noteIdx !== -1) {
+            newArr.splice(noteIdx, 1);
+            this.setState({ noteIds: newArr });
+        }
         this.props.deleteNote(this.props.note.id)
             .then(() => {
                 this.props.closeModal()
-                this.props.history.push('/notes')
-        });
+                this.updateComponent
+            })
+        // this.props.history.push('/notes')
     };
 
     richTextEditor() {
-        return(
+        return (
             <div className="rtf-editor" onClick={this.focus}>
-                    <Editor
-                        ref={"editor"}
-                        editorState={this.state.editorState}
-                        onChange={this.onChange}
-                        placeholder="Start writing..."
-                        handleKeyCommand={this.handleKeyCommand}
-                    />
-                </div>
+                <Editor
+                    ref={"editor"}
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    placeholder="Start writing..."
+                    handleKeyCommand={this.handleKeyCommand}
+                />
+            </div>
         )
     }
 
     pathSlicer(path) {
         let count = 0;
-        for(let i = 0; i < path.length; i++) {
+        for (let i = 0; i < path.length; i++) {
             if (path[i] === "/") {
                 count += 1;
             }
@@ -143,63 +150,56 @@ class NoteDetail extends React.Component {
     handleTitleInput(e) {
         e.preventDefault();
         if (this.state.title === "Untitled") {
-            this.setState({title: ""});
+            this.setState({ title: "" });
         };
     };
 
     render() {
-        if (!this.props.note) {
-            return null;
-        }
-
         const basicNoteActions = () => (
             <div className='note-actions-view'>
                 <button onClick={this.handleDelete} className='delete-note-btn'>
-                        <i className="far fa-trash-alt fa-lg"></i>
-                    </button>
-            </div>           
+                    <i className="far fa-trash-alt fa-lg"></i>
+                </button>
+            </div>
         );
-        
+
         const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
-        const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>, 
-            <i className="fas fa-underline"></i>, <i className="fas fa-strikethrough"></i>, 
-            <i className="fas fa-highlighter"></i>, <i className="fas fa-code"></i>];
+        const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>,
+        <i className="fas fa-underline"></i>, <i className="fas fa-strikethrough"></i>,
+        <i className="fas fa-highlighter"></i>, <i className="fas fa-code"></i>];
         const buttons = styles.map((style, idx) => {
             return (
-                    <button
-                        key={style}
-                        name={style}
-                        className="btns"
-                        onMouseDown={this._onClick}>
-                        {buttonImg[idx]}
-                    </button>
-                );
-            });
+                <button
+                    key={style}
+                    name={style}
+                    className="btns"
+                    onMouseDown={this._onClick}>
+                    {buttonImg[idx]}
+                </button>
+            );
+        });
 
-            return(
+        return (
             <div className='note-detail-page'>
-                    <div className='notebook-header-for-detail'>
-                        <div className='nb-header-parent'>
-                            <div className='nb-notebook-title'>
-                                <h1 className='nb-title-text'><i className="fas fa-book">&#160;&#160;</i><Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}`}>{this.props.notebook.title}</Link></h1>
-                            </div>
-                            {this.state.openedActions ? detailedNoteActions() : basicNoteActions()}
+                <div className='notebook-header-for-detail'>
+                    <div className='nb-header-parent'>
+                        {this.state.openedActions ? detailedNoteActions() : basicNoteActions()}
+                    </div>
+                </div>
+                <div className='rich-text-editor-parent' onClick={this.closeActionsView}>
+                    <div className='filler'>
+                        <div className='toolbar-parent'>
+                            {buttons}
                         </div>
                     </div>
-                    <div className='rich-text-editor-parent' onClick={this.closeActionsView}>
-                        <div className='filler'>
-                            <div className='toolbar-parent'>
-                                {buttons}
-                            </div>
-                        </div>
-                        <form className='edit-note-detail'> 
-                            <input type="text" onClick={this.handleTitleInput} className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder={"Title"} />         
-                            {this.richTextEditor()}
-                        </form>
-                    </div>
+                    <form className='edit-note-detail'>
+                        <input type="text" onClick={this.handleTitleInput} className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder={"Title"} />
+                        {this.richTextEditor()}
+                    </form>
+                </div>
             </div>
         )
     }
 }
 
-export default withRouter(NoteDetail);
+export default withRouter(NoteDetailForNotebooks);

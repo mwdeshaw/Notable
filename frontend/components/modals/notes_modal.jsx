@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import NoteDetaiContainer from '../notes/note_detail_container';
+import NoteDetaiContainerForNotebooks from '../notes/note_detail_container_for_notebooks';
 
 function idRemover(str) {
     let nums = [',', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -13,8 +14,17 @@ function idRemover(str) {
     return str;
 };
 
-function dataExtractor(str) {
+function dataExtractorOne(str) {
     let newStr = str.slice(14);
+    let newArr = newStr.split(",");
+    let results = [];
+    for (let i = 0; i < newArr.length; i++) {
+        results.push(parseInt(newArr[i]));
+    };
+    return results;
+};
+function dataExtractorTwo(str) {
+    let newStr = str.slice(16);
     let newArr = newStr.split(",");
     let results = [];
     for (let i = 0; i < newArr.length; i++) {
@@ -33,7 +43,7 @@ function NotesModal({ modal, closeModal }) {
     let component;
     switch (action) {
         case 'nbNotesUpdate':
-            const ids = dataExtractor(modal);
+            const ids = dataExtractorOne(modal);
             if (isNaN(ids[0])) {
                 break;
             }
@@ -43,6 +53,17 @@ function NotesModal({ modal, closeModal }) {
             component = <NoteDetaiContainer  
                 noteId={noteId} 
                 notebookId={notebookId} 
+            />
+            break;
+        case 'nbNotesUpdateNb':
+            const otherIds = dataExtractorTwo(modal);
+            if (isNaN(otherIds[0])) {
+                break;
+            }
+
+            component = <NoteDetaiContainerForNotebooks  
+                noteId={otherIds[0]} 
+                    notebookId={otherIds[1]} 
             />
             break;
         default:

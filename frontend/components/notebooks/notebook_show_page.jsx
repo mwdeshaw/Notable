@@ -9,7 +9,7 @@ class NotebookShowPage extends React.Component {
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
             this.props.history.push(`/notebooks/${this.props.notebook.id}/notes/${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]}`)
-            this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
+            this.props.openModal(`nbNotesUpdateNb,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
         });
     };
         componentDidUpdate(prevProps) {
@@ -17,7 +17,7 @@ class NotebookShowPage extends React.Component {
             this.props.fetchNotebook(this.props.match.params.notebookId)
                 .then(() => {
                     this.props.closeModal()
-                    this.props.openModal(`nbNotesUpdate,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
+                    this.props.openModal(`nbNotesUpdateNb,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
             });
         }
     };

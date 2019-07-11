@@ -4,11 +4,9 @@ import { withRouter } from 'react-router-dom';
 import NotesModal from '../modals/notes_modal';
 
 class NotesIndex extends React.Component {
-
     componentDidMount() {
         this.props.fetchNotes()
             .then(() => {
-                const that = this;                
                 if (this.props.notes.length !== 0) {
                     this.props.history.push(`/notes/${this.props.notes[0].id}`)
                     this.props.openModal(`nbNotesUpdate,${this.props.notes[0].id},${this.props.notes[0].notebook_id}`)

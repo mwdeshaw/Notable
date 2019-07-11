@@ -2,14 +2,13 @@ import { connect } from 'react-redux';
 import { fetchNote, deleteNote, updateNote } from '../../actions/notes';
 import { fetchNotebook } from '../../actions/notebooks';
 import { selectAllNotesByUpdated } from '../../reducers/selectors';
-import NoteDetail from './note_detail';
+import NoteDetailForNotebooks from './note_detail_for_notebooks';
 import { closeModal, openModal } from '../../actions/modal_actions';
 
-const mapStateToProps = (state, ownProps) => {     
+const mapStateToProps = (state, ownProps) => {
     const notebook = state.entities.notebooks[ownProps.notebookId];
     const notesArr = selectAllNotesByUpdated(state);
     const lastNote = notesArr[0];
-    debugger
     return {
         currentUser: state.session.currentUserId,
         note: state.entities.notes[ownProps.noteId] || lastNote,
@@ -26,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
     openModal: (modal) => dispatch(openModal(modal))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(NoteDetailForNotebooks);
