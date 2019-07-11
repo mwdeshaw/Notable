@@ -20,7 +20,6 @@ const styles = {
     }
 };
 
-
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);

@@ -23,6 +23,14 @@
     color: #a9a9a9
 }
 
+.greeting:hover {
+    cursor: default;
+}
+
+.user-side-arrow:hover {
+    cursor: pointer;
+}
+
 .logout-btn {
     border-radius: 3px;
     color: #333333;
@@ -333,3 +341,4 @@
     font-size: 14px;
     margin-top: 15px;
 }
+

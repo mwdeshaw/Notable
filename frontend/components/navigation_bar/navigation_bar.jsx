@@ -9,11 +9,12 @@ class NavigationBar extends React.Component {
     };
 
     componentDidMount() {
+        if (this.props.currentUser) {
         this.props.fetchNotebooks();
+        }
     };
 
     render() {
-        
         if (this.props.currentUser) {
         return (
             <div className='main-nav'>

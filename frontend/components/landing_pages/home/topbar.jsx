@@ -86,6 +86,26 @@ const styles = {
         cursor: 'pointer',
         color: '#04a82e'
     },
+    linkHover: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        textAlign: 'center',
+        fontSize: "1em",
+        textDecoration: 'none',
+        fontFamily: 'sans-serif',
+        cursor: 'pointer',
+        color: '#04a82e'
+    },
+    linkHover2: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        textAlign: 'center',
+        fontSize: "1em",
+        textDecoration: 'none',
+        fontFamily: 'sans-serif',
+        cursor: 'pointer',
+        color: '#b2e4c1'
+    },
     loginButton: {
         backgroundColor: 'white',
         border: "2px solid #04a82e",
@@ -99,19 +119,7 @@ const styles = {
         margin: "1em",
         height: "40px",
         minWidth: "120px"
-    },
-    signupButton: {
-        backgroundColor: 'transparent',
-        border: 'none',
-        textAlign: 'center',
-        fontSize: "1em",
-        textDecoration: 'none',
-        fontFamily: 'sans-serif',
-        cursor: 'pointer',
-        color: '#04a82e',
-        padding: "1em"
     }
-
 }
 
 const TopBar = () => {
@@ -165,7 +173,7 @@ const TopBar = () => {
                                             <a href="https://en.wikipedia.org/wiki/Potato">
                                                 <button style={hoverStyleAbout} onMouseEnter={() => setHoverAbout(true)} onMouseLeave={() => setHoverAbout(false)}>ABOUT</button>
                                             </a>
-                                            <a href="http://potatoesusa.com/us-potato-industry/us-grower-profiles">
+                                            <a href="mailto:mwdeshaw@gmail.com">
                                                 <button style={hoverStyleContact} onMouseEnter={() => setHoverContact(true)} onMouseLeave={() => setHoverContact(false)}>CONTACT</button>
                                             </a>
                                         </div>
@@ -173,9 +181,12 @@ const TopBar = () => {
                                 </div>
                                 <div style={styles.topBarContainerItem2}>
                                     <div style={styles.signupLoginContainer} className="grid-container">
-                                        <button className="top-btn" style={styles.signupButton} onClick={handleSignup}>Sign up</button>
+                                        <button className="signup-btn" 
+                                        onClick={handleSignup}>Sign up</button>
+                                        {/* <button className="signup-btn" style={styles.signupButton} onClick={handleSignup}>Sign up</button> */}
                                         <h5 className="or" style={{ fontFamily: 'sans-serif', fontWeight: '400' }}>or</h5>
-                                        <button className="top-btn" style={styles.loginButton} onClick={handleLogin}>Log in</button>
+                                        {/* <button className="top-btn" style={styles.loginButton} onClick={handleLogin}>Log in</button> */}
+                                        <button className="login-btn" onClick={handleLogin}>Log in</button>
                                     </div>
                                 </div>
                             </div>

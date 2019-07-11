@@ -4,12 +4,16 @@ import { withRouter } from 'react-router-dom';
 import NotesModal from '../modals/notes_modal';
 
 class NotesIndex extends React.Component {
+
     componentDidMount() {
         this.props.fetchNotes()
             .then(() => {
-                this.props.history.push(`/notes/${this.props.notes[0].id}`)
-                this.props.openModal(`nbNotesUpdate,${this.props.notes[0].id},${this.props.notes[0].notebook_id}`)
-            })
+                const that = this;                
+                if (this.props.notes.length !== 0) {
+                    this.props.history.push(`/notes/${this.props.notes[0].id}`)
+                    this.props.openModal(`nbNotesUpdate,${this.props.notes[0].id},${this.props.notes[0].notebook_id}`)
+                }
+            });
     };
 
     componentDidUpdate(prevProps) {
@@ -23,7 +27,9 @@ class NotesIndex extends React.Component {
     };
 
     render() {
-        const allNotes = this.props.notes.map(note => {
+        const notes = this.props.notes;
+        const allNotes = notes.length !== 0 ?
+        notes.map(note => {
             return(
                 <NoteIndexItemForNotes
                     key={note.id}
@@ -39,15 +45,14 @@ class NotesIndex extends React.Component {
                     childPath={`notes/${note.id}`}
                     />
             );
-        })
-    
+        }) : <div>&#160;&#160;No notes yet...</div>
+
         return(
             <div className='notes-index-parent'>
                 <div className='notes-header'>
                     <h1 className='notes-h1'>All Notes</h1>
                     <div className='other-header-elements'>
-                        <p className='note-count'>{allNotes.length} notes</p>
-                        <button className='filter-tag'><i className="fas fa-tags fa-lg"></i></button> 
+                        <p className='note-count'>{notes.length} notes</p>
                     </div>
                 </div>
                 <div className='list-container'>

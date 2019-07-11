@@ -22,6 +22,14 @@ class NotebookShowPage extends React.Component {
         }
     };
 
+    titleizer(str) {
+        if (str.length >= 32) {
+            return str.slice(0, 32) + "...";
+        } else {
+            return str;
+        }
+    }
+
     render() {
         const { notebook, currentUser, deleteNote, updateNote, fetchNote, openModal, updateNoteModal, closeModal, fetchNotebook } = this.props;
         if (!notebook) {
@@ -51,15 +59,14 @@ class NotebookShowPage extends React.Component {
                     childPath={`notes/notebooks/${note.notebook_id}/${note.id}`}
                 />
             )
-        }) : <div>No notes :(</div>
+        }) : <div>&#160;&#160;No notes yet...</div>
         return(
             <div className='nb-show-parent'>
                 <div className='nb-show-index-parent'>
                     <div className='notebook-header'>
-                        <h1 className='notes-nb-h1'>{notebook.title}</h1>
+                        <h1 className='notes-nb-h1'>{this.titleizer(notebook.title)}</h1>
                         <div className='other-header-elements-nb'>
                             <p className='note-count-nb'>{notes ? Object.values(notebook.notes).length : 0} notes</p>
-                            <button className='filter-tag-nb'><i className="fas fa-tags fa-lg"></i></button> 
                         </div>
                     </div>
                     <div className='list-container'>

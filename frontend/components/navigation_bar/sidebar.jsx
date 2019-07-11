@@ -81,9 +81,6 @@ class Sidebar extends React.Component {
                 <div className='notebook-bar'>
                     <div className='row'><h3 className='arrow' onClick={this.openView}>▶︎&#160;&#160;&#160;</h3><Link to='/notebooks'><i className="fas fa-book"></i><h3 className='nb-header'>&#160;&#160;&#160;Notebooks</h3></Link></div>
                 </div>
-                <div className='tags'>
-                    <div className className='row'><h3><i className="fas fa-tag"></i><p className='tag-header'>&#160;&#160;&#160;Tags</p></h3></div>
-                </div>
             </div>
         );
 
@@ -133,10 +130,6 @@ class Sidebar extends React.Component {
 
                 <div className="side-buttons" onClick={this.handleNoteCreation}>
                     <button className='new-note'><i id="icon-new" className="fas fa-plus"></i> New Note</button>
-                    {/* <div className='right'>
-                        <button className='mid-half'></button>
-                        <button className='other-half'><i className="fas fa-chevron-down"></i></button>
-                    </div> */}
                 </div>
                 <div onClick={this.handleNotesRedirect} className='all-notes'>
                     <div onClick={this.handleNotesRedirect} className='row'><h3><i className="fas fa-file-alt"></i><p className='nb-header'>&#160;&#160;&#160;All Notes</p></h3></div>

@@ -31,6 +31,7 @@ class NoteDetail extends React.Component {
         this.intervalId = setInterval(() => { this.autoSave() }, 5000)
         this.handleTitleInput = this.handleTitleInput.bind(this);
         this.updateComponent = this.updateComponent.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     };
 
     updateComponent() {
@@ -94,6 +95,22 @@ class NoteDetail extends React.Component {
         }
     }
 
+    handleDelete(e) {
+        e.preventDefault();
+        const newArr = this.props.notebook.noteIds;
+        const noteIdx = newArr.indexOf(this.props.note.id);
+        if (noteIdx !== -1) {
+            newArr.splice(noteIdx, 1);
+            this.setState({ noteIds: newArr });
+        }
+        this.props.deleteNote(this.props.note.id)
+        .then(() => {
+            this.props.closeModal()
+            this.updateComponent
+        })
+        // this.props.history.push('/notes')
+    };
+
     richTextEditor() {
         return(
             <div className="rtf-editor" onClick={this.focus}>
@@ -140,17 +157,21 @@ class NoteDetail extends React.Component {
     render() {
         const basicNoteActions = () => (
             <div className='note-actions-view'>
-                    <button onClick={() => this.props.deleteNote(this.props.note.id)} className='delete-note-btn'>
+                <button onClick={this.handleDelete} className='delete-note-btn'>
                         <i className="far fa-trash-alt fa-lg"></i>
                     </button>
             </div>           
         );
 
-        const titleView = () => (
+        const titleView = () => {
+            const that = this;
+            debugger
+            return(
             <div className='nb-notebook-title'>
                 <h1 className='nb-title-text'><i className="fas fa-book">&#160;&#160;</i><Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}`}>{this.props.notebook.title}</Link></h1>
             </div>
-        );
+            )
+        };
         
         const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
         const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>, 

@@ -68,7 +68,7 @@ class NotebookIndexItem extends React.Component {
     return(
         <tr onClick={this.state.openedActions ? this.closeActionsView : null}>
                 <th></th>
-                <th onClick={this.handleShowRedirect}><i className="fas fa-book"></i>}&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
+                <th onClick={this.handleShowRedirect}><i className="fas fa-book"></i>&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
                 <th onClick={this.handleShowRedirect}>{author.slice(0, this.sliceIdx(author))}</th>
                 <th onClick={this.handleShowRedirect}>{date}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
