@@ -54,12 +54,7 @@ class NoteIndexItemForNotebooks extends React.Component {
         const note = this.props.note;
         let noteBody;
         if (note.body) {
-            if (JSON.parse(this.props.note.body).blocks[0].text === "") {
-                noteBody = "";
-            } else {
-                noteBody = JSON.parse(note.body).blocks[0].text;
-
-            }
+            noteBody = JSON.parse(note.body).blocks[0].text;
         } else {
             noteBody = "";
         }

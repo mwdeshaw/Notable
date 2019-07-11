@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, withRouter,  } from 'react-router-dom';
+import { Link, withRouter,  } from 'react-router-dom';
 import { obtainDay, obtainMonth, obtainYear } from '../../util/date_time_utils';
 
 class NotebookIndexItem extends React.Component {

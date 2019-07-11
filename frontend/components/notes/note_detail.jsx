@@ -18,15 +18,25 @@ class NoteDetail extends React.Component {
             title: this.props.note.title,
             authorId: this.props.note.author_id,
             notebookId: this.props.note.notebook_id,
-            editorState: EditorState.createEmpty()
+            editorState: EditorState.createEmpty(),
+            openedActions: false
         } 
 
+        this.openActionsView = this.openActionsView.bind(this);
+        this.closeActionsView = this.closeActionsView.bind(this);
         this.updateType = this.updateType.bind(this);
         this.onChange = (editorState) => this.setState({ editorState });
         this.focus = this.focus.bind(this);
         this._onClick = this._onClick.bind(this);
         this.intervalId = setInterval(() => { this.autoSave() }, 5000)
+        this.handleTitleInput = this.handleTitleInput.bind(this);
+        this.updateComponent = this.updateComponent.bind(this);
     };
+
+    updateComponent() {
+        this.forceUpdate()
+    }
+
 
     focus() {
         this.refs.editor.focus();
@@ -44,6 +54,7 @@ class NoteDetail extends React.Component {
     };
 
     componentDidMount() {
+        this.convertForEditing(this.props.note);
         this.intervalId;
     }
 
@@ -63,9 +74,9 @@ class NoteDetail extends React.Component {
                 notebookId: this.state.notebookId
             };
             this.props.updateNote(note);
+            this.updateComponent;
          };
         };
-
 
     handleKeyCommand(command, editorState) {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -109,13 +120,42 @@ class NoteDetail extends React.Component {
         }
     }
 
+    openActionsView(e) {
+        e.preventDefault();
+        this.setState({ openedActions: true })
+    };
+
+    closeActionsView(e) {
+        e.preventDefault();
+        this.setState({ openedActions: false })
+    }
+
+    handleTitleInput(e) {
+        e.preventDefault();
+        if (this.state.title === "Untitled") {
+            this.setState({title: ""});
+        };
+    };
+
     render() {
+        const basicNoteActions = () => (
+            <div className='note-actions-view'>
+                <h3 className='note-actions-button' onClick={this.openActionsView}><i className="fa fa-bars"></i></h3>
+            </div>
+        );
+
+        const detailedNoteActions = () => (
+            <div className='note-actions-view-detailed'>
+                <h3 className='note-actions-button' onClick={this.closeActionsView}><i className="fa fa-bars"></i></h3>
+                <div className='note-delete-btn'>
+                    <p className='delete-note' onClick={() => this.props.deleteNote(this.props.note.id)}>Delete note</p>
+                </div>
+            </div>
+        );
 
         const titleView = () => (
-            <div className='notebook-title'>
-                <label>Notebook:
-                        <Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}`}>{this.props.notebook.title}</Link>
-                </label>
+            <div className='nb-notebook-title'>
+                <h1 className='nb-title-text'><i className="fas fa-book">&#160;&#160;</i><Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}`}>{this.props.notebook.title}</Link></h1>
             </div>
         );
         
@@ -128,32 +168,35 @@ class NoteDetail extends React.Component {
                     <button
                         key={style}
                         name={style}
-                        className="btn"
+                        className="btns"
                         onMouseDown={this._onClick}>
                         {buttonImg[idx]}
                     </button>
                 );
             });
+
     
             return(
             <div className='note-detail-page'>
-                <div className='rich-text-editor-parent'>
-                    <div className='notebook-header'>
-                        {this.pathSlicer(this.props.location.pathname) === "/notes/" ? titleView() : null}
-                    </div>
-                    <div className='toolbar-parent'>
-                        {buttons} 
-                    </div>
-
-                    <form className='edit-note-detail'> 
-                        <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder="Title" />         
-                        {this.richTextEditor()}
-                    
-                        <div className='note-delete-btn'>
-                            <button id='delete-note' onClick={() => this.props.deleteNote(this.props.note.id)}>delete</button>
+                    <div className='notebook-header-for-detail'>
+                        <div className='nb-header-parent'>
+                            {this.pathSlicer(this.props.location.pathname) === "/notes/" ? titleView() : null}
+                            {this.state.openedActions ? detailedNoteActions() : basicNoteActions()}
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div className='rich-text-editor-parent'>
+                        <div className='filler'>
+                            <div className='toolbar-parent'>
+                                {buttons} 
+
+                            </div>
+                        </div>
+                        <form className='edit-note-detail'> 
+                            {/* <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder={"Title"} />          */}
+                            <input type="text" onClick={this.handleTitleInput} className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder={"Title"} />         
+                            {this.richTextEditor()}
+                        </form>
+                    </div>
             </div>
         )
     }
