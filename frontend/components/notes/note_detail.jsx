@@ -140,17 +140,10 @@ class NoteDetail extends React.Component {
     render() {
         const basicNoteActions = () => (
             <div className='note-actions-view'>
-                <h3 className='note-actions-button' onClick={this.openActionsView}><i className="fa fa-bars"></i></h3>
-            </div>
-        );
-
-        const detailedNoteActions = () => (
-            <div className='note-actions-view-detailed'>
-                <h3 className='note-actions-button' onClick={this.closeActionsView}><i className="fa fa-bars"></i></h3>
-                <div className='note-delete-btn'>
-                    <p className='delete-note' onClick={() => this.props.deleteNote(this.props.note.id)}>Delete note</p>
-                </div>
-            </div>
+                    <button onClick={() => this.props.deleteNote(this.props.note.id)} className='delete-note-btn'>
+                        <i className="far fa-trash-alt fa-lg"></i>
+                    </button>
+            </div>           
         );
 
         const titleView = () => (
@@ -159,7 +152,7 @@ class NoteDetail extends React.Component {
             </div>
         );
         
-        const styles = ["BOLD", "UNDERLINE", "ITALIC", "CODE"];
+        const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
         const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>, 
             <i className="fas fa-underline"></i>, <i className="fas fa-strikethrough"></i>, 
             <i className="fas fa-highlighter"></i>, <i className="fas fa-code"></i>];
@@ -175,7 +168,6 @@ class NoteDetail extends React.Component {
                 );
             });
 
-    
             return(
             <div className='note-detail-page'>
                     <div className='notebook-header-for-detail'>
@@ -184,15 +176,13 @@ class NoteDetail extends React.Component {
                             {this.state.openedActions ? detailedNoteActions() : basicNoteActions()}
                         </div>
                     </div>
-                    <div className='rich-text-editor-parent'>
+                    <div className='rich-text-editor-parent' onClick={this.closeActionsView}>
                         <div className='filler'>
                             <div className='toolbar-parent'>
-                                {buttons} 
-
+                                {buttons}
                             </div>
                         </div>
                         <form className='edit-note-detail'> 
-                            {/* <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder={"Title"} />          */}
                             <input type="text" onClick={this.handleTitleInput} className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder={"Title"} />         
                             {this.richTextEditor()}
                         </form>
