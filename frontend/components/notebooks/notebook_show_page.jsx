@@ -23,7 +23,7 @@ class NotebookShowPage extends React.Component {
     };
 
     render() {
-        const {notebook, currentUser, deleteNote, updateNote, fetchNote, openModal, updateNoteModal, closeModal } = this.props;
+        const { notebook, currentUser, deleteNote, updateNote, fetchNote, openModal, updateNoteModal, closeModal, fetchNotebook } = this.props;
         if (!notebook) {
             return (
                 <div>Loading...</div>
@@ -43,6 +43,7 @@ class NotebookShowPage extends React.Component {
                     deleteNote={deleteNote}
                     updateNote={updateNote}
                     fetchNote={fetchNote}
+                    fetchNotebook={fetchNotebook}
                     openModal={openModal}
                     closeModal={closeModal}
                     updateNoteModal={updateNoteModal}
