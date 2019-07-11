@@ -10,36 +10,22 @@ import {
 
 // import '../../../node_modules/draft-js/dist/Draft.css';
 
-    // const styleMap = {
-    //     code: {
-    //         backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    //         fontFamily: 'Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New',
-    //         whiteSpace: 'pre',
-    //         fontSize: '12'
-    //     },
-    //     strikethrough: {
-    //         textDecoration: 'line-through'
-    //     },
-    //     highlight: {
-    //         backgroundColor: 'rgba(204, 255, 0, 1)'
-    //     }
-    // };
-
 class NoteDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             id: this.props.note.id,
             title: this.props.note.title,
-            body: this.props.note.body,
             authorId: this.props.note.author_id,
             notebookId: this.props.note.notebook_id,
             editorState: EditorState.createEmpty()
         } 
+
         this.updateType = this.updateType.bind(this);
         this.onChange = (editorState) => this.setState({ editorState });
         this.focus = this.focus.bind(this);
         this._onClick = this._onClick.bind(this);
+        this.intervalId = setInterval(() => { this.autoSave() }, 5000)
     };
 
     focus() {
@@ -58,24 +44,14 @@ class NoteDetail extends React.Component {
     };
 
     componentDidMount() {
-        this.props.fetchNote(this.props.note.id)
-        .then(() => {
-            this.convertForEditing(this.props.note)
-        });
-        
-        setInterval(() => {
-            this.autoSave()
-        }, 5000)
+        this.intervalId;
     }
 
     componentWillUnmount() {
-        this.autoSave()
+        clearInterval(this.intervalId);
     }
 
     autoSave() {
-        if (!this.props.note.title || !this.props.note.body) {
-            return null
-        }
         const enteredText = convertToRaw(this.state.editorState.getCurrentContent());
         const textBody = JSON.stringify(enteredText);
         if ((this.state.title !== this.props.note.title) || (textBody !== this.props.note.body)) {
@@ -87,8 +63,9 @@ class NoteDetail extends React.Component {
                 notebookId: this.state.notebookId
             };
             this.props.updateNote(note);
+         };
         };
-    };
+
 
     handleKeyCommand(command, editorState) {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -133,6 +110,7 @@ class NoteDetail extends React.Component {
     }
 
     render() {
+
         const titleView = () => (
             <div className='notebook-title'>
                 <label>Notebook:
@@ -170,9 +148,6 @@ class NoteDetail extends React.Component {
                     <form className='edit-note-detail'> 
                         <input type="text" className='note-detail-tite' value={this.state.title} onChange={this.updateType("title")} placeholder="Title" />         
                         {this.richTextEditor()}
-                        <div className='note-create-btn'>
-                            <button id='create-note' onClick={this.handleSubmit}>update</button>
-                        </div>
                     
                         <div className='note-delete-btn'>
                             <button id='delete-note' onClick={() => this.props.deleteNote(this.props.note.id)}>delete</button>

@@ -50,20 +50,30 @@ class NoteIndexItemForNotes extends React.Component {
             date = `${month} ${day} ${year}`
         };
         
-
         const note = this.props.note;
         let noteBody;
         if (note.body) {
-            noteBody = JSON.parse(note.body).blocks[0].text;
+            if (JSON.parse(this.props.note.body).blocks[0].text === "") {
+                noteBody = "";
+            } else {
+                noteBody = JSON.parse(note.body).blocks[0].text;
+
+            }
         } else {
             noteBody = "";
         }
+        // const note = this.props.note;
+        // let noteBody;
+        // if (note.body && note.body !== "") {
+        //     noteBody = JSON.parse(note.body).blocks[0].text || ""
+        // } else {
+        //     noteBody = "";
+        // }
         
         return(
             <li onClick={this.handleModalSwitch} className='note-item'>
                 <h3 className='note-title'>{this.props.note.title}</h3>
                 <p className='note-body-segment'>{noteBody.slice(0, 30)}</p>
-                {/* <p className='note-body-segment'>{this.props.note.body}</p> */}
                 <h4 className='last-updated'>{date}</h4>
             </li>
         );

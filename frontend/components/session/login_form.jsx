@@ -37,7 +37,9 @@ class LoginForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.props.login(this.state)
-            return () => { this.props.history.push("/notes") }
+            .then(() => {
+                this.props.history.push("/notes")
+            });
     };
 
     formSwitch(e) {

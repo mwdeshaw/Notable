@@ -30,5 +30,4 @@ class NoteBookList extends React.Component {
     }
 };
 
-
 export default NoteBookList;
