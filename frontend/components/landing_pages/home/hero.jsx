@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 
 const Hero = ({ login }) => {
-
     function handleDemo(e) {
         e.preventDefault();
         const demoUser = { email: "DemoUser@notable.com", password: "ILoveNotable" };
-        login(demoUser);
+        login(demoUser)
+            .then(() => {
+                this.props.history.push("/notebooks")
+            });
     };
 
     return (
@@ -18,7 +20,7 @@ const Hero = ({ login }) => {
                         <li><h1>Organized.</h1></li>
                         <li><h1 className='last-h'>Effortless</h1></li>
                         <li><p>Take notes anywhere. Find information faster. Share ideas with anyone. Meeting notes, web pages, projects, to-do lists—with Notable as your note taking app, nothing falls through the cracks.</p></li>
-                    <button className='hero-button' onClick={handleDemo}><Link to='/'>TRY WITH DEMO</Link></button>
+                    <button className='hero-button' onClick={handleDemo}><Link>TRY WITH DEMO</Link></button>
                     </ul> 
                 <img className='comp' src={window.compURL}/>
             </div>
@@ -26,4 +28,4 @@ const Hero = ({ login }) => {
     );
 };
 
-export default Hero;
+export default withRouter(Hero);
