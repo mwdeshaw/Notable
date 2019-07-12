@@ -269,7 +269,8 @@
 
 .notebook-list a {
     padding-left: 50px;
-    overflow: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tags {

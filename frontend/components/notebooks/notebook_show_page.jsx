@@ -25,8 +25,8 @@ class NotebookShowPage extends React.Component {
     };
 
     titleizer(str) {
-        if (str.length >= 28) {
-            return str.slice(0, 28) + "...";
+        if (str.length >= 23) {
+            return str.slice(0, 23) + "...";
         } else {
             return str;
         }
