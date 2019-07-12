@@ -163,7 +163,7 @@ Finally, notebooks can be directly navigated to. The sidebar has a notebooks dro
 
 #### Notes
 
-image here....
+![notes index](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.13.35%20PM.png)
 
 Note creation is handled with a green button in the sidebar, just like Evernote. The logic of the button ensures that notes can be created from anywhere in the app depending on the user's current pathname. If the user does not have any notebooks, it will automatically create one, preventing any errors pertaining to notes without notebooks. The default note created has the title of "Untitled" and blank body.
 
@@ -205,8 +205,7 @@ Notes are stored in notebooks and like those on Evernote, they are in a perpetua
 
 Notes can be edited by means of a rich-text editor. The Draft.js rich-text editor framework was used to construct the rich text editor. Along with the inline styles that came from RichUtils, a custom style map was used to add the custom strikethrough and highlight methods. 
 
-#image the editor liiks like so
-
+![text editor image](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.27.03%20PM.png)
 
 Upon mounting the note, a setInternal() function activates an autosave feature for notes, which enables autosaving as a user types. This function checks a note's content before firing, to ensure that it does not save when it does not have to. This function is called like so:
 ```javascript
