@@ -200,13 +200,26 @@ Notes can be edited by means of a rich-text editor. The Draft.js rich-text edito
 #image the editor liiks like so
 
 
-
-Upon mounting the note, a setInternal() function activates an autosave feature for notes, which enables autosaving as a user types. This function is called like so:
+Upon mounting the note, a setInternal() function activates an autosave feature for notes, which enables autosaving as a user types. This function checks a note's content before firing, to ensure that it does not save when it does not have to. This function is called like so:
 ```javascript
-        this.intervalId = setInterval(() => { this.autoSave() }, 5000)
- ```
-A variable is used to save this function as an id, because componentWillUnmount() is used to call clearInterval() to stop the autosaving process once a note is unmounted. clearInterval needs an id to work.
- 
+    constructor(props) {
+        super(props)
+        this.intervalId = setInterval(() => { this.autoSave() }, 5000) 
+    }
+       
+     componentDidMount() {
+        this.props.fetchNotebook(this.props.notebookId);
+        this.convertForEditing(this.props.note);
+        this.intervalId;
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+    }
+```
+
+A variable is used to save this function as an id, because componentWillUnmount() is used to call clearInterval() to stop the autosaving process once a note is unmounted.
+
 Finally, like Evernote, one can seemlessly switch between notes quickly. This rapid dismounting and mounting is done through modals. Each note view/edit page is a modal. The logic that allows for this toggling is bsed on comparing the parent path, which includes the previous note id, and the child path, the current note id:
 ```javascript
 handleModalSwitch(e) {   
@@ -219,6 +232,3 @@ handleModalSwitch(e) {
             }) : null
     }
 ```
-
-
-
