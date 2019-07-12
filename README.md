@@ -232,3 +232,8 @@ handleModalSwitch(e) {
             }) : null
     }
 ```
+
+## Future Directions
+* Get the note search bar to work so one can search for notes by title
+* Implement a tags feature for notes, allowing for grouping, filtering, and searching notes
+* Implement a collaborators feature, allowing for shared notebooks
