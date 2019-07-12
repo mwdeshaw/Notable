@@ -20,7 +20,8 @@
     margin-left: 16px;
     display: flex;
     align-items: center;
-    color: #a9a9a9
+    color: #a9a9a9;
+    font-weight: 200;
 }
 
 .greeting:hover {
@@ -101,7 +102,7 @@
     width: 100%;
 }
 
-.new-note, .other-half, .mid-half {
+.new-note {
     grid-column: 1;
     grid-row: 1;
 }
@@ -113,7 +114,7 @@
         cursor: pointer;
         flex: 1;
         padding: 4px;
-        width: 179px;
+        width: 214px;
         height: 35px;
         font-size: 14px;
         margin-right: 6px;
@@ -294,12 +295,13 @@
     margin-left: 20px;
     margin-top: 5px;
     height: 170px;
-    width: 150px;
+    width: 175px;
+    line-height: normal;
     list-style: none;
     vertical-align: baseline;
     box-shadow: 0 0 6px rgba(0,0,0,.3);
     padding: 12px;
-    border-radius: 3px;
+    border-radius: 5px;
     text-align: center;
     left: 50;
     right: 50;
