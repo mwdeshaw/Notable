@@ -5,9 +5,9 @@ Notable. It is a word that connotates something worthy of attention or remarkabl
 ## Features
 Notable has many features, all of which work to give the user the best experience imaginable.
 
-#### * Secure and safe user authentication that bootstraps user to prevent logout on resfresh
+* #### Secure and safe user authentication that bootstraps user to prevent logout on resfresh
 * Demo user button enables users to try the application for themselves
-#### * Creation of a notebook on signup, so you can instantly get started! 
+* #### Creation of a notebook on signup, so you can instantly get started! 
 * Create notes at the touch of a button. Wherever you are in the app, Notable will add the note to your most recent notebook
 #### * Ability to create notebooks, change their titles, and delete them at the touch of a button
 * Search for notebooks by title, autocomplete will show the notebooks that match your query
