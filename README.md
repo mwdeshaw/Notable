@@ -109,6 +109,7 @@ Note the use of BCrypt for password salting and hashing. Plain text passwords ar
 ### Frontend
 Notable's frontend was built using React-Redux. These choices allowed for a unidirectional dataflow and single-source of truth. With so many states to manage, notes inside notebooks, both belonging to authors, dynamically switching between notes, etc. Redux enables proper state management. CSS was used for frontend styling.
 
-
+#### Frontend Dependencies
+Node package manager (npm) was used to install and save frontend dependencies, while webpack was used to bundle all the reqeuired JavaScript files and ensure correct loading order. JQuery was used to make AJAX requests to the backend rails API. Draft.js was used in the note show page, allowing for rich-text editing with a range of styles. Other frontend dependencies include React-DOM, React DOM-Router, Provider, and Babel.
 
 
