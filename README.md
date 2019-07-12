@@ -2,13 +2,12 @@
 
 ![splash page](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/notable-splash.png)
 
-
 Notable. It is a word that connotates something worthy of attention or remarkable. It is also a word that captures the essence of Notable, a full-stack web application, inspired by Evernote, and built with React/Redux, Ruby on Rails, and PostgreSQL. Notable enables users to readily create notebooks and populate them with copious notes, from grocery and to-do lists to workout plans and class lecture notes. With features including autosaving, rich-text editing, and the ability to search notebooks by title, you never miss a point with Notable!
 
 ## Features
-Notable has many features, all of which work to give the user the best experience imaginable.
+Notable has many features, all of which contribute to a great user experience:
 
-* #### Secure and safe user authentication that bootstraps user to prevent logout on resfresh
+* #### Secure and safe user authentication that bootstraps user to prevent logout on refresh
 * #### Create notes at the touch of a button. Wherever you are in the app, Notable will add the note to your most recent notebook
 * #### Ability to create notebooks, change their titles, and delete them at the touch of a button
 * #### Search for notebooks by title, autocomplete will show the notebooks that match your query
@@ -41,21 +40,21 @@ Notable has many features, all of which work to give the user the best experienc
  npm start
  ```
  
- 5. Navigate to local localhost:3000 in your borwser
+ 5. Navigate to localhost:3000 in your browser
  
- 6. Start using Notable!
+ 6. Start using Notable
  
 ## About the Project
-Notable was designed and build over the course of ten days. A proposal was drafted, which included a database schema, a frontend sample-state, timeline, and frontend and backend routes. The timeline was systematically followed, from user authentication to rich text editing to ensure the creation of an aesthetic and functional app, which matches Evernote in both appearance and functionality.
+Notable was designed and built over the course of ten days. A proposal was drafted, which included a database schema, a sample-state, timeline, and frontend and backend routes. The timeline was systematically followed, from user authentication to rich text editing to ensure the creation of an aesthetic and functional app, which matches Evernote in both appearance and functionality.
 
 ## The Technology
 ### Backend
-Notable was built on Ruby on Rails and is hosted on Heroku. Backend-frontend integration is achieved through rails controllers and JBuilder views. The rails controller send back JSON responses depending on which API route was hit. PostgreSQL is used to manage the database.
+Notable was built on Ruby on Rails and is hosted on Heroku. Backend-frontend integration is achieved through rails controllers and JBuilder views. The rails controllers send back JSON responses depending on which API route was hit. PostgreSQL is used to manage the database.
 
 #### User Authentication and Session Management
 Creating an account on Notable is quick and seamless, requiring only an email and a password. However, behind the scenes, many steps are taken to ensure protection of users and their credentials. Built-in Cross-site request forgery (CSRF) protection is also provided, protecting users from malicious attacks
 
-Here is a snipped from the User model, where you can get a glimpse of some of these features:
+Here is a snipped from the User model, where you could get a glimpse of some of these features:
 
 ```ruby
 class User < ApplicationRecord
@@ -82,10 +81,11 @@ class User < ApplicationRecord
 end
 ```
 
-Note the use of BCrypt for password salting and hashing. Plain text passwords are never stored in the database. Instead, passwords only exist for a moment as instance variables, where they are then salted and hashed with 128-bit encryption before commitment to the database.
+Note the use of BCrypt for password salting and hashing. Plain text passwords are never stored in the database. Instead, passwords only exist for a moment as instance variables, where they are then salted and hashed with 128-bit encryption.
 
 #### Notebooks and Notes:
 Notable is nothing without notes, and the relationship between users, notebooks, and notes is managed through database associations. Here is an example from the Note Model:
+
 ```javascript
 class Note < ApplicationRecord
     validates :notebook_id, :author_id, :title, presence: true
@@ -103,23 +103,20 @@ class Note < ApplicationRecord
 end
 ```
 
-These associations are utilized in the controllers to tie users to notes and notes to notebooks, enabling proper functionality from the creation of notes for specific notebooks to ensuring all notes for a single notebook are deleted if a notebook is deleted.
-
-Note the use of BCrypt for password salting and hashing. Plain text passwords are never stored in the database. Instead, passwords only exist for a moment as instance variables, where they are then salted and hashed with 128-bit encryption before commitment to the database.
+These associations are utilized in the controllers to tie users to notes and notes to notebooks, enabling proper functionality from the creation of notes for specific notebooks to deleting all notes for a single notebook if a notebook is deleted.
 
 ### Frontend
-Notable's frontend was built using React-Redux. These choices allowed for a unidirectional dataflow and single-source of truth. With so many states to manage, notes inside notebooks, both belonging to authors, dynamically switching between notes, etc. Redux enables proper state management. CSS was used for frontend styling.
+
+![signup](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.20.54%20PM.png)
+
+Notable's frontend was built using React-Redux. These choices allowed for a unidirectional dataflow and single-source of truth. With so many states to manage, like notes inside notebooks and both belonging to authors, redux enables proper state management. CSS was used for frontend styling.
 
 #### Frontend Dependencies
 Node package manager (npm) was used to install and save frontend dependencies, while webpack was used to bundle all the reqeuired JavaScript files and ensure correct loading order. JQuery was used to make AJAX requests to the backend rails API. Draft.js was used in the note show page, allowing for rich-text editing with a range of styles. Other frontend dependencies include React-DOM, React DOM-Router, Provider, and Babel.
 
-![signup](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.20.54%20PM.png)
-
 #### Notebooks
+Upon login or signup, the user is brought to the notebooks index, where they have the abililty to create, rename, or delete notebooks. When a user first signs up, a notebook is created automatically, so he or she can instantly get started.
 
-Upon login or signup, the user is brought to the notebooks index, where they have the abililty to create, rename, or delete notebooks. When a user first signs up, a notebook is created automatically, so he or she can instantoy get started.
-
-Here is the notebooks index page:
 ![notebook index](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2010.22.33%20AM.png)
 
 To create this page, an HTML table was employed, allowing for orangization, responsivness, and hover effects:
@@ -153,11 +150,11 @@ A single notebook index item looks like this:
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
         </tr>
 ```
-Creating and editing notebooks is achieved through modals, which is stored in the ```ui``` slice of state
+Creating and editing notebooks is achieved through modals, which are stored in the ```ui``` slice of state
 
-The notebook search bar is functional and employs an autocomplete search algorithm basded on the trie tree to search by notebook title. I used this [tutorial](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/trie/Trie.js) for guidance to create it.
+The notebook search bar is functional and employs an autocomplete search algorithm based on the trie tree, which searches notebooks by title. I used this [tutorial](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/trie/Trie.js) for guidance.
 
-Finally, notebooks can be directly navigated to. The sidebar has a notebooks drop-down that brings the user to a notebook show page on click:
+Finally, notebooks could be directly navigated to from anywhere in the application. The sidebar has a notebooks drop-down that brings the user to a notebook's show page on click:
 
 ![notebook index dropdown](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.08.14%20PM.png)
 
@@ -165,7 +162,7 @@ Finally, notebooks can be directly navigated to. The sidebar has a notebooks dro
 
 ![notes index](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.13.35%20PM.png)
 
-Note creation is handled with a green button in the sidebar, just like Evernote. The logic of the button ensures that notes can be created from anywhere in the app depending on the user's current pathname. If the user does not have any notebooks, it will automatically create one, preventing any errors pertaining to notes without notebooks. The default note created has the title of "Untitled" and blank body.
+Note creation is handled with a green button in the sidebar, just like Evernote. The logic of the button ensures that notes can be created from anywhere in the app depending on the user's current pathname. If the user does not have any notebooks, it will automatically create one, preventing any errors pertaining to notes without notebooks from appearing. The default note created has the title of "Untitled" and a blank body.
 
 ```javascript
     handleNoteCreation(e) {
@@ -190,7 +187,8 @@ Note creation is handled with a green button in the sidebar, just like Evernote.
     };
 ```
 
-Notes are stored in notebooks and like those on Evernote, they are in a perpetual state of editing. Upon entering either a notebook or the notes index, the most recently updated note is mounted and ready for editing. This mounting is done in the notes index by means of this code:
+Notes are stored in notebooks and like those on Evernote, they are in a perpetual state of edit. Upon entering either a notebook or the notes index, the most recently updated note is mounted and ready for editing. This mounting is done in the notes index by means of this code:
+
 ```javascript
     componentDidMount() {
         this.props.fetchNotes()
@@ -203,11 +201,12 @@ Notes are stored in notebooks and like those on Evernote, they are in a perpetua
     };
 ```
 
-Notes can be edited by means of a rich-text editor. The Draft.js rich-text editor framework was used to construct the rich text editor. Along with the inline styles that came from RichUtils, a custom style map was used to add the custom strikethrough and highlight methods. 
+Notes can be edited by means of a rich-text editor. The Draft.js rich-text editor framework was used to construct the editor. Along with the inline styles that came from RichUtils, a custom style map was used to add the custom strikethrough and highlight methods. 
 
 ![text editor image](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.27.03%20PM.png)
 
 Upon mounting the note, a setInternal() function activates an autosave feature for notes, which enables autosaving as a user types. This function checks a note's content before firing, to ensure that it does not save when it does not have to. This function is called like so:
+
 ```javascript
     constructor(props) {
         super(props)
@@ -227,7 +226,8 @@ Upon mounting the note, a setInternal() function activates an autosave feature f
 
 A variable is used to save this function as an id, because componentWillUnmount() is used to call clearInterval() to stop the autosaving process once a note is unmounted.
 
-Finally, like Evernote, one can seemlessly switch between notes quickly. This rapid dismounting and mounting is done through modals. Each note view/edit page is a modal. The logic that allows for this toggling is bsed on comparing the parent path, which includes the previous note id, and the child path, the current note id:
+Finally, like Evernote, one can seemlessly switch between notes quickly. This rapid dismounting and mounting is done through modals. Each note view/edit page is a modal. The logic that allows for this toggling is based on comparing the parent path, which includes the previous note id, to the child path, the current note id:
+
 ```javascript
 handleModalSwitch(e) {   
         e.preventDefault();
