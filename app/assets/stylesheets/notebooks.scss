@@ -384,6 +384,11 @@ thead th:nth-child(5) {
 
 #cancel:hover {
     background-color: #d2d2d2;
+    cursor: pointer;
+}
+
+.fa-times:hover {
+    cursor: pointer;
 }
 
 #h2 {

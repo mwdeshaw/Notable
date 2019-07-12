@@ -50,6 +50,7 @@ class NoteDetail extends React.Component {
 
     componentDidMount() {
         this.props.fetchNotebook(this.props.notebookId);
+        debugger
         this.convertForEditing(this.props.note);
         this.intervalId;
     }
@@ -132,8 +133,14 @@ class NoteDetail extends React.Component {
         };
     };
 
+
+
     render() {
         if (!this.props.note) {
+            return null;
+        }
+
+        if (!this.props.notebook) {
             return null;
         }
         

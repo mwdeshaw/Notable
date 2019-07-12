@@ -8,8 +8,6 @@ import {
     convertToRaw,
 } from 'draft-js';
 
-// import '../../../node_modules/draft-js/dist/Draft.css';
-
 class NoteDetailForNotebooks extends React.Component {
     constructor(props) {
         super(props);
