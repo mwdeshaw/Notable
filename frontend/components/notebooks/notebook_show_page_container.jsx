@@ -6,8 +6,8 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
     return({
-    currentUser: state.entities.users[state.session.currentUserId],
-    notebook: state.entities.notebooks[ownProps.match.params.notebookId]
+        currentUser: state.entities.users[state.session.currentUserId],
+        notebook: state.entities.notebooks[ownProps.match.params.notebookId]
     });
 };
 

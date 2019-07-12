@@ -50,7 +50,6 @@ class NoteDetail extends React.Component {
 
     componentDidMount() {
         this.props.fetchNotebook(this.props.notebookId);
-        debugger
         this.convertForEditing(this.props.note);
         this.intervalId;
     }

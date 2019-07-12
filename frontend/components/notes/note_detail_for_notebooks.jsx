@@ -28,10 +28,6 @@ class NoteDetailForNotebooks extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
     };
 
-    updateComponent() {
-        this.forceUpdate()
-    }
-
     focus() {
         this.refs.editor.focus();
     };
@@ -46,6 +42,11 @@ class NoteDetailForNotebooks extends React.Component {
             this.setState({ [type]: e.target.value })
         };
     };
+
+
+    updateComponent() {
+        this.forceUpdate()
+    }
 
     componentDidMount() {
         this.convertForEditing(this.props.note);

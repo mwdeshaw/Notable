@@ -20,7 +20,7 @@ class NotebookShowPage extends React.Component {
                 .then(() => {
                     this.props.closeModal()
                     this.props.openModal(`nbNotesUpdateNb,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
-            });
+                });
         }
     };
 
