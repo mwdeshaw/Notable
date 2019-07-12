@@ -9,11 +9,11 @@ Notable has many features, all of which work to give the user the best experienc
 * Demo user button enables users to try the application for themselves
 * #### Creation of a notebook on signup, so you can instantly get started! 
 * Create notes at the touch of a button. Wherever you are in the app, Notable will add the note to your most recent notebook
-#### * Ability to create notebooks, change their titles, and delete them at the touch of a button
+* #### Ability to create notebooks, change their titles, and delete them at the touch of a button
 * Search for notebooks by title, autocomplete will show the notebooks that match your query
-#### * Edit notes with a rich-text editor, which empowers users to add inline-styling to the text of their notes
+* #### Edit notes with a rich-text editor, which empowers users to add inline-styling to the text of their notes
 * Make a mistake or finish your to-do list? You can erase notes with the touch of a button
-#### * Autosaving of notes on edit, so you don't need to worry about losing your progress
+* #### Autosaving of notes on edit, so you don't need to worry about losing your progress
 
 ## Requirements
 * Node ```v10.13.1```
