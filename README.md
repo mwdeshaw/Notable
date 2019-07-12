@@ -52,11 +52,55 @@ Notable was designed and build over the course of ten days. A proposal was draft
 ###Backend
 Notable was built on Ruby on Rails and is hosted on Heroku. Backend-frontend integration is achieved through rails controllers and JBuilder views. The rails controller send back JSON responses depending on which API route was hit. PostgreSQL is used to manage the database.
 
+####User Authentication and Session Management
 Creating an account on Notable is quick and seamless, requiring only an email and a password. However, behind the scenes, many steps are taken to ensure protection of users and their credentials. Built-in Cross-site request forgery (CSRF) protection is also provided, protecting users from malicious attacks
 
-Here is a snipped from the User model, where some of these features can be seen:
+Here is a snipped from the User model, where you can get a glimpse of some of these features:
+```
+class User < ApplicationRecord
+    attr_reader :password
 
+    validates :email, :session_token, presence: true, uniqueness: true
+    validates :password_digest, presence: true
+    validates :password, length: { minimum: 6, allow_nil: true }
+
+    def password=(password)
+        @password = password
+        self.password_digest = BCrypt::Password.create(password)
+    end
+
+    def is_password?(password)
+        BCrypt::Password.new(self.password_digest).is_password?(password)
+    end
+
+    def self.find_by_credentials(email, password)
+        user = User.find_by(email: email)
+        return nil unless user
+        user.is_password?(password) ? user : nil
+    end
+end
+```
 
 Note the use of BCrypt for password salting and hashing. Plain text passwords are never stored in the database. Instead, passwords only exist for a moment as instance variables, where they are then salted and hashed with 128-bit encryption before commitment to the database.
 
+####Notebooks and Notes:
+Notable is nothing without notes, and the relationship between users, notebooks, and notes is managed through database associations. Here is an example from the Note Model:
+```
+class Note < ApplicationRecord
+    validates :notebook_id, :author_id, :title, presence: true
+    validates :body, presence: true, allow_blank: true
+
+    belongs_to :user,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :User
+
+    belongs_to :notebook,
+        primary_key: :id,
+        foreign_key: :notebook_id,
+        class_name: :Notebook
+end
+```
+
+These associations are utilized in the controllers to tie users to notes and notes to notebooks, enabling proper functionality from the creation of notes for specific notebooks to ensuring all notes for a single notebook are deleted if a notebook is deleted.
 
