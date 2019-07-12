@@ -6,13 +6,10 @@ Notable. It is a word that connotates something worthy of attention or remarkabl
 Notable has many features, all of which work to give the user the best experience imaginable.
 
 * #### Secure and safe user authentication that bootstraps user to prevent logout on resfresh
-* Demo user button enables users to try the application for themselves
-* #### Creation of a notebook on signup, so you can instantly get started! 
-* Create notes at the touch of a button. Wherever you are in the app, Notable will add the note to your most recent notebook
+* #### Create notes at the touch of a button. Wherever you are in the app, Notable will add the note to your most recent notebook
 * #### Ability to create notebooks, change their titles, and delete them at the touch of a button
-* Search for notebooks by title, autocomplete will show the notebooks that match your query
+* #### Search for notebooks by title, autocomplete will show the notebooks that match your query
 * #### Edit notes with a rich-text editor, which empowers users to add inline-styling to the text of their notes
-* Make a mistake or finish your to-do list? You can erase notes with the touch of a button
 * #### Autosaving of notes on edit, so you don't need to worry about losing your progress
 
 ## Requirements
@@ -152,6 +149,10 @@ Creating and editing notebooks is achieved through modals, which is stored in th
 
 The notebook search bar is functional and employs an autocomplete search algorithm basded on the trie tree to search by notebook title. I used this [tutorial](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/trie/Trie.js) for guidance to create it.
 
+Finally, notebooks can be directly navigated to. The sidebar has a notebooks drop-down that brings the user to a notebook show page onclick:
+
+## image of notebook indesx and notews...
+
 #### Notes
 
 image here....
@@ -181,7 +182,7 @@ Note creation is handled with a green button in the sidebar, just like Evernote.
     };
 ```
 
-Notes are stored in notebooks and like those on Evernote, they are in a perpetual state of editing. Upon entering either a notebook or the notes index, the most recently updated note is mounted and ready for editing. The mounting is done in the notes index by means of this code:
+Notes are stored in notebooks and like those on Evernote, they are in a perpetual state of editing. Upon entering either a notebook or the notes index, the most recently updated note is mounted and ready for editing. This mounting is done in the notes index by means of this code:
 ```javascript
     componentDidMount() {
         this.props.fetchNotes()
@@ -194,6 +195,30 @@ Notes are stored in notebooks and like those on Evernote, they are in a perpetua
     };
 ```
 
+Notes can be edited by means of a rich-text editor. The Draft.js rich-text editor framework was used to construct the rich text editor. Along with the inline styles that came from RichUtils, a custom style map was used to add the custom strikethrough and highlight methods. 
+
+#image the editor liiks like so
+
+
+
+Upon mounting the note, a setInternal() function activates an autosave feature for notes, which enables autosaving as a user types. This function is called like so:
+```javascript
+        this.intervalId = setInterval(() => { this.autoSave() }, 5000)
+ ```
+A variable is used to save this function as an id, because componentWillUnmount() is used to call clearInterval() to stop the autosaving process once a note is unmounted. clearInterval needs an id to work.
+ 
+Finally, like Evernote, one can seemlessly switch between notes quickly. This rapid dismounting and mounting is done through modals. Each note view/edit page is a modal. The logic that allows for this toggling is bsed on comparing the parent path, which includes the previous note id, and the child path, the current note id:
+```javascript
+handleModalSwitch(e) {   
+        e.preventDefault();
+        this.props.parentPath !== this.props.childPath ?
+            this.props.fetchNote(this.props.note.id)
+                .then(() => {
+                    this.props.closeModal()
+                    this.props.openModal(`nbNotesUpdate,${(this.props.note.id).toString()},${(this.props.note.notebook_id).toString()}`)
+            }) : null
+    }
+```
 
 
 
