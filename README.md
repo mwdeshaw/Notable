@@ -1,4 +1,4 @@
-[# Notable](https://aa-notable.herokuapp.com/#/)
+#[Notable](https://aa-notable.herokuapp.com/#/)
 
 Notable. It is a word that connotates something worthy of attention or remarkable. It is also a word that captures the essence of Notable, a full-stack web application, inspired by Evernote, and built with React/Redux, Ruby on Rails, and PostgreSQL. Notable enables users to readily create notebooks and populate them with copious notes, from grocery and to-do lists to workout plans and class lecture notes. With features including autosaving, rich-text editing, and the ability to search notebooks by title, you never miss a point with Notable!
 
