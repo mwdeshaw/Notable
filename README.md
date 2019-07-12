@@ -112,4 +112,73 @@ Notable's frontend was built using React-Redux. These choices allowed for a unid
 #### Frontend Dependencies
 Node package manager (npm) was used to install and save frontend dependencies, while webpack was used to bundle all the reqeuired JavaScript files and ensure correct loading order. JQuery was used to make AJAX requests to the backend rails API. Draft.js was used in the note show page, allowing for rich-text editing with a range of styles. Other frontend dependencies include React-DOM, React DOM-Router, Provider, and Babel.
 
+#### Notebooks
+Upon login or signup, the user is brought to the notebooks index, where they have the abililty to create, rename, or delete notebooks. When a user first signs up, a notebook is created automatically, so he or she can instantoy get started.
+
+Here is the notebooks index page:
+IMAGE HERE
+
+To create this page, an HTML table was employed, allowing for orangization, responsivness, and hover effects:
+
+```javascript
+                <table className='notebooks-table'>
+                    <thead className='top-table-row'>
+                        <tr>
+                            <th></th>
+                            <th>TITLE</th>
+                            <th>CREATED BY</th>
+                            <th>UPDATED</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody className='notebooks-table-body'>
+                         {notebookList}
+                    </tbody>
+                </table>
+            </div>
+            ```
+            
+A single notebook index item looks like this:
+```javascript
+        <tr onClick={this.state.openedActions ? this.closeActionsView : null}>
+                <th></th>
+                <th onClick={this.handleShowRedirect}><i className="fas fa-book"></i>&#160;&#160;&#160;<Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></th>
+                <th onClick={this.handleShowRedirect}>{author.slice(0, this.sliceIdx(author))}</th>
+                <th onClick={this.handleShowRedirect}>{date}</th>
+                <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
+        </tr>
+        ```
+Creating and editing notebooks is achieved through a modal, which is stored in the ```ui``` slice of state
+
+#### Notes
+
+image here....
+
+Note creation is handled with a green button in the sidebar, just like Evernote. The logic of the button ensures that notes can be created from anywhere in the app depending on the user's current pathname. If the user does not have any notebooks, it will automatically create one, preventing any errors pertaining to notes without notebooks. The default note created has the title of "Untitled" and blank body.
+
+```javascript
+    handleNoteCreation(e) {
+        e.preventDefault();
+        const latestNotebook = this.props.notebooks[0];
+        
+        if (latestNotebook === undefined) {
+            this.props.createNotebook({ title: "A blank notebook for you: please add notes", author_id: this.props.currentUser.id })
+        }
+        else if (this.props.location.pathname.slice(0, 6) === `/notes`) {
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id});
+        } else if (this.props.location.pathname === '/notebooks') {
+            this.props.history.push(`/notebooks/${latestNotebook.id}`)
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id });
+        } else {
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: this.props.match.params.notebookId })
+                .then(() => {
+                    this.props.history.push(`/notebooks/${this.props.match.params.notebookId}/notes/${this.props.lastNote.id}`)
+                    this.updateComponent
+                });
+        } 
+    };
+```
+
+
+
 
