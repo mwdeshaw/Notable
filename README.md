@@ -148,7 +148,9 @@ A single notebook index item looks like this:
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
         </tr>
         ```
-Creating and editing notebooks is achieved through a modal, which is stored in the ```ui``` slice of state
+Creating and editing notebooks is achieved through modals, which is stored in the ```ui``` slice of state
+
+The notebook search bar is functional and employs an autocomplete search algorithm basded on the trie tree to search by notebook title. I used this [tutorial](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/trie/Trie.js) for guidance to create it.
 
 #### Notes
 
@@ -176,6 +178,19 @@ Note creation is handled with a green button in the sidebar, just like Evernote.
                     this.updateComponent
                 });
         } 
+    };
+```
+
+Notes are stored in notebooks and like those on Evernote, they are in a perpetual state of editing. Upon entering either a notebook or the notes index, the most recently updated note is mounted and ready for editing. The mounting is done in the notes index by means of this code:
+```javascript
+    componentDidMount() {
+        this.props.fetchNotes()
+            .then(() => {
+                if (this.props.notes.length !== 0) {
+                    this.props.history.push(`/notes/${this.props.notes[0].id}`)
+                    this.props.openModal(`nbNotesUpdate,${this.props.notes[0].id},${this.props.notes[0].notebook_id}`)
+                }
+            });
     };
 ```
 
