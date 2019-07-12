@@ -6,7 +6,6 @@ import NotesModal from '../modals/notes_modal';
 
 class NotebookShowPage extends React.Component { 
     componentDidMount() {
-        debugger
         this.props.fetchNotebook(this.props.match.params.notebookId)
         .then(() => {
             if (this.props.notebook.noteIds.length !== 0) {
@@ -15,7 +14,6 @@ class NotebookShowPage extends React.Component {
         }});
     };
         componentDidUpdate(prevProps) {
-            
         if (prevProps.location.pathname !== this.props.location.pathname) {
             this.props.fetchNotebook(this.props.match.params.notebookId)
                 .then(() => {

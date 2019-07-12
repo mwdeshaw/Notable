@@ -124,19 +124,13 @@ const styles = {
 
 const TopBar = () => {
 
-    const [hoverStyleAbout, setHoverStyleAbout] = useState(styles.link);
-    const [hoverAbout, setHoverAbout] = useState(false);
     const [hoverStyleContact, setHoverStyleContact] = useState(styles.link);
     const [hoverContact, setHoverContact] = useState(false);
     const [signupRedirect, setSignupRedirect] = useState(false);
     const [loginRedirect, setLoginRedirect] = useState(false);
 
     useEffect(() => {
-        if (hoverAbout) {
-            setHoverStyleAbout(styles.linkHover);
-        } else {
-            setHoverStyleAbout(styles.link);
-        } if (hoverContact) {
+        if (hoverContact) {
             setHoverStyleContact(styles.linkHover);
         } else {
             setHoverStyleContact(styles.link);
@@ -170,9 +164,6 @@ const TopBar = () => {
                                             </div>
                                         </div>
                                         <div style={styles.leftContainerItem2}>
-                                            <a href="https://en.wikipedia.org/wiki/Potato">
-                                                <button style={hoverStyleAbout} onMouseEnter={() => setHoverAbout(true)} onMouseLeave={() => setHoverAbout(false)}>ABOUT</button>
-                                            </a>
                                             <a href="mailto:mwdeshaw@gmail.com">
                                                 <button style={hoverStyleContact} onMouseEnter={() => setHoverContact(true)} onMouseLeave={() => setHoverContact(false)}>CONTACT</button>
                                             </a>
