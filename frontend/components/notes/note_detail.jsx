@@ -8,6 +8,16 @@ import {
     convertToRaw,
 } from 'draft-js';
 
+const styleMap = {
+    'STRIKETHROUGH': {
+        textDeco: 'line-through'
+    },
+    'HIGHLIGHT': {
+        backgroundColor: '#ccff00'
+    }
+};
+
+
 class NoteDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -108,6 +118,7 @@ class NoteDetail extends React.Component {
                         onChange={this.onChange}
                         placeholder="Start writing..."
                         handleKeyCommand={this.handleKeyCommand}
+                        customStyleMap={styleMap}
                     />
                 </div>
         )
@@ -143,7 +154,7 @@ class NoteDetail extends React.Component {
             return null;
         }
         
-        const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
+        const styles = ["BOLD", "ITALIC", "UNDERLINE", "STRIKETHROUGH", "HIGHLIGHT",  "CODE"];
         const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>, 
             <i className="fas fa-underline"></i>, <i className="fas fa-strikethrough"></i>, 
             <i className="fas fa-highlighter"></i>, <i className="fas fa-code"></i>];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
     Editor,
     EditorState,
@@ -7,6 +7,15 @@ import {
     convertFromRaw,
     convertToRaw,
 } from 'draft-js';
+
+const styleMap = {
+    'STRIKETHROUGH': {
+        textDecoration: 'line-through'
+    },
+    'HIGHLIGHT': {
+        backgroundColor: '#ccff00'
+    }
+};
 
 class NoteDetailForNotebooks extends React.Component {
     constructor(props) {
@@ -42,7 +51,6 @@ class NoteDetailForNotebooks extends React.Component {
             this.setState({ [type]: e.target.value })
         };
     };
-
 
     updateComponent() {
         this.forceUpdate()
@@ -114,6 +122,7 @@ class NoteDetailForNotebooks extends React.Component {
                     onChange={this.onChange}
                     placeholder="Start writing..."
                     handleKeyCommand={this.handleKeyCommand}
+                    customStyleMap={styleMap}
                 />
             </div>
         )
@@ -140,7 +149,7 @@ class NoteDetailForNotebooks extends React.Component {
 
     render() {
 
-        const styles = ["BOLD", "UNDERLINE", "ITALIC", "HIGHLIGHT", "CODE"];
+        const styles = ["BOLD", "ITALIC", "UNDERLINE", "STRIKETHROUGH", "HIGHLIGHT", "CODE"];
         const buttonImg = [<i className="fas fa-bold"></i>, <i className="fas fa-italic"></i>,
         <i className="fas fa-underline"></i>, <i className="fas fa-strikethrough"></i>,
         <i className="fas fa-highlighter"></i>, <i className="fas fa-code"></i>];

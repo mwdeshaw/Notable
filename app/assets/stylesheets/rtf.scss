@@ -57,7 +57,6 @@
     text-decoration: underline;
 }
 
-
 .filler {
     display: flex;
     flex-shrink: 0;
@@ -81,13 +80,13 @@
     opacity: 1;
     transition: all .15s ease;
     margin-top: 6px;
-    transform: translateX(750px);
+    transform: translateX(740px);
 }
 
 .btns {
     width: 34px;
     height: 34px;
-    margin: 0px 10px;
+    margin: 0px 5px;
 }
 
 .btns button:hover {
