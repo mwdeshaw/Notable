@@ -113,11 +113,14 @@ Notable's frontend was built using React-Redux. These choices allowed for a unid
 #### Frontend Dependencies
 Node package manager (npm) was used to install and save frontend dependencies, while webpack was used to bundle all the reqeuired JavaScript files and ensure correct loading order. JQuery was used to make AJAX requests to the backend rails API. Draft.js was used in the note show page, allowing for rich-text editing with a range of styles. Other frontend dependencies include React-DOM, React DOM-Router, Provider, and Babel.
 
+![signup](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.20.54%20PM.png)
+
 #### Notebooks
+
 Upon login or signup, the user is brought to the notebooks index, where they have the abililty to create, rename, or delete notebooks. When a user first signs up, a notebook is created automatically, so he or she can instantoy get started.
 
 Here is the notebooks index page:
-IMAGE HERE
+![notebook index](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2010.22.33%20AM.png)
 
 To create this page, an HTML table was employed, allowing for orangization, responsivness, and hover effects:
 
