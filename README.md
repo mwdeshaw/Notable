@@ -1,4 +1,4 @@
-[Notable](https://aa-notable.herokuapp.com/#/)
+# [Notable](https://aa-notable.herokuapp.com/#/)
 
 Notable. It is a word that connotates something worthy of attention or remarkable. It is also a word that captures the essence of Notable, a full-stack web application, inspired by Evernote, and built with React/Redux, Ruby on Rails, and PostgreSQL. Notable enables users to readily create notebooks and populate them with copious notes, from grocery and to-do lists to workout plans and class lecture notes. With features including autosaving, rich-text editing, and the ability to search notebooks by title, you never miss a point with Notable!
 
@@ -15,13 +15,13 @@ Notable has many features, all of which work to give the user the best experienc
 * Autosaving of notes on edit, so you don't need to worry about losing your progress
 * Make a mistake or finish your to-do list? You can erase notes with the touch of a button
 
-##Requirements
+## Requirements
 * Node ```v10.13.1```
 * Rails ```5.2.3```
 * Bundler version ```2.02```
 * PostgreSQL
 
-##Run Notable locally:
+## Run Notable locally:
 1. Clone github repo
 
 2. Install the dependencies and packages:
@@ -56,7 +56,7 @@ Notable was built on Ruby on Rails and is hosted on Heroku. Backend-frontend int
 Creating an account on Notable is quick and seamless, requiring only an email and a password. However, behind the scenes, many steps are taken to ensure protection of users and their credentials. Built-in Cross-site request forgery (CSRF) protection is also provided, protecting users from malicious attacks
 
 Here is a snipped from the User model, where you can get a glimpse of some of these features:
-```
+```ruby
 class User < ApplicationRecord
     attr_reader :password
 
