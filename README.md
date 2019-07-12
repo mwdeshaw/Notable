@@ -85,7 +85,7 @@ Note the use of BCrypt for password salting and hashing. Plain text passwords ar
 
 #### Notebooks and Notes:
 Notable is nothing without notes, and the relationship between users, notebooks, and notes is managed through database associations. Here is an example from the Note Model:
-```
+```javascript
 class Note < ApplicationRecord
     validates :notebook_id, :author_id, :title, presence: true
     validates :body, presence: true, allow_blank: true
@@ -131,21 +131,21 @@ Notable has many features, all of which work to give the user the best experienc
 1. Clone github repo
 
 2. Install the dependencies and packages:
-  ````Ruby
+  ```Ruby
   bundle install
   npm install
-  ````
+  ```
   
  3. Create local PostgreSQL database:
- ````
+ ```
  bundle exec rails db:create
- ````
+ ```
  
  4. Activate the rails server and webpack:
- ````
+ ```
  rails server
  npm start
- ````
+ ```
  
  5. Navigate to local localhost:3000 in your borwser
  
@@ -162,7 +162,7 @@ Notable was built on Ruby on Rails and is hosted on Heroku. Backend-frontend int
 Creating an account on Notable is quick and seamless, requiring only an email and a password. However, behind the scenes, many steps are taken to ensure protection of users and their credentials. Built-in Cross-site request forgery (CSRF) protection is also provided, protecting users from malicious attacks
 
 Here is a snipped from the User model, where you can get a glimpse of some of these features:
-````
+```ruby
 class User < ApplicationRecord
     attr_reader :password
 
@@ -185,13 +185,13 @@ class User < ApplicationRecord
         user.is_password?(password) ? user : nil
     end
 end
-````
+```
 
 Note the use of BCrypt for password salting and hashing. Plain text passwords are never stored in the database. Instead, passwords only exist for a moment as instance variables, where they are then salted and hashed with 128-bit encryption before commitment to the database.
 
 #### Notebooks and Notes:
 Notable is nothing without notes, and the relationship between users, notebooks, and notes is managed through database associations. Here is an example from the Note Model:
-````
+```ruby
 class Note < ApplicationRecord
     validates :notebook_id, :author_id, :title, presence: true
     validates :body, presence: true, allow_blank: true
@@ -206,16 +206,12 @@ class Note < ApplicationRecord
         foreign_key: :notebook_id,
         class_name: :Notebook
 end
-````
+```
 
 These associations are utilized in the controllers to tie users to notes and notes to notebooks, enabling proper functionality from the creation of notes for specific notebooks to ensuring all notes for a single notebook are deleted if a notebook is deleted.
 
 ### Frontend
-Notable's frontend was built using React-Redux. These choices allowed for a unidirectional dataflow and single-source of truth. With Redux, the only way for data to change is through dispatching actions through React components.
-
-In React-Redux applications, when your Redux is a single source of truth, it means that the only way to change your data in UI is to dispatch redux action which will change state within redux reducer. And your React components will watch this reducer and if that reducer changes, then UI will change itself too. But never other way around, because Redux state is single source of truth.
+Notable's frontend was built using React-Redux. These choices allowed for a unidirectional dataflow and single-source of truth. With so many states to manage, notes inside notebooks, both belonging to authors, dynamically switching between notes, etc. Redux enables proper state management. CSS was used for frontend styling.
 
 
-
-Whenevernote's frontend was built using the React framework and Redux cycle. These design choices were made so there would be an unidirectional data flow and all necessary data is stored in one source.
 
