@@ -1,5 +1,8 @@
 # [Notable](https://aa-notable.herokuapp.com/#/)
 
+![splash page](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/notable-splash.png)
+
+
 Notable. It is a word that connotates something worthy of attention or remarkable. It is also a word that captures the essence of Notable, a full-stack web application, inspired by Evernote, and built with React/Redux, Ruby on Rails, and PostgreSQL. Notable enables users to readily create notebooks and populate them with copious notes, from grocery and to-do lists to workout plans and class lecture notes. With features including autosaving, rich-text editing, and the ability to search notebooks by title, you never miss a point with Notable!
 
 ## Features
@@ -149,9 +152,9 @@ Creating and editing notebooks is achieved through modals, which is stored in th
 
 The notebook search bar is functional and employs an autocomplete search algorithm basded on the trie tree to search by notebook title. I used this [tutorial](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/trie/Trie.js) for guidance to create it.
 
-Finally, notebooks can be directly navigated to. The sidebar has a notebooks drop-down that brings the user to a notebook show page onclick:
+Finally, notebooks can be directly navigated to. The sidebar has a notebooks drop-down that brings the user to a notebook show page on click:
 
-## image of notebook indesx and notews...
+![notebook index dropdown](https://github.com/mwdeshaw/Notable/blob/master/read_me_images/Screen%20Shot%202019-07-12%20at%2012.08.14%20PM.png)
 
 #### Notes
 
@@ -173,7 +176,7 @@ Note creation is handled with a green button in the sidebar, just like Evernote.
             this.props.history.push(`/notebooks/${latestNotebook.id}`)
             this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: latestNotebook.id });
         } else {
-            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id: this.props.match.params.notebookId })
+            this.props.createNote({ title: "Untitled", body: "", author_id: this.props.currentUser.id, notebook_id:     this.props.match.params.notebookId })
                 .then(() => {
                     this.props.history.push(`/notebooks/${this.props.match.params.notebookId}/notes/${this.props.lastNote.id}`)
                     this.updateComponent
