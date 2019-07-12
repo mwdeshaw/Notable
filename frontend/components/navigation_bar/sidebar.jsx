@@ -78,7 +78,7 @@ class Sidebar extends React.Component {
     sliceIdx(str) {
         return str.indexOf("@");
     };
-
+    
     render() {
         const basicView = () => (
             <div className='basic-view'>

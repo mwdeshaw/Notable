@@ -27,6 +27,7 @@ class NavigationBar extends React.Component {
                     logout={this.props.logout} 
                     lastNote={this.props.lastNote}
                     createNotebook={this.props.createNotebook}
+                    clearErrors={this.props.clearErrors}
                 />
             </div>
             );

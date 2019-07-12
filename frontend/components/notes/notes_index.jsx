@@ -25,6 +25,11 @@ class NotesIndex extends React.Component {
     };
 
     render() {
+        if (!this.props.notes) {
+            return (
+                <div>Loading...</div>
+            );
+        };    
         const notes = this.props.notes;
         const allNotes = notes.length !== 0 ?
         notes.map(note => {
@@ -43,7 +48,7 @@ class NotesIndex extends React.Component {
                     childPath={`notes/${note.id}`}
                     />
             );
-        }) : <div>&#160;&#160;No notes yet...</div>
+        }) : <div className='no-notes'>&#160;&#160;No notes yet...</div>
 
         return(
             <div className='notes-index-parent'>

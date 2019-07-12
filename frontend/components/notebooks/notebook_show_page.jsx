@@ -13,7 +13,8 @@ class NotebookShowPage extends React.Component {
                 this.props.openModal(`nbNotesUpdateNb,${this.props.notebook.noteIds[this.props.notebook.noteIds.length - 1]},${this.props.notebook.id}`)
         }});
     };
-        componentDidUpdate(prevProps) {
+    
+    componentDidUpdate(prevProps) {
         if (prevProps.location.pathname !== this.props.location.pathname) {
             this.props.fetchNotebook(this.props.match.params.notebookId)
                 .then(() => {
@@ -60,7 +61,7 @@ class NotebookShowPage extends React.Component {
                     childPath={`notes/notebooks/${note.notebook_id}/${note.id}`}
                 />
             )
-        }) : <div>&#160;&#160;No notes yet...</div>
+        }) : <div className='no-notes'>&#160;&#160;No notes yet...</div>
         return(
             <div className='nb-show-parent'>
                 <div className='nb-show-index-parent'>

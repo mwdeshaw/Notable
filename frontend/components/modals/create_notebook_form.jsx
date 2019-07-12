@@ -13,8 +13,10 @@ class CreateNotebookForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.clearErrors();
-        this.props.createNotebook(this.state).then(this.props.closeModal);
+        this.props.createNotebook(this.state).then(() => {
+        this.props.clearErrors()
+        this.props.closeModal()
+        })
     };
 
     updateTitle(title) {
