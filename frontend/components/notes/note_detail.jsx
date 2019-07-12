@@ -10,7 +10,7 @@ import {
 
 const styleMap = {
     'STRIKETHROUGH': {
-        textDeco: 'line-through'
+        textDecoration: 'line-through'
     },
     'HIGHLIGHT': {
         backgroundColor: '#ccff00'
