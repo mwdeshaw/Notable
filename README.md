@@ -56,6 +56,7 @@ Notable was built on Ruby on Rails and is hosted on Heroku. Backend-frontend int
 Creating an account on Notable is quick and seamless, requiring only an email and a password. However, behind the scenes, many steps are taken to ensure protection of users and their credentials. Built-in Cross-site request forgery (CSRF) protection is also provided, protecting users from malicious attacks
 
 Here is a snipped from the User model, where you can get a glimpse of some of these features:
+
 ```ruby
 class User < ApplicationRecord
     attr_reader :password
@@ -135,10 +136,11 @@ To create this page, an HTML table was employed, allowing for orangization, resp
                          {notebookList}
                     </tbody>
                 </table>
-            </div>
-            ```
+            </div> 
+```
             
 A single notebook index item looks like this:
+
 ```javascript
         <tr onClick={this.state.openedActions ? this.closeActionsView : null}>
                 <th></th>
@@ -147,7 +149,7 @@ A single notebook index item looks like this:
                 <th onClick={this.handleShowRedirect}>{date}</th>
                 <th>{this.state.openedActions ? detailedActionsView() : basicActionsView()}</th>
         </tr>
-        ```
+```
 Creating and editing notebooks is achieved through modals, which is stored in the ```ui``` slice of state
 
 The notebook search bar is functional and employs an autocomplete search algorithm basded on the trie tree to search by notebook title. I used this [tutorial](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/trie/Trie.js) for guidance to create it.
