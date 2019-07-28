@@ -23,6 +23,7 @@ class Sidebar extends React.Component {
         this.handleNotesRedirect = this.handleNotesRedirect.bind(this);
         this.handleNoteCreation = this.handleNoteCreation.bind(this);
         this.updateComponent = this.updateComponent.bind(this);
+        this.handleNotesSearchRedirect = this.handleNotesSearchRedirect.bind(this);
     }
 
     updateComponent() {
@@ -54,6 +55,13 @@ class Sidebar extends React.Component {
         e.preventDefault();
         this.props.history.push("/notes")
     }
+
+    handleNotesSearchRedirect(e) {
+        e.preventDefault();
+        if (this.props.location.pathname.slice(0, 6) !== `/notes`) {
+            this.props.history.push("/notes")
+        }
+    };
 
     openView(e) {
         e.preventDefault();
@@ -126,7 +134,7 @@ class Sidebar extends React.Component {
                 </div>
 
                 <div className='search-container'>
-                    <input type="text" placeholder="Search all notes..." className="search-input" onFo/>
+                    <input type="text" placeholder="Search all notes..." className="search-input" onClick={this.handleNotesSearchRedirect}/>
                     <span>
                         <button className='search-btn' type="submit" style={styles.searchButton}><i className="fa fa-search"></i></button>
                     </span>

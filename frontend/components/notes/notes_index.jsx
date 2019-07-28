@@ -42,7 +42,7 @@ class NotesIndex extends React.Component {
                 <div>Loading...</div>
             );
         };
-
+        const notes = this.props.notes; 
         let noteList;
         if (this.props.searchString !== "" && this.props.searchString.length !== []) {
             noteList = this.props.filteredNotes.map(note => {
@@ -63,7 +63,6 @@ class NotesIndex extends React.Component {
                 )
         })
         } else {
-            notes = this.props.notes; 
             noteList = notes.length !== 0 ? notes.map(note => {
             return(
                 <NoteIndexItemForNotes
