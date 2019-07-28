@@ -19,8 +19,7 @@ class NotebookIndex extends React.Component {
         this.props.setSearchFilter(searchString);
     };
 
-    render() {
-        
+    render() {    
         let notebookList = [];
         if (this.props.searchString !== "" && this.props.searchString.length !== []) {
             notebookList = this.props.filteredNotebooks.map(notebook => {
