@@ -126,7 +126,7 @@ class Sidebar extends React.Component {
                 </div>
 
                 <div className='search-container'>
-                    <input type="text" placeholder="Search all notes..." className="search-input" />
+                    <input type="text" placeholder="Search all notes..." className="search-input" onFo/>
                     <span>
                         <button className='search-btn' type="submit" style={styles.searchButton}><i className="fa fa-search"></i></button>
                     </span>

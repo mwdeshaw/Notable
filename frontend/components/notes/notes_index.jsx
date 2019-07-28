@@ -4,6 +4,14 @@ import { withRouter } from 'react-router-dom';
 import NotesModal from '../modals/notes_modal';
 
 class NotesIndex extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchString: ""
+        };
+        this.setFilter = this.setFilter.bind(this);
+    }
+    
     componentDidMount() {
         this.props.fetchNotes()
             .then(() => {
@@ -24,15 +32,39 @@ class NotesIndex extends React.Component {
         }
     };
 
+    setFilter(searchString) {
+        this.props.setSearchFilter(searchString);
+    };
+
     render() {
         if (!this.props.notes) {
             return (
                 <div>Loading...</div>
             );
-        };    
-        const notes = this.props.notes;
-        const allNotes = notes.length !== 0 ?
-        notes.map(note => {
+        };
+
+        let noteList;
+        if (this.props.searchString !== "" && this.props.searchString.length !== []) {
+            noteList = this.props.filteredNotes.map(note => {
+                return (
+                    <NoteIndexItemForNotes
+                        key={note.id}
+                        note={note}
+                        author={this.props.currentUser}
+                        deleteNote={this.props.deleteNote}
+                        updateNote={this.props.updateNote}
+                        fetchNote={this.props.fetchNote}
+                        openModal={this.props.openModal}
+                        closeModal={this.props.closeModal}
+                        updateNoteModal={this.props.updateNoteModal}
+                        parentPath={this.props.location.pathname}
+                        childPath={`notes/${note.id}`}
+                    />
+                )
+        })
+        } else {
+            notes = this.props.notes; 
+            noteList = notes.length !== 0 ? notes.map(note => {
             return(
                 <NoteIndexItemForNotes
                     key={note.id}
@@ -49,6 +81,7 @@ class NotesIndex extends React.Component {
                     />
             );
         }) : <div className='no-notes'>&#160;&#160;No notes yet...</div>
+        };
 
         return(
             <div className='notes-index-parent'>
@@ -61,7 +94,7 @@ class NotesIndex extends React.Component {
                 <div className='list-container'>
                     <NotesModal/>
                     <ul className='notes-list'>
-                        {allNotes}
+                        {noteList}
                     </ul>
                 </div>
             </div>
