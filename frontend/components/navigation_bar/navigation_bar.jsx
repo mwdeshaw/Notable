@@ -28,7 +28,9 @@ class NavigationBar extends React.Component {
                     lastNote={this.props.lastNote}
                     createNotebook={this.props.createNotebook}
                     clearErrors={this.props.clearErrors}
-                />
+                    setSearchFilter={this.props.setSearchFilter}
+                    resetSearchFilter={this.props.resetSearchFilter}
+    />
             </div>
             );
         } else {

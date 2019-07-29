@@ -90,7 +90,6 @@ export default class Autocomplete {
         this.suggestionsHelper(curNode, tempWord)
 
         const ret = this.suggestions;
-        console.log(ret)
         this.suggestions = [];
         return ret;
     }

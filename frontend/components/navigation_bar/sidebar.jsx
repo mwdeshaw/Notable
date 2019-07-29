@@ -1,21 +1,17 @@
 import React from 'react';
 import NotebookListContainer from  './notebook_list_container';
 import { Link, withRouter } from 'react-router-dom';
-
-const styles = {
-    searchButton: {
-        margin: 10,
-        cursor: 'pointer',
-    }
-}
+import NoteSearchBar from './note_search_bar';
 
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
-            logoutVisible: false
+            logoutVisible: false,
+            searchString: ""
         };
+
         this.openView = this.openView.bind(this);
         this.closeView = this.closeView.bind(this);
         this.openLogout = this.openLogout.bind(this);
@@ -23,8 +19,12 @@ class Sidebar extends React.Component {
         this.handleNotesRedirect = this.handleNotesRedirect.bind(this);
         this.handleNoteCreation = this.handleNoteCreation.bind(this);
         this.updateComponent = this.updateComponent.bind(this);
-        this.handleNotesSearchRedirect = this.handleNotesSearchRedirect.bind(this);
-    }
+        this.setFilter = this.setFilter.bind(this);
+    };
+
+    setFilter(searchString) {
+        this.props.setSearchFilter(searchString);
+    };
 
     updateComponent() {
         this.forceUpdate();
@@ -55,13 +55,6 @@ class Sidebar extends React.Component {
         e.preventDefault();
         this.props.history.push("/notes")
     }
-
-    handleNotesSearchRedirect(e) {
-        e.preventDefault();
-        if (this.props.location.pathname.slice(0, 6) !== `/notes`) {
-            this.props.history.push("/notes")
-        }
-    };
 
     openView(e) {
         e.preventDefault();
@@ -132,14 +125,7 @@ class Sidebar extends React.Component {
                 <div className='greeting-container'>
                     <div>{this.state.logoutVisible ? detailedUserView() : basicUserView() }</div>
                 </div>
-
-                <div className='search-container'>
-                    <input type="text" placeholder="Search all notes..." className="search-input" onClick={this.handleNotesSearchRedirect}/>
-                    <span>
-                        <button className='search-btn' type="submit" style={styles.searchButton}><i className="fa fa-search"></i></button>
-                    </span>
-                </div>
-
+                <NoteSearchBar setFilter={this.setFilter} curPath={this.props.location.pathname.slice(0, 6)}/> 
                 <div className="side-buttons" onClick={this.handleNoteCreation}>
                     <button className='new-note'><i id="icon-new" className="fas fa-plus"></i> New Note</button>
                 </div>

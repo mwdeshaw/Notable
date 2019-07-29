@@ -4,14 +4,6 @@ import { withRouter } from 'react-router-dom';
 import NotesModal from '../modals/notes_modal';
 
 class NotesIndex extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchString: ""
-        };
-        this.setFilter = this.setFilter.bind(this);
-    }
-    
     componentDidMount() {
         this.props.fetchNotes()
             .then(() => {
@@ -32,20 +24,16 @@ class NotesIndex extends React.Component {
         }
     };
 
-    setFilter(searchString) {
-        this.props.setSearchFilter(searchString);
-    };
-
     render() {
         if (!this.props.notes) {
             return (
                 <div>Loading...</div>
             );
         };
-        const notes = this.props.notes; 
-        let noteList;
+        const notes = this.props.notes;
+        let notesList = [];
         if (this.props.searchString !== "" && this.props.searchString.length !== []) {
-            noteList = this.props.filteredNotes.map(note => {
+            notesList = this.props.filteredNotes.map(note => {
                 return (
                     <NoteIndexItemForNotes
                         key={note.id}
@@ -60,10 +48,10 @@ class NotesIndex extends React.Component {
                         parentPath={this.props.location.pathname}
                         childPath={`notes/${note.id}`}
                     />
-                )
-        })
+                );
+        });
         } else {
-            noteList = notes.length !== 0 ? notes.map(note => {
+            notesList = notes.length !== 0 ? notes.map(note => {
             return(
                 <NoteIndexItemForNotes
                     key={note.id}
@@ -93,7 +81,7 @@ class NotesIndex extends React.Component {
                 <div className='list-container'>
                     <NotesModal/>
                     <ul className='notes-list'>
-                        {noteList}
+                            {notesList}
                     </ul>
                 </div>
             </div>

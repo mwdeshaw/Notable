@@ -6,6 +6,7 @@ import { clearErrors } from '../../actions/session';
 import { selectAllNotebooksByUpdated, selectAllNotesByUpdated } from  '../../reducers/selectors';
 import NavigationBar from './navigation_bar'
 import { openModal } from '../../actions/modal_actions';
+import { setSearchFilter, resetSearchFilter } from '../../actions/notebook_filters';
 
 const mapStateToProps = (state) => ({
     currentUser: state.entities.users[state.session.currentUserId],
@@ -19,7 +20,9 @@ const mapDispatchToProps = dispatch => ({
     createNote: note => dispatch(createNote(note)),
     createNotebook: notebook => dispatch(createNotebook(notebook)),
     openModal: (modal) => dispatch(openModal(modal)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    setSearchFilter: searchString => dispatch(setSearchFilter(searchString)),
+    resetSearchFilter: () => dispatch(resetSearchFilter())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
