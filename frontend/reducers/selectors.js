@@ -35,7 +35,6 @@ export const selectFilteredNotebooks = (notebooks, searchString) => {
 
     searchString = searchString[searchString.length - 1];
 
-
     if (notebooks && (searchString !== "" && searchString !== undefined)) {
         notebooks.map(notebook => {
             notebookTitles.push(notebook.title)
@@ -50,6 +49,30 @@ export const selectFilteredNotebooks = (notebooks, searchString) => {
             }
         })
         return filteredNotebooks;
+    }
+    return [];
+};
+
+export const selectFilteredNotes = (notes, searchString) => {
+    let noteTitles = [];
+    let filteredNotes = [];
+
+    searchString = searchString[searchString.length - 1];
+
+    if (notes && (searchString !== "" && searchString !== undefined)) {
+        notes.map(note => {
+            noteTitles.push(note.title)
+        });
+
+        let autocomplete = new Autocomplete();
+        autocomplete.addWords(noteTitles);
+        let suggestions = new Set(autocomplete.getSuggestions(searchString.searchString));
+        notes.map(note => {
+            if (suggestions.has(note.title.toUpperCase())) {
+                filteredNotes.push(note)
+            }
+        })
+        return filteredNotes;
     }
     return [];
 };
